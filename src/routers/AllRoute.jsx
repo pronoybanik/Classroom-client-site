@@ -4,6 +4,7 @@ import Main from "../layouts/Main";
 import Home from "../pages/Home/Home";
 import FrontPage from "../component/FrontPage/FrontPage";
 import Register from "../pages/Register/Register";
+import GenerateAndLog from "../pages/GenerateAndLog/GenerateAndLog ";
 
 const AllRouter = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const AllRouter = createBrowserRouter([
       {
         path: "/home",
         element: <Home />,
+      },
+      {
+        path: "/GenerateAndLog",
+        element: <GenerateAndLog />,
       },
     ],
   },

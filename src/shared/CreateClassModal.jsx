@@ -1,13 +1,54 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useContext, useEffect, useState } from "react";
+import { AuthContext } from "./AuthPovider";
+import toast from "react-hot-toast";
 
 const CreateClassModal = ({}, ref) => {
+  const { user } = useContext(AuthContext);
+  const [classCode, setClassCode] = useState("");
+
+  useEffect(() => {
+    const randomNumber = Math.floor(Math.random() * 9000) + 1000;
+    const randomWord = generateRandomWord();
+    const combinedString = `${randomNumber}${randomWord}`;
+    setClassCode(combinedString);
+  }, []);
+
+  const generateRandomWord = () => {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    let word = "";
+    for (let i = 0; i < 5; i++) {
+      word += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+    }
+    return word;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
     const className = from.className.value;
     const section = from.section.value;
     const subject = from.subject.value;
-    console.log(className, section, subject);
+
+    const classData = {
+      classCode: classCode,
+      gmail: user?.email,
+      className,
+      section,
+      subject,
+    };
+
+    fetch("http://localhost:5000/api/v1/classList", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(classData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        toast.success(`class is create successfully`);
+      });
   };
   return (
     <dialog className="w-2/6 bg-white rounded-lg py-2 px-4" ref={ref}>
