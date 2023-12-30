@@ -31,7 +31,7 @@ const CreateClassModal = ({}, ref) => {
 
     const classData = {
       classCode: classCode,
-      gmail: user?.email,
+      email: user?.email,
       className,
       section,
       subject,

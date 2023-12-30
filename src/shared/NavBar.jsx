@@ -1,12 +1,15 @@
 import React, { useContext } from "react";
-import { FaPlus } from "react-icons/fa";
-import { CgProfile } from "react-icons/cg";
 import { AuthContext } from "./AuthPovider";
+import AddClassIcon from "../component/AddCalssIcon/AddCalssIcon";
+import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
+import PrimaryButton from "./PrimaryButton";
 
 const NavBar = ({ setNavToggle }) => {
-  const { user } = useContext(AuthContext);
-  console.log("nav user", user?.email);
+  const { user, logout } = useContext(AuthContext);
 
+  const handleLogOut = () => {
+    logout();
+  };
   return (
     <header className="bg-white">
       <div className="flex justify-between">
@@ -44,24 +47,12 @@ const NavBar = ({ setNavToggle }) => {
         </div>
 
         <div className="flex items-center gap-4 mr-4">
-          <div className="hover:bg-gray-200 py-3 px-3 rounded-full">
-            <FaPlus style={{ fontSize: "20px" }} />
-          </div>
+          <AddClassIcon />
+          <ProfileIcon user={user} />
 
-          {user?.email ? (
-            <div>
-              {" "}
-              <img
-                className="w-12 h-12 hover:bg-gray-200 py-1 px-1 rounded-full"
-                src={user?.photoURL || <CgProfile />}
-                alt=""
-              />{" "}
-            </div>
-          ) : (
-            <div className="hover:bg-gray-200  py-1 px-1 rounded-full">
-              <CgProfile style={{ fontSize: "30px" }} />
-            </div>
-          )}
+          <div onClick={handleLogOut}>
+            <PrimaryButton>Logout</PrimaryButton>
+          </div>
         </div>
       </div>
     </header>

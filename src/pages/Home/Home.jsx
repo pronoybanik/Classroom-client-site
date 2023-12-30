@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Model from "../../shared/Model";
 import CreateClassModal from "../../shared/CreateClassModal";
 import HomeCard from "../../component/HomeCard/HomeCard";
+import { AuthContext } from "../../shared/AuthPovider";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
   const [classData, setClassData] = useState([]);
@@ -22,16 +24,19 @@ const Home = () => {
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
-      .then((data) => setClassData(data));
+      .then((data) => setClassData(data.data));
   }, []);
 
-  
+  const filterUserClassData = classData.filter(
+    (data) => data?.email === user?.email
+  );
+  console.log(filterUserClassData);
 
   return (
     <>
-      {classData?.data?.length > 0 ? (
+      {filterUserClassData?.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-2">
-          {classData?.data?.map((data) => (
+          {classData?.map((data) => (
             <HomeCard key={data?._id} classInfo={data} />
           ))}
         </div>

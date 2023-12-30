@@ -3,18 +3,20 @@ import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const HomeCard = ({ classInfo }) => {
-  const { _id, className, section } = classInfo;
-  console.log(classInfo);
+  const { _id, className, section, imageURLs } = classInfo;
 
   return (
-    <Link to="" className="group relative block overflow-hidden">
+    <Link
+      to={`/classId/${_id}`}
+      className="group relative block overflow-hidden"
+    >
       <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
         <BsThreeDotsVertical />
       </button>
 
       <div className="h-40 w-full">
         <img
-          src="https://gstatic.com/classroom/themes/img_code.jpg"
+          src={imageURLs || "https://gstatic.com/classroom/themes/img_code.jpg"}
           alt=""
           className=" object-cover transition duration-500 group-hover:scale-105 sm:h-72"
         />
