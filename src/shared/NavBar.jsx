@@ -1,19 +1,15 @@
 import React from "react";
-import SideMenuComponents from "../component/SideMenuComponents/SideMenuComponents";
-import { Link } from "react-router-dom";
 
-const NavBar = ({setNavToggle}) => {
-//   const [navToggle, setNavToggle] = React.useState(false);
-
+const NavBar = ({ setNavToggle, navToggle }) => {
   return (
     <header className="bg-white">
-      {/* <div className="mx-auto flex h-16 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-       
-      </div>
-      <SideMenuComponents navToggle={navToggle} /> */}
       <div className="flex justify-between">
         <div className="flex justify-center gap-4">
-          <button onClick={() => setNavToggle(pre => (!pre))} className=" rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 ">
+          <button
+            onClick={() => setNavToggle((pre) => !pre)}
+            
+            className="rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 "
+          >
             <span className="sr-only">Toggle menu</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -58,7 +54,6 @@ const NavBar = ({setNavToggle}) => {
           </div>
         </div>
       </div>
-     
     </header>
   );
 };

@@ -9,14 +9,14 @@ const Main = () => {
   return (
     <div>
       <div className="my-2 ml-6">
-        <NavBar setNavToggle={setNavToggle} />
+        <NavBar navToggle={navToggle} setNavToggle={setNavToggle} />
       </div>
       <p className="border-b-2 mt-2"></p>
 
       <section>
         <section className={navToggle ? "grid grid-cols-4" : ""}>
           <div className="ml-2">
-            {navToggle === true ? <SideMenuComponents /> : null}
+            {navToggle === true ? <SideMenuComponents navToggle={navToggle} /> : null}
           </div>
 
           <div className=" col-span-3 ml-4">

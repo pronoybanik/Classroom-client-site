@@ -1,8 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SideMenuComponents = ({ navToggle }) => {
   return (
-    <div className="flex">
+    <div
+      className={`absolute  ${
+        navToggle ? "left-0" : "left-[-120%]"
+      } top-[4.5rem] flex w-full flex-col bg-slate-200 pb-3 pt-2 transition-all duration-300 dark:bg-slate-900 lg:static lg:w-[unset] lg:flex-row lg:bg-transparent lg:pb-0 lg:pt-0 dark:lg:bg-transparent`}
+    >
       <div className="flex  h-screen w-16 flex-col justify-between border-e bg-white">
         <div>
           <div className="inline-flex h-16 w-16 items-center justify-center">
@@ -186,12 +191,12 @@ const SideMenuComponents = ({ navToggle }) => {
         <div className="px-4 py-6">
           <ul className="mt-14 space-y-1">
             <li>
-              <a
-                href=""
+              <Link
+                to="/"
                 className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
               >
-                General
-              </a>
+                Home
+              </Link>
             </li>
 
             <li>
