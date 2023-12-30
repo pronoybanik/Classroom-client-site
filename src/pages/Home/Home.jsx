@@ -1,12 +1,13 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import Model from "../../shared/Model";
 import CreateClassModal from "../../shared/CreateClassModal";
+import { AuthContext } from "../../shared/AuthPovider";
 
 const Home = () => {
+  const { user } = useContext(AuthContext);
+  console.log("home user data", user);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
-
- 
 
   const handleSecurityModal = () => {
     securityModule.current.showModal();
