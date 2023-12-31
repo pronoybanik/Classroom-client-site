@@ -16,7 +16,9 @@ const Main = () => {
       <section>
         <section className={navToggle ? "grid grid-cols-4" : ""}>
           <div className="ml-2">
-            {navToggle === true ? <SideMenuComponents navToggle={navToggle} /> : null}
+            {navToggle === true ? (
+              <SideMenuComponents navToggle={navToggle} />
+            ) : null}
           </div>
 
           <div className=" col-span-3 ml-4">

@@ -17,9 +17,10 @@ const LogIn = () => {
   } = useForm();
 
   const location = useLocation();
+  const navigate = useNavigate();
   const [fireBaseError, setFireBaseError] = useState("");
   const [state, setState] = useState("login");
-  const navigate = useNavigate();
+  const form = location.state?.from?.pathname || "/home";
 
   const [show, setShow] = useState({
     // as password one and password to toggle to password show hidden seperately
@@ -42,7 +43,7 @@ const LogIn = () => {
         reset();
         toast.dismiss(toastId);
         toast.success("User signed in successfully");
-        navigate("/home");
+        navigate(form, { replace: true });
       })
       .catch((error) => {
         console.log(error);

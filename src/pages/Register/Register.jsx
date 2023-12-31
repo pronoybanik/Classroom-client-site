@@ -8,14 +8,14 @@ import { AuthContext } from "../../shared/AuthPovider";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, logout } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
   } = useForm();
-
+  const navigate = useNavigate();
   const [state, setState] = useState("login");
   const [show, setShow] = useState({
     // as password one and password to toggle to password show hidden seperately
@@ -36,11 +36,12 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log("user1", user);
         setFireBaseError("");
         reset();
         toast.dismiss(toastId);
         toast.success("User signed in successfully");
+        navigate("/login");
+        logout();
         // const userInfo = {
         //   displayName: name,
         // };

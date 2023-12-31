@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { CgProfile } from "react-icons/cg";
 
-const ProfileIcon = ({user}) => {
+const ProfileIcon = ({ user }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+    setTimeout(() => {
+      setIsDropdownOpen(false);
+    }, 4000);
   };
 
   return (

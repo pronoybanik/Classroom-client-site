@@ -1,6 +1,10 @@
 import React, { forwardRef, useRef } from "react";
 
-const Model = ({ handleCloseModule, handleCrateClassModule }, ref) => {
+const Model = (
+  { handleCloseModule, handleCrateClassModule, setCheckBox, checkBox },
+  ref
+) => {
+  
   return (
     <dialog className="w-2/6 bg-white rounded-lg py-2 px-4" ref={ref}>
       <div>
@@ -29,7 +33,11 @@ const Model = ({ handleCloseModule, handleCrateClassModule }, ref) => {
           use Google Classroom at a school with personal accounts.
         </p>
         <div className="flex gap-0 bg-slate-100 px-6 py-4 rounded-lg">
-          <input type="checkbox" className="border mr-2 " />
+          <input
+            onChange={() => setCheckBox((pre) => !pre)}
+            type="checkbox"
+            className="border mr-2 "
+          />
 
           <p>
             I've read and understand the above notice, and I'm not using
@@ -45,8 +53,13 @@ const Model = ({ handleCloseModule, handleCrateClassModule }, ref) => {
           Go Back
         </button>
         <button
+          disabled={!checkBox}
           onClick={() => handleCrateClassModule()}
-          className="bg-gray-50 px-4 py-2 hover:bg-gray-200 text-gray-600 font-semibold rounded-md"
+          className={
+            checkBox
+              ? "bg-blue-500 px-4 py-2 hover:bg-blue-600 text-white font-semibold rounded-md"
+              : "bg-gray-300 px-4 py-2 hover:bg-gray-400 text-gray-600 font-semibold rounded-md"
+          }
         >
           Continue
         </button>

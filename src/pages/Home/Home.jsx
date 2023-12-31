@@ -9,6 +9,7 @@ const Home = () => {
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
   const [classData, setClassData] = useState([]);
+  const [checkBox, setCheckBox] = useState(false);
 
   const handleSecurityModal = () => {
     securityModule.current.showModal();
@@ -21,6 +22,10 @@ const Home = () => {
     CrateClassModule.current.showModal();
   };
 
+  const handleCreateClassCloseModule = () => {
+    CrateClassModule.current.close();
+  };
+
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
@@ -30,13 +35,12 @@ const Home = () => {
   const filterUserClassData = classData.filter(
     (data) => data?.email === user?.email
   );
-  console.log(filterUserClassData);
 
   return (
     <>
       {filterUserClassData?.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-2">
-          {classData?.map((data) => (
+          {filterUserClassData?.map((data) => (
             <HomeCard key={data?._id} classInfo={data} />
           ))}
         </div>
@@ -61,11 +65,16 @@ const Home = () => {
             </div>
           </div>
           <Model
+            checkBox={checkBox}
+            setCheckBox={setCheckBox}
             handleCrateClassModule={handleCrateClassModule}
             ref={securityModule}
             handleCloseModule={handleCloseModal}
           />
-          <CreateClassModal ref={CrateClassModule} />
+          <CreateClassModal
+            handleCreateClassCloseModule={handleCreateClassCloseModule}
+            ref={CrateClassModule}
+          />
         </div>
       )}
     </>

@@ -5,18 +5,15 @@ import { IoCopyOutline } from "react-icons/io5";
 
 const Card = ({ classCode }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [text, setText] = useState("");
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
   const handleFolderClick = () => {
-    // Implement your folder click action here
-    console.log("Folder clicked");
-    setIsDropdownOpen(false); // Close the dropdown after action
+    setIsDropdownOpen(false);
   };
-
-  const [text, setText] = useState("");
 
   const handleCopyClick = () => {
     setText(classCode);

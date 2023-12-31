@@ -1,28 +1,35 @@
 import React from "react";
-import { createBrowserRouter } from "react-router-dom";
 import Main from "../layouts/Main";
 import Home from "../pages/Home/Home";
 import FrontPage from "../component/FrontPage/FrontPage";
 import Register from "../pages/Register/Register";
 import ClassItem from "../pages/ClassItem/ClassItem";
+import { createBrowserRouter } from "react-router-dom";
+import PrivateRouter from "./PrivateRoute";
 
 const AllRouter = createBrowserRouter([
   {
+    path: "/login",
+    element: <Register />,
+  },
+  {
+    path: "/register",
+    element: <Register />,
+  },
+
+  {
     path: "/",
-    element: <Main />,
+    element: (
+      <PrivateRouter>
+        <Main />
+      </PrivateRouter>
+    ),
     children: [
       {
         path: "/",
-        element: <FrontPage></FrontPage>,
+        element: <FrontPage />,
       },
-      {
-        path: "/login",
-        element: <Register></Register>,
-      },
-      {
-        path: "/register",
-        element: <Register></Register>,
-      },
+
       {
         path: "/home",
         element: <Home />,

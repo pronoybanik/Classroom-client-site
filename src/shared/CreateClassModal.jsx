@@ -2,7 +2,7 @@ import React, { forwardRef, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthPovider";
 import toast from "react-hot-toast";
 
-const CreateClassModal = ({}, ref) => {
+const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
   const { user } = useContext(AuthContext);
   const [classCode, setClassCode] = useState("");
 
@@ -50,6 +50,7 @@ const CreateClassModal = ({}, ref) => {
         toast.success(`class is create successfully`);
       });
   };
+
   return (
     <dialog className="w-2/6 bg-white rounded-lg py-2 px-4" ref={ref}>
       <p className="text-xl font-semibold mb-4">Create classroom</p>
@@ -80,6 +81,7 @@ const CreateClassModal = ({}, ref) => {
             type="text"
             id="section"
             name="section"
+            required
             placeholder="section"
             className="peer  h-8  w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
@@ -109,15 +111,15 @@ const CreateClassModal = ({}, ref) => {
         <div className="flex gap-2 items-end justify-end my-4">
           <button
             className="bg-gray-50 px-4 py-2 hover:bg-gray-200 text-gray-600 font-semibold rounded-md"
-            onClick={() => handleCloseModule()}
+            onClick={() => handleCreateClassCloseModule()}
           >
-            Go Back
+            cancel
           </button>
           <button
-            onClick={() => handleCrateClassModule()}
+            onClick={() => handleCreateClassCloseModule()}
             className="bg-gray-50 px-4 py-2 hover:bg-gray-200 text-gray-600 font-semibold rounded-md"
           >
-            Continue
+            create
           </button>
         </div>
       </form>

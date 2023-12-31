@@ -1,15 +1,37 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "./AuthPovider";
 import AddClassIcon from "../component/AddCalssIcon/AddCalssIcon";
 import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
 import PrimaryButton from "./PrimaryButton";
+import Model from "./Model";
+import CreateClassModal from "./CreateClassModal";
 
 const NavBar = ({ setNavToggle }) => {
   const { user, logout } = useContext(AuthContext);
+  const [checkBox, setCheckBox] = useState(false);
 
   const handleLogOut = () => {
     logout();
   };
+
+  const securityModule = useRef(null);
+  const CrateClassModule = useRef(null);
+
+  const handleSecurityModal = () => {
+    securityModule.current.showModal();
+  };
+  const handleCloseModal = () => {
+    securityModule.current.showModal();
+  };
+
+  const handleCrateClassModule = () => {
+    CrateClassModule.current.showModal();
+  };
+
+  const handleCreateClassCloseModule = () => {
+    CrateClassModule.current.close();
+  };
+
   return (
     <header className="bg-white">
       <div className="flex justify-between">
@@ -46,8 +68,8 @@ const NavBar = ({ setNavToggle }) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-4 mr-4">
-          <AddClassIcon />
+        <div className=" flex items-center gap-4 mr-4">
+          <AddClassIcon handleSecurityModal={handleSecurityModal} />
           <ProfileIcon user={user} />
 
           <div onClick={handleLogOut}>
@@ -55,6 +77,14 @@ const NavBar = ({ setNavToggle }) => {
           </div>
         </div>
       </div>
+      <Model
+        checkBox={checkBox}
+        setCheckBox={setCheckBox}
+        handleCrateClassModule={handleCrateClassModule}
+        ref={securityModule}
+        handleCloseModule={handleCloseModal}
+      />
+      <CreateClassModal handleCreateClassCloseModule={handleCreateClassCloseModule} ref={CrateClassModule} />
     </header>
   );
 };
