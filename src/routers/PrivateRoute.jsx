@@ -4,7 +4,6 @@ import { AuthContext } from "../shared/AuthPovider";
 
 const PrivateRouter = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
-  console.log(user);
   const location = useLocation();
 
   if (loading) {

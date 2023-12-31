@@ -1,55 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
+import { IoHomeOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../shared/AuthPovider";
 
-const SideMenuComponents = ({ navToggle }) => {
+const SideMenuComponents = () => {
+  const { logout } = useContext(AuthContext);
+
+  const handleLogout = () => {
+    logout();
+  };
   return (
-    <div
-      className={`absolute  ${
-        navToggle ? "left-0" : "left-[-120%]"
-      } top-[4.5rem] flex w-full flex-col bg-slate-200 pb-3 pt-2 transition-all duration-300 dark:bg-slate-900 lg:static lg:w-[unset] lg:flex-row lg:bg-transparent lg:pb-0 lg:pt-0 dark:lg:bg-transparent`}
-    >
-      <div className="flex  h-screen w-16 flex-col justify-between border-e bg-white">
+    <div className="flex">
+      <div className="flex h-screen w-16 flex-col justify-between border-e bg-white">
         <div>
-          <div className="inline-flex h-16 w-16 items-center justify-center">
-            <span className="grid h-10 w-10 place-content-center rounded-lg bg-gray-100 text-xs text-gray-600">
-              L
-            </span>
-          </div>
-
           <div className="border-t border-gray-100">
             <div className="px-2">
               <div className="py-4">
-                <a
-                  href=""
+                <Link
+                  to="/home"
                   className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 opacity-75"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                    />
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                    />
-                  </svg>
+                  <IoHomeOutline />
 
                   <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    General
+                    home
                   </span>
-                </a>
+                </Link>
               </div>
 
-              <ul className="space-y-1 border-t border-gray-100 pt-4">
+              {/* <ul className="space-y-1 border-t border-gray-100 pt-4">
                 <li>
                   <a
                     href=""
@@ -153,12 +132,15 @@ const SideMenuComponents = ({ navToggle }) => {
                     </span>
                   </a>
                 </li>
-              </ul>
+              </ul> */}
             </div>
           </div>
         </div>
 
-        <div className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2">
+        <div
+          onClick={handleLogout}
+          className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2"
+        >
           <form action="/logout">
             <button
               type="submit"
@@ -186,10 +168,10 @@ const SideMenuComponents = ({ navToggle }) => {
           </form>
         </div>
       </div>
-
-      <div className=" lg:block hidden   h-screen flex-1 flex-col justify-between border-e bg-white">
-        <div className="px-4 py-6">
-          <ul className="mt-14 space-y-1">
+      {/* part 2 start */}
+      <div className="flex   h-screen flex-1 flex-col justify-between border-e bg-white">
+        <div className="px-4">
+          <ul className="mt-4 space-y-1">
             <li>
               <Link
                 to="/home"
@@ -198,121 +180,16 @@ const SideMenuComponents = ({ navToggle }) => {
                 Home
               </Link>
             </li>
+            <p className="border-b pt-2"></p>
 
-            <li>
-              <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                  <span className="text-sm font-medium"> Teams </span>
-
-                  <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-
-                <ul className="mt-2 space-y-1 px-4">
-                  <li>
-                    <a
-                      href=""
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Banned Users
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href=""
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Calendar
-                    </a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-
-            <li>
-              <a
-                href=""
-                className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-              >
-                Billing
-              </a>
-            </li>
-
-            <li>
+            {/* <li>
               <a
                 href=""
                 className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
               >
                 Invoices
               </a>
-            </li>
-
-            <li>
-              <details className="group [&_summary::-webkit-details-marker]:hidden">
-                <summary className="flex cursor-pointer items-center justify-between rounded-lg px-4 py-2 text-gray-500 hover:bg-gray-100 hover:text-gray-700">
-                  <span className="text-sm font-medium"> Account </span>
-
-                  <span className="shrink-0 transition duration-300 group-open:-rotate-180">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-5 w-5"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </span>
-                </summary>
-
-                <ul className="mt-2 space-y-1 px-4">
-                  <li>
-                    <a
-                      href=""
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Details
-                    </a>
-                  </li>
-
-                  <li>
-                    <a
-                      href=""
-                      className="block rounded-lg px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-700"
-                    >
-                      Security
-                    </a>
-                  </li>
-
-                  <li>
-                    <form action="/logout">
-                      <button
-                        type="submit"
-                        className="w-full rounded-lg px-4 py-2 text-sm font-medium text-gray-500 [text-align:_inherit] hover:bg-gray-100 hover:text-gray-700"
-                      >
-                        Logout
-                      </button>
-                    </form>
-                  </li>
-                </ul>
-              </details>
-            </li>
+            </li> */}
           </ul>
         </div>
       </div>

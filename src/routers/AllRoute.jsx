@@ -6,6 +6,8 @@ import Register from "../pages/Register/Register";
 import ClassItem from "../pages/ClassItem/ClassItem";
 import { createBrowserRouter } from "react-router-dom";
 import PrivateRouter from "./PrivateRoute";
+import ClassWork from "../pages/ClassWork/ClassWork";
+import People from "../pages/People/People";
 
 const AllRouter = createBrowserRouter([
   {
@@ -29,7 +31,6 @@ const AllRouter = createBrowserRouter([
         path: "/",
         element: <FrontPage />,
       },
-
       {
         path: "/home",
         element: <Home />,
@@ -37,6 +38,14 @@ const AllRouter = createBrowserRouter([
       {
         path: "/classId/:id",
         element: <ClassItem />,
+      },
+      {
+        path: "/classWork",
+        element: <ClassWork />,
+      },
+      {
+        path: "/people",
+        element: <People />,
       },
     ],
   },

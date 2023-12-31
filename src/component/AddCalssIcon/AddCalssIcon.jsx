@@ -33,17 +33,17 @@ const AddClassIcon = ({ handleSecurityModal }) => {
             >
               <div
                 onClick={() => handleSecurityModal()}
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                className="cursor-pointer block font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
               >
-                create class
+                Create Class
               </div>
               <a
                 href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                className="block font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
               >
-                join Class
+                Join Class
               </a>
               {/* Add more options if needed */}
             </div>

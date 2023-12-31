@@ -8,14 +8,14 @@ const Main = () => {
 
   return (
     <div>
-      <div className="my-2 ml-6">
+      <div className=" my-2 ml-6">
         <NavBar navToggle={navToggle} setNavToggle={setNavToggle} />
       </div>
       <p className="border-b-2 mt-2"></p>
 
       <section>
         <section className={navToggle ? "grid grid-cols-4" : ""}>
-          <div className="ml-2">
+          <div className="cursor-pointer ml-2">
             {navToggle === true ? (
               <SideMenuComponents navToggle={navToggle} />
             ) : null}
