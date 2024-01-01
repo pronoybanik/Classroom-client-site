@@ -10,11 +10,11 @@ const ClassItem = () => {
 
   
 
-  // useEffect(() => {
-  //   fetch(`http://localhost:5000/api/v1/classList/${id}`)
-  //     .then((res) => res.json())
-  //     .then((data) => setClassData(data.data));
-  // }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5000/api/v1/classList/${id}`)
+      .then((res) => res.json())
+      .then((data) => setClassData(data.data));
+  }, []);
 
   return (
     <section>

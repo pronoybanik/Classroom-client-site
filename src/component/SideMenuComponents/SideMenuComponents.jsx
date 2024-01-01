@@ -66,7 +66,7 @@ const SideMenuComponents = () => {
             ) : null}
             {/* class */}
             {filerTeacher?.map((data) => (
-              <div className="px-2 mt-4">
+              <div key={data?._id} className="px-2 mt-4">
                 <div>
                   <div
                     to={`/classId/${data?._id}`}
@@ -100,7 +100,7 @@ const SideMenuComponents = () => {
             ) : null}
 
             {filerStudent?.map((data) => (
-              <div className="px-2 mt-4">
+              <div key={data?._id} className="px-2 mt-4">
                 <div>
                   <div
                     to={`/classId/${data?._id}`}
@@ -162,7 +162,7 @@ const SideMenuComponents = () => {
               </Link>
             </li>
 
-            <p className="border-b pt-2"></p>
+            {filerTeacher.length ? <p className="border-b pt-2"></p> : null}
             {filerTeacher?.length ? (
               <li className="mb-2">
                 <Link className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
@@ -183,7 +183,9 @@ const SideMenuComponents = () => {
                 </li>
               </div>
             ))}
+
             <p className="border-b pt-2"></p>
+
             {filerStudent?.length ? (
               <li className="mb-2 mt-2">
                 <Link className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
@@ -191,6 +193,7 @@ const SideMenuComponents = () => {
                 </Link>
               </li>
             ) : null}
+
             {filerStudent.map((data) => (
               <div className="pt-1" key={data?._id}>
                 <li>
