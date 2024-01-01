@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import { Outlet, useParams } from "react-router-dom";
 import Card from "../../component/ClassCoderCard/ClassCodeCard";
 import AnnounceBox from "../../component/AnnounceBox/AnnounceBox";
@@ -8,11 +8,13 @@ const ClassItem = () => {
   const { id } = useParams();
   const [classData, setClassData] = useState({});
 
-  useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/classList/${id}`)
-      .then((res) => res.json())
-      .then((data) => setClassData(data.data));
-  }, []);
+  
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:5000/api/v1/classList/${id}`)
+  //     .then((res) => res.json())
+  //     .then((data) => setClassData(data.data));
+  // }, []);
 
   return (
     <section>

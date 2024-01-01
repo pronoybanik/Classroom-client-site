@@ -30,6 +30,7 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
     const subject = from.subject.value;
 
     const classData = {
+      classRole: "teacher",
       classCode: classCode,
       email: user?.email,
       className,
@@ -46,8 +47,8 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         toast.success(`class is create successfully`);
+        window.location.reload();
       });
   };
 
@@ -116,7 +117,7 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
             cancel
           </button>
           <button
-            onClick={() => handleCreateClassCloseModule()}
+            // onClick={() => handleCreateClassCloseModule()}
             className="bg-gray-50 px-4 py-2 hover:bg-gray-200 text-gray-600 font-semibold rounded-md"
           >
             create
