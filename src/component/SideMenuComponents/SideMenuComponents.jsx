@@ -165,9 +165,9 @@ const SideMenuComponents = () => {
             {filerTeacher.length ? <p className="border-b pt-2"></p> : null}
             {filerTeacher?.length ? (
               <li className="mb-2">
-                <Link className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                <div className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                   Teaching
-                </Link>
+                </div>
               </li>
             ) : null}
 
@@ -188,9 +188,9 @@ const SideMenuComponents = () => {
 
             {filerStudent?.length ? (
               <li className="mb-2 mt-2">
-                <Link className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                <div className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                   student
-                </Link>
+                </div>
               </li>
             ) : null}
 

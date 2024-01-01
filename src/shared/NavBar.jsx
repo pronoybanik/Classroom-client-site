@@ -7,6 +7,7 @@ import CreateClassModal from "./CreateClassModal";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const [checkBox, setCheckBox] = useState(false);
 
   const securityModule = useRef(null);

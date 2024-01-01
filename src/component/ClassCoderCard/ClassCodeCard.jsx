@@ -5,7 +5,7 @@ import { IoCopyOutline } from "react-icons/io5";
 
 const Card = ({ classCode }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [text, setText] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -15,10 +15,14 @@ const Card = ({ classCode }) => {
     setIsDropdownOpen(false);
   };
 
-  const handleCopyClick = () => {
-    setText(classCode);
-    navigator.clipboard.writeText(text);
-    toast.success("code in copy");
+  const handleCopy = () => {
+    navigator.clipboard
+      .writeText(classCode)
+      .then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000); // Clear "Copied!" message after 2 seconds
+      })
+      .catch((error) => console.error("Error copying text:", error));
   };
 
   return (
@@ -57,10 +61,18 @@ const Card = ({ classCode }) => {
         <p className=" font-semibold text-2xl mt-2 text-blue-500">
           {classCode}
         </p>
-        <IoCopyOutline
+        {/* <IoCopyOutline
           className="cursor-pointer mt-2 text-2xl"
-          onClick={handleCopyClick}
-        ></IoCopyOutline>
+          onClick={handleCopy}
+        ></IoCopyOutline> */}
+        <button
+          className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${
+            copied ? "bg-green-500 hover:bg-green-700" : ""
+          }`}
+          onClick={handleCopy}
+        >
+          {copied ? "Copied!" : "Copy Text"}
+        </button>
       </div>
     </div>
   );

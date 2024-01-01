@@ -9,6 +9,7 @@ import Model from "../../shared/Model";
 import CreateClassModal from "../../shared/CreateClassModal";
 import HomeCard from "../../component/HomeCard/HomeCard";
 import { AuthContext } from "../../shared/AuthPovider";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -64,9 +65,11 @@ const Home = () => {
                 >
                   Create Class
                 </button>
-                <button className="bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700">
-                  Join Class
-                </button>
+                <Link to="/joinClass">
+                  <button className="bg-blue-600 text-white rounded-md px-6 py-2 hover:bg-blue-700">
+                    Join Class
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

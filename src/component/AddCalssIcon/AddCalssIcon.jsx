@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const AddClassIcon = ({ handleSecurityModal }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    
+
     setTimeout(() => {
       setIsDropdownOpen(false);
     }, 3000);
   };
-  
 
   return (
     <div>
@@ -38,13 +38,13 @@ const AddClassIcon = ({ handleSecurityModal }) => {
               >
                 Create Class
               </div>
-              <a
-                href="#"
+              <Link
+                to="/joinClass"
                 className="block font-semibold text-lg px-4 py-2  text-gray-700 hover:bg-gray-100 hover:text-gray-900"
                 role="menuitem"
               >
                 Join Class
-              </a>
+              </Link>
               {/* Add more options if needed */}
             </div>
           </div>

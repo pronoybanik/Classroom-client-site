@@ -8,13 +8,15 @@ import { AuthContext } from "../../shared/AuthPovider";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, logout } = useContext(AuthContext);
+  const { createUser, logout, profileUpdate } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
+    setValue,
   } = useForm();
+  const [imageValue, setImageValue] = useState("");
   const navigate = useNavigate();
   const [state, setState] = useState("login");
   const [show, setShow] = useState({
@@ -30,27 +32,57 @@ const Register = () => {
     location.pathname.includes("register") && setState("register");
   }, [state, location.pathname, show.p1, show.p2]);
 
+  const uploadImage = (event) => {
+    const formData = new FormData();
+    if (!event.target.files[0]) return;
+    formData.append("image", event.target.files[0]);
+
+    const toastId = toast.loading("Image uploading...");
+
+    fetch(
+      `https://api.imgbb.com/1/upload?key=99f58a547dc4b1d269148eb1b605ef29`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to upload image");
+        }
+        return res.json();
+      })
+      .then((image) => {
+        setImageValue(image.data.url);
+
+        toast.dismiss(toastId);
+        toast.success("Image uploaded successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.dismiss(toastId);
+        toast.error(error.message || "Failed to upload image");
+      });
+  };
+
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
     const { name, email, password } = data;
+    console.log(data);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        const userInfo = {
+          displayName: name,
+          photoURL: imageValue,
+        };
+        profileUpdate(userInfo);
         setFireBaseError("");
         reset();
         toast.dismiss(toastId);
         toast.success("User signed in successfully");
         navigate("/login");
         logout();
-        // const userInfo = {
-        //   displayName: name,
-        // };
-        // profileUpdate(userInfo).then((result) => {
-        //   const user = result.user;
-        //   console.log("user2", user);
-
-        //   toast.success("Account Register");
-        // });
       })
       .catch((error) => {
         console.log(error);
@@ -121,7 +153,17 @@ const Register = () => {
                 <p className="text-error font-medium">{errors.name}</p>
               )}
 
-              <div className="relative flex items-center mt-6">
+              <div className="form-control mt-4">
+                <input
+                  type="file"
+                  id="photo"
+                  name="photo"
+                  onChange={uploadImage}
+                  className="file-input file-input-bordered file-input-md w-full max-w-lg"
+                />
+              </div>
+
+              <div className="relative flex items-center mt-4">
                 <span className="absolute">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -204,6 +246,7 @@ const Register = () => {
                   />
                 )}
               </div>
+
               {errors.password && (
                 <>
                   <p className="text-error">⚠ Please provide strong Password</p>
@@ -216,7 +259,7 @@ const Register = () => {
 
               {fireBaseError && (
                 <>
-                  <p className="text-error font-semibold text-red-600 mt-2">
+                  <p className=" font-semibold text-red-600 mt-2">
                     ⚠ {fireBaseError}
                   </p>
                 </>
@@ -225,7 +268,7 @@ const Register = () => {
               <div className="mt-6">
                 <PrimaryButton full>Sign up</PrimaryButton>
 
-                <div className="mt-6 text-center ">
+                <div className="mt-1 text-center ">
                   <Link
                     to="/login"
                     className="text-lg font-serif text-blue-500 hover:underline dark:text-blue-400"

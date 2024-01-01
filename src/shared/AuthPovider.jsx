@@ -5,6 +5,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 import app from "../FireBase.config/FireBase.config";
@@ -26,10 +27,11 @@ const AuthProvider = ({ children }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
 
-  const profileUpdate = async (updateUser = {}) => {
+  const profileUpdate = (userInfo) => {
+    console.log("auth",userInfo);
     setLoading(true);
-    await updateProfile(auth.currentUser, updateUser);
-    setUser((preUser) => ({ ...preUser, ...updateUser }));
+    updateProfile(auth.currentUser, userInfo);
+    setUser((preUser) => ({ ...preUser, ...userInfo }));
   };
 
   const googleLogin = (googleProvider) => {

@@ -8,6 +8,8 @@ import { createBrowserRouter } from "react-router-dom";
 import PrivateRouter from "./PrivateRoute";
 import ClassWork from "../pages/ClassWork/ClassWork";
 import People from "../pages/People/People";
+import JoinClass from "../pages/JoinClass/JoinClass";
+import CreateAssignment from "../pages/createAssignment/createAssignment";
 
 const AllRouter = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ const AllRouter = createBrowserRouter([
       {
         path: "/people",
         element: <People />,
+      },
+      {
+        path: "/joinClass",
+        element: <JoinClass />,
+      },
+      {
+        path: "/createAssignment",
+        element: <CreateAssignment />,
       },
     ],
   },
