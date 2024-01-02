@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useTransition } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Card from "../../component/ClassCoderCard/ClassCodeCard";
 import AnnounceBox from "../../component/AnnounceBox/AnnounceBox";
 import ClassNavBar from "../../shared/ClassNavBar";
@@ -7,8 +7,6 @@ import ClassNavBar from "../../shared/ClassNavBar";
 const ClassItem = () => {
   const { id } = useParams();
   const [classData, setClassData] = useState({});
-
-  
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/classList/${id}`)
@@ -42,7 +40,7 @@ const ClassItem = () => {
             <Card classCode={classData?.classCode} />
           </div>
           <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
-            <AnnounceBox />
+            <AnnounceBox classData={classData} />
           </div>
         </div>
       </div>
