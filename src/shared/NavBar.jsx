@@ -66,7 +66,7 @@ const NavBar = ({ setNavToggle }) => {
 
         <div className=" flex items-center gap-4 mr-4">
           <AddClassIcon handleSecurityModal={handleSecurityModal} />
-          <ProfileIcon  />
+          <ProfileIcon />
         </div>
       </div>
       <Model

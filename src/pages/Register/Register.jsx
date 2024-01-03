@@ -17,6 +17,7 @@ const Register = () => {
     setValue,
   } = useForm();
   const [imageValue, setImageValue] = useState("");
+  const [selectedFileCount, setSelectedFileCount] = useState(0);
   const navigate = useNavigate();
   const [state, setState] = useState("login");
   const [show, setShow] = useState({
@@ -33,6 +34,13 @@ const Register = () => {
   }, [state, location.pathname, show.p1, show.p2]);
 
   const uploadImage = (event) => {
+    const inputElement = event.target;
+    const files = inputElement.files;
+    if (files) {
+      const count = files.length;
+      setSelectedFileCount(count);
+    }
+
     const formData = new FormData();
     if (!event.target.files[0]) return;
     formData.append("image", event.target.files[0]);
@@ -89,13 +97,11 @@ const Register = () => {
         toast.dismiss(toastId);
         toast.error(error.message || "User not signed in");
         setFireBaseError(error.message);
-
-        // toast.error('password is Incorrect')
       });
   };
 
   return (
-    <section className="-mt-32 ">
+    <section className="-mt-12 ">
       <div className="container flex items-center justify-center min-h-screen px-6 mx-auto">
         <div className="w-full max-w-md">
           <div className="flex items-center justify-center mt-6 duration-300">
@@ -153,14 +159,24 @@ const Register = () => {
                 <p className="text-error font-medium">{errors.name}</p>
               )}
 
-              <div className="form-control mt-4">
-                <input
-                  type="file"
-                  id="photo"
-                  name="photo"
-                  onChange={uploadImage}
-                  className="file-input file-input-bordered file-input-md w-full max-w-lg"
-                />
+              <div className="mt-3 flex items-center space-x-4 border px-2 py-2 bg-slate-100 rounded-lg">
+                <label className="bg-[#19200f] hover:bg-[#37491b] text-white rounded-lg px-4 py-2 cursor-pointer">
+                  Browse
+                  <input
+                    type="file"
+                    required
+                    className="hidden"
+                    id="profileImage"
+                    name="profileImage"
+                    onChange={uploadImage}
+                    multiple // Allow multiple file selection
+                  />
+                </label>
+                <span className="text-black font-semibold">
+                  {selectedFileCount === 1
+                    ? "1 file selected"
+                    : `${selectedFileCount} files selected`}
+                </span>
               </div>
 
               <div className="relative flex items-center mt-4">

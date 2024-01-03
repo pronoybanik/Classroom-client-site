@@ -21,10 +21,10 @@ const SideMenuComponents = () => {
   }, []);
 
   const filerTeacher = classData.filter(
-    ({ email, classRole }) => email === user.email && classRole === "teacher"
+    ({ email, classRole }) => email === user?.email && classRole === "teacher"
   );
   const filerStudent = classData.filter(
-    ({ email, classRole }) => email === user.email && classRole === "student"
+    ({ email, classRole }) => email === user?.email && classRole === "student"
   );
 
   return (
@@ -100,16 +100,17 @@ const SideMenuComponents = () => {
             ) : null}
 
             {filerStudent?.map((data) => (
-              <div key={data?._id} className="px-2 mt-4">
+              <div key={data?.studentId} className="px-2 mt-4">
                 <div>
                   <div
-                    to={`/classId/${data?._id}`}
+                    to={`/classId/${data?.studentId}`}
                     className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
                   >
                     <SiGoogleclassroom />
 
                     <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                       {data?.className}
+                      
                     </span>
                   </div>
                 </div>
@@ -198,7 +199,7 @@ const SideMenuComponents = () => {
               <div className="pt-1" key={data?._id}>
                 <li>
                   <Link
-                    to={`/classId/${data?._id}`}
+                    to={`/classId/${data?.teacherId}`}
                     className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
                   >
                     {data?.className}

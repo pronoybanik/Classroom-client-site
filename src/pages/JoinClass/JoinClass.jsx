@@ -14,11 +14,14 @@ const JoinClass = () => {
     fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
-  }, [classData]);
+  }, []);
+
+  console.log(classData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const filterCoder = classData.filter((data) => data?.classCode === code);
+    console.log(filterCoder);
 
     const mapCode = filterCoder.map((data) => {
       if (data?.classCode === code) {
@@ -26,6 +29,7 @@ const JoinClass = () => {
       }
 
       const classData = {
+        teacherId: data._id,
         email: user.email,
         className: data.className,
         subject: data.subject,

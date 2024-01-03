@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const HomeCard = ({ classInfo }) => {
-  const { _id, className, section, imageURLs } = classInfo;
+  const { _id, className, section, imageURLs, classRole, teacherId } =
+    classInfo;
 
   return (
     <Link
-      to={`/classId/${_id}`}
+      to={`${
+        classRole === "teacher" ? `/classId/${_id}` : `/classId/${teacherId}`
+      }`}
       className="group relative block overflow-hidden"
     >
       <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
@@ -24,7 +27,7 @@ const HomeCard = ({ classInfo }) => {
 
       <div className="relative border border-gray-100 bg-white p-6">
         <span className="whitespace-nowrap bg-yellow-400 px-3 py-1.5 text-xs font-medium">
-          New
+          {classRole}
         </span>
 
         <h3 className="mt-4  text-lg font-medium text-gray-900">{className}</h3>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useTransition } from "react";
-import { Outlet, useParams } from "react-router-dom";
+import React, { useContext, useEffect, useState, useTransition } from "react";
+import { Link, useParams } from "react-router-dom";
 import Card from "../../component/ClassCoderCard/ClassCodeCard";
 import AnnounceBox from "../../component/AnnounceBox/AnnounceBox";
 import ClassNavBar from "../../shared/ClassNavBar";
@@ -8,18 +8,30 @@ const ClassItem = () => {
   const { id } = useParams();
   const [classData, setClassData] = useState({});
 
-  
-
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
-  }, []);
+  }, [id]);
+  console.log(classData);
 
+  // const { user } = useContext(AuthContext);
+  // const [classListData, setClassListData] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:5000/api/v1/classList")
+  //     .then((res) => res.json())
+  //     .then((data) => setClassListData(data.data));
+  // }, []);
+
+  // const filterClassList = classListData.filter(
+  //   ({ email }) => email === user.email
+  // );
+  // const assignmentData = filterClassList[0]?.classWork;
   return (
     <section>
       <ClassNavBar id={id} />
-
+      <div className="text-center font-semibold text-2xl uppercase py-2 border-b w-36 mx-auto">{classData?.className}</div>
       <div className="mt-4 container mx-auto lg:w-[1000px] md:w-[600px] w-96">
         <div className="relative">
           <div className="absolute lg:text-2xl md:text-xl text-sm ml-2">
@@ -39,10 +51,23 @@ const ClassItem = () => {
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8  mt-4">
           <div className="h-32 rounded-lg  ">
-            <Card classCode={classData?.classCode} />
+            <Card classData={classData} />
           </div>
           <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
-            <AnnounceBox />
+            <AnnounceBox classData={classData} />
+            <div>
+              {classData?.classWork?.map((data) => (
+                <Link
+                  to={`/assignmentItem/${data?._id}`}
+                  className="mt-4 card w-96 bg-neutral text-neutral-content"
+                >
+                  <div className="card-body items-center text-center">
+                    <h2 className="card-title">{data?.title}</h2>
+                    <p>We are using cookies for no reason.</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       </div>

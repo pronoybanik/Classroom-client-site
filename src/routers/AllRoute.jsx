@@ -10,6 +10,7 @@ import ClassWork from "../pages/ClassWork/ClassWork";
 import People from "../pages/People/People";
 import JoinClass from "../pages/JoinClass/JoinClass";
 import CreateAssignment from "../pages/createAssignment/createAssignment";
+import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
 
 const AllRouter = createBrowserRouter([
   {
@@ -42,11 +43,11 @@ const AllRouter = createBrowserRouter([
         element: <ClassItem />,
       },
       {
-        path: "/classWork",
+        path: "/classWork/:id",
         element: <ClassWork />,
       },
       {
-        path: "/people",
+        path: "/people/:id",
         element: <People />,
       },
       {
@@ -54,11 +55,25 @@ const AllRouter = createBrowserRouter([
         element: <JoinClass />,
       },
       {
-        path: "/createAssignment",
+        path: "/createAssignment/:id",
         element: <CreateAssignment />,
+      },
+      {
+        path: "/assignmentItem/:id",
+        element: <AssignmentItem />,
       },
     ],
   },
+  // {
+  //   path: "/teacher",
+  //   element: <Teacher />,
+  //   children: [
+  //     {
+  //       path: "/teacher/class",
+  //       element: "teach"
+  //     }
+  //   ]
+  // },
 ]);
 
 export default AllRouter;
