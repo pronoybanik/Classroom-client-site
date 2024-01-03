@@ -4,6 +4,8 @@ import AddClassIcon from "../component/AddCalssIcon/AddCalssIcon";
 import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
 import Model from "./Model";
 import CreateClassModal from "./CreateClassModal";
+import { Link } from "react-router-dom";
+import { IoBookSharp } from "react-icons/io5";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
@@ -29,12 +31,12 @@ const NavBar = ({ setNavToggle }) => {
   };
 
   return (
-    <header className="bg-white">
+    <header className="bg-white rounded">
       <div className="flex justify-between">
         <div className="flex justify-center gap-4">
           <button
             onClick={() => setNavToggle((pre) => !pre)}
-            className="cursor-pointer rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 "
+            className="cursor-pointer rounded  bg-gray-100 p-2 m-2 text-gray-600 transition hover:text-gray-600/75 "
           >
             <span className="sr-only">Toggle menu</span>
             <svg
@@ -53,14 +55,13 @@ const NavBar = ({ setNavToggle }) => {
             </svg>
           </button>
           <div className="flex items-center gap-2">
-            <img
-              className="w-8 h-18"
-              src="https://www.gstatic.com/classroom/logo_square_rounded.svg"
-              alt=""
-            />
-            <p className="text-2xl  text-gray-700 font-semibold cursor-pointer  leading-2   relative before:absolute before:-bottom-1 before:h-0.5 before:w-full hover:text-[#00A300] before:scale-x-0 before:bg-[#00A300] before:transition hover:before:scale-x-100">
-              Classroom
-            </p>
+            <Link
+              className="btn normal-case text-xl btn-sm font-serif text-gray-600"
+              to="/home"
+            >
+              <IoBookSharp style={{marginTop: "4px"}} />
+              Smart .<p className="text-amber-600">class</p>
+            </Link>
           </div>
         </div>
 
