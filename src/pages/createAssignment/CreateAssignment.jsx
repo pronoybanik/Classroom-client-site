@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import PrimaryButton from "../../shared/PrimaryButton";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../shared/AuthPovider";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +11,7 @@ const CreateAssignment = () => {
   const [imageValue, setImageValue] = useState("");
   const [pdfValue, setPdfValue] = useState("");
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleImageFile = (event) => {
     const files = event.target.files;
@@ -89,6 +90,7 @@ const CreateAssignment = () => {
     const instructions = from.instructions.value;
 
     const assignmentData = {
+      classListId: id,
       email: user.email,
       name: user.displayName,
       currentDate: getDate(),
@@ -107,9 +109,10 @@ const CreateAssignment = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.status === "success") {
           toast.success(`class is create successfully`);
-          navigate("/classWork");
+          navigate(`/classWork/${data?.data?.classListId}`);
           window.location.reload();
         }
       });

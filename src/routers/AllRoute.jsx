@@ -55,7 +55,7 @@ const AllRouter = createBrowserRouter([
         element: <JoinClass />,
       },
       {
-        path: "/createAssignment",
+        path: "/createAssignment/:id",
         element: <CreateAssignment />,
       },
       {

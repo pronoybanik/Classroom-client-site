@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const ClassNavBar = ({ id }) => {
-  console.log(id);
+  
   return (
     <div>
       <ul className="flex items-center border-b-2 w-full  gap-4 ">

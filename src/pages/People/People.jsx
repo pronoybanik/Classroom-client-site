@@ -19,6 +19,8 @@ const People = () => {
   return (
     <div>
       <ClassNavBar id={id} />
+      <div className="text-center font-semibold text-2xl uppercase py-2 border-b w-36 mx-auto">{classData?.className}</div>
+
       <div className=" lg:w-[800px] md:w-[600px] w-full mx-auto mt-6">
         <div className="flex items-center  mt-4 mb-6 text-blue-600  w-64 px-2 py-2  ">
           <button className="text-5xl font-normal -mt-1">Teachers</button>

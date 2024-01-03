@@ -13,6 +13,7 @@ const ClassItem = () => {
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
+  console.log(classData);
 
   // const { user } = useContext(AuthContext);
   // const [classListData, setClassListData] = useState([]);
@@ -30,6 +31,7 @@ const ClassItem = () => {
   return (
     <section>
       <ClassNavBar id={id} />
+      <div className="text-center font-semibold text-2xl uppercase py-2 border-b w-36 mx-auto">{classData?.className}</div>
       <div className="mt-4 container mx-auto lg:w-[1000px] md:w-[600px] w-96">
         <div className="relative">
           <div className="absolute lg:text-2xl md:text-xl text-sm ml-2">
@@ -49,7 +51,7 @@ const ClassItem = () => {
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8  mt-4">
           <div className="h-32 rounded-lg  ">
-            <Card classCode={classData?.classCode} />
+            <Card classData={classData} />
           </div>
           <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
             <AnnounceBox classData={classData} />
