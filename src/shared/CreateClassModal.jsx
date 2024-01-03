@@ -22,6 +22,14 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
     return word;
   };
 
+  const getDate = () => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${month}.${date}.${year}`;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -30,12 +38,15 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
     const subject = from.subject.value;
 
     const classData = {
-      classRole: "teacher",
-      classCode: classCode,
-      email: user?.email,
       className,
       section,
       subject,
+      classCode: classCode,
+      email: user?.email,
+      teacherName: user?.displayName,
+      teacherImage: user?.photoURL,
+      classRole: "teacher",
+      currentDate: getDate(),
     };
 
     fetch("http://localhost:5000/api/v1/classList", {

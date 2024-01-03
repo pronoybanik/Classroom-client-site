@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useEffect,
-  useReducer,
-  useRef,
-  useState,
-} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Model from "../../shared/Model";
 import CreateClassModal from "../../shared/CreateClassModal";
 import HomeCard from "../../component/HomeCard/HomeCard";

@@ -75,7 +75,13 @@ const CreateAssignment = () => {
         }
       });
   };
-
+  const getDate = () => {
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
+    const date = today.getDate();
+    return `${month}.${date}.${year}`;
+  };
   const handleAssignment = (e) => {
     e.preventDefault();
     const from = e.target;
@@ -84,6 +90,8 @@ const CreateAssignment = () => {
 
     const assignmentData = {
       email: user.email,
+      name: user.displayName,
+      currentDate: getDate(),
       title,
       instructions,
       imageValue,

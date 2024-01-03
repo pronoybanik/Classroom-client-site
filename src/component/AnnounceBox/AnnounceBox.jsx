@@ -19,7 +19,6 @@ const AnnounceBox = ({ classData }) => {
     const files = event.target.files;
     if (files) {
       const count = files.length;
-
       setPdfData(count);
     }
   };

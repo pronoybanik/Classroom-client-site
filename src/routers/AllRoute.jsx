@@ -43,11 +43,11 @@ const AllRouter = createBrowserRouter([
         element: <ClassItem />,
       },
       {
-        path: "/classWork",
+        path: "/classWork/:id",
         element: <ClassWork />,
       },
       {
-        path: "/people",
+        path: "/people/:id",
         element: <People />,
       },
       {
@@ -64,6 +64,16 @@ const AllRouter = createBrowserRouter([
       },
     ],
   },
+  // {
+  //   path: "/teacher",
+  //   element: <Teacher />,
+  //   children: [
+  //     {
+  //       path: "/teacher/class",
+  //       element: "teach"
+  //     }
+  //   ]
+  // },
 ]);
 
 export default AllRouter;
