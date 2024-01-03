@@ -2,7 +2,6 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import NavBar from "../shared/NavBar";
 import SideMenuComponents from "../component/SideMenuComponents/SideMenuComponents";
-import ClassNavBar from "../shared/ClassNavBar";
 
 const Main = () => {
   const [navToggle, setNavToggle] = React.useState(true);
@@ -27,8 +26,6 @@ const Main = () => {
           </div>
         </section>
       </section>
-
-      <h1>Footer</h1>
     </div>
   );
 };

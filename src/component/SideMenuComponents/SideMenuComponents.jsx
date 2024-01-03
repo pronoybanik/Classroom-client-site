@@ -50,17 +50,11 @@ const SideMenuComponents = () => {
             {/* teacher */}
             {filerTeacher?.length ? (
               <div className="px-2 mt-3">
-                <div>
-                  <div
-                    // to="/home"
-                    className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
-                  >
-                    <LiaChalkboardTeacherSolid />
-
-                    <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                      Teacher
-                    </span>
-                  </div>
+                <div className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700">
+                  <LiaChalkboardTeacherSolid />
+                  <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                    Teacher
+                  </span>
                 </div>
               </div>
             ) : null}
@@ -73,7 +67,6 @@ const SideMenuComponents = () => {
                     className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
                   >
                     <SiGoogleclassroom />
-
                     <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                       {data?.className}
                     </span>
@@ -83,14 +76,10 @@ const SideMenuComponents = () => {
             ))}
             {/* students */}
             {filerStudent?.length ? (
-              <div className="px-2 mt-6">
+              <div className="px-2 mt-4">
                 <div>
-                  <div
-                    // to="/home"
-                    className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
-                  >
+                  <div className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700">
                     <PiStudentBold />
-
                     <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                       student
                     </span>
@@ -100,7 +89,7 @@ const SideMenuComponents = () => {
             ) : null}
 
             {filerStudent?.map((data) => (
-              <div key={data?.studentId} className="px-2 mt-4">
+              <div key={data?.studentId} className="px-2 mt-2">
                 <div>
                   <div
                     to={`/classId/${data?.studentId}`}
@@ -110,44 +99,44 @@ const SideMenuComponents = () => {
 
                     <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                       {data?.className}
-                      
                     </span>
                   </div>
                 </div>
               </div>
             ))}
           </div>
-        </div>
 
-        <div
-          onClick={handleLogout}
-          className="sticky inset-x-0 bottom-0 border-t border-gray-100 bg-white p-2"
-        >
-          <form action="/logout">
-            <button
-              type="submit"
-              className="group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5 opacity-75"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth="2"
+          {/* logout button */}
+          <div
+            onClick={handleLogout}
+            className="sticky inset-x-0 bottom-0  mt-8  border-gray-50  bg-white p-2"
+          >
+            <form action="/logout">
+              <button
+                type="submit"
+                className="text-blue-700 group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-sm  hover:bg-gray-50 hover:text-gray-700"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
-                />
-              </svg>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 opacity-75"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                  />
+                </svg>
 
-              <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                Logout
-              </span>
-            </button>
-          </form>
+                <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                  Logout
+                </span>
+              </button>
+            </form>
+          </div>
         </div>
       </div>
       {/* part 2 start */}
@@ -185,7 +174,11 @@ const SideMenuComponents = () => {
               </div>
             ))}
 
-            <p className="border-b pt-2"></p>
+            {filerTeacher.length ? (
+              <p className="border-b pt-2 "></p>
+            ) : (
+              <p className="pt-2"></p>
+            )}
 
             {filerStudent?.length ? (
               <li className="mb-2 mt-2">
@@ -208,6 +201,12 @@ const SideMenuComponents = () => {
               </div>
             ))}
           </ul>
+          <p className="border-t mt-4 border-black"></p>
+          <div className="mt-4" onClick={handleLogout}>
+            <p className="block rounded-lg pt-2 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+              Log out
+            </p>
+          </div>
         </div>
       </div>
     </div>

@@ -9,14 +9,13 @@ const JoinClass = () => {
   const [classData, setClassData] = useState([]);
   const [code, setCode] = useState("");
   const navigate = useNavigate();
+  // const [error, setError] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, []);
-
-  console.log(classData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -31,11 +30,11 @@ const JoinClass = () => {
       const classData = {
         teacherId: data._id,
         email: user.email,
+        studentImage: user.photoURL,
         className: data.className,
         subject: data.subject,
         section: data.section,
       };
-
       fetch("http://localhost:5000/api/v1/classList", {
         method: "POST",
         headers: {
@@ -49,18 +48,72 @@ const JoinClass = () => {
           window.location.reload();
         });
     });
-    console.log(mapCode);
   };
 
   return (
-    <form onSubmit={handleSubmit} className=" flex items-center gap-2 mt-4">
-      <input
-        onChange={(e) => setCode(e.target.value)}
-        type="text"
-        className="px-20 py-6 border-2"
-      />
-      <PrimaryButton>Joint </PrimaryButton>
-    </form>
+    <section className="w-[500px] mx-auto mt-4">
+      <div className="border-2 p-6  rounded">
+        <p className="text-sm font-semibold text-gray-600 ml-2">
+          You're currently signed in as
+        </p>
+
+        <div className="flex items-center gap-2 mt-4">
+          <img
+            className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
+            src={user?.photoURL}
+            alt=""
+          />
+          <div>
+            <div className="text-sm font-medium">{user?.displayName}</div>
+            <div className="text-sm font-medium ">{user?.email}</div>
+          </div>
+        </div>
+      </div>
+
+      <br />
+
+      <div className="border-2 p-6  rounded">
+        <p className="text-xl font-semibold text-black ml-2">Class code</p>
+        <p className="text-sm font-semibold text-gray-600 ml-2">
+          Ask your teacher for the class code, then enter it here.
+        </p>
+
+        <div>
+          <form onSubmit={handleSubmit}>
+            <div className="mt-6">
+              <label
+                htmlFor="Username"
+                className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
+              >
+                <input
+                  type="text"
+                  onChange={(e) => setCode(e.target.value)}
+                  id="Username"
+                  className="peer py-4 px-6 border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+                  placeholder="Username"
+                />
+
+                <span className="pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-slate-50 p-0.5 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs">
+                  Class Code
+                </span>
+              </label>
+            </div>
+
+            <PrimaryButton>Submit </PrimaryButton>
+          </form>
+        </div>
+      </div>
+
+      {/* {error && toast.error(error)} */}
+
+      <br />
+
+      <p className="text-lg font-semibold mb-2">To sign in with a class code</p>
+      <p className="text-sm font-medium mb-2">. Use an authorized account</p>
+      <p className="text-sm font-medium mb-2">
+        . Use a class code with 5-7 letters or numbers, and no spaces or symbols
+      </p>
+    </section>
   );
 };
 

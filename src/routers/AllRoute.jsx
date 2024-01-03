@@ -21,7 +21,6 @@ const AllRouter = createBrowserRouter([
     path: "/register",
     element: <Register />,
   },
-
   {
     path: "/",
     element: (
@@ -64,16 +63,6 @@ const AllRouter = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/teacher",
-  //   element: <Teacher />,
-  //   children: [
-  //     {
-  //       path: "/teacher/class",
-  //       element: "teach"
-  //     }
-  //   ]
-  // },
 ]);
 
 export default AllRouter;

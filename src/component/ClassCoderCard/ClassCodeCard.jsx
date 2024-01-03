@@ -19,20 +19,23 @@ const Card = ({ classData }) => {
 
   const handleCopy = () => {
     navigator.clipboard
-      .writeText(classCode)
+      .writeText(classData?.classCode)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Clear "Copied!" message after 2 seconds
+        setTimeout(() => setCopied(false), 2000);
       })
       .catch((error) => console.error("Error copying text:", error));
   };
 
   return (
-    <section>
+    <section className="mt-10">
+      {/* class code start */}
       {classData?.email === user?.email && (
-        <div className="max-w-md w-full rounded-lg shadow-lg p-6 border-2">
+        <div className="max-w-md w-full rounded-lg shadow-lg p-6 border border-gray-300">
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-gray-800 ">Class Code</h2>
+            <h2 className="text-2xl font-medium uppercase text-black ">
+              Class Code
+            </h2>
             <div className="relative">
               <button onClick={toggleDropdown}>
                 <FiMoreHorizontal
@@ -62,12 +65,12 @@ const Card = ({ classData }) => {
             </div>
           </div>
           <div className="flex gap-2 items-center  justify-between">
-            <p className=" font-semibold text-2xl mt-2 text-blue-500">
+            <p className=" font-semibold text-xl mt-2 text-blue-500">
               {classData?.classCode}
             </p>
 
             <button
-              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mt-2 ${
+              className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mt-3 ${
                 copied ? "bg-green-500 hover:bg-green-700" : ""
               }`}
               onClick={handleCopy}
@@ -77,11 +80,13 @@ const Card = ({ classData }) => {
           </div>
         </div>
       )}
+      {/* class code end */}
 
-      <div className="max-w-md w-full rounded-lg shadow-lg p-6 border-2 mt-4">
+      {/* joint class link */}
+      <div className="max-w-md w-full rounded-lg shadow-lg p-6 border mt-10 border-gray-300">
         <div className="flex justify-between items-center">
-          <h2 className="text-xl font-semibold text-gray-800 ">
-            Joint Class Link
+          <h2 className="text-2xl font-medium uppercase text-black ">
+            Joint class link
           </h2>
         </div>
         <div className="flex gap-2 items-center  justify-between">

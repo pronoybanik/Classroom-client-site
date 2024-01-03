@@ -2,12 +2,14 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../shared/AuthPovider";
 import { CgProfile } from "react-icons/cg";
 import PrimaryButton from "../../shared/PrimaryButton";
+import { PiDotsThree } from "react-icons/pi";
 
 const AnnounceBox = ({ classData }) => {
   const { user } = useContext(AuthContext);
   const [postData, setPostData] = useState(false);
   const [imageData, setImageData] = useState(0);
   const [pdfData, setPdfData] = useState(0);
+
   const handleImageFile = (event) => {
     const files = event.target.files;
     if (files) {
@@ -15,6 +17,7 @@ const AnnounceBox = ({ classData }) => {
       setImageData(count);
     }
   };
+
   const handlePdfFile = (event) => {
     const files = event.target.files;
     if (files) {
@@ -22,13 +25,16 @@ const AnnounceBox = ({ classData }) => {
       setPdfData(count);
     }
   };
+
   return (
-    <div>
+    <div className="mt-8">
       {postData ? (
-        <section className="w-[650px] mx-auto bg-white px-10 py-6  border-2 rounded-md">
+        <section className="w-[650px] mx-auto bg-white px-10 py-6 border rounded-md border-gray-300">
           <div>
-            <p className="font-semibold ml-1">For</p>
-            <p className="bg-gray-200 mt-2 px-2 py-2  w-32 ps-2 rounded-md   text-lg font-medium">{classData.className}</p>
+            <p className="font-semibold ml-1 mb-2">For</p>
+            <p className="bg-gray-200 mt-2 px-2 py-2  w-32 ps-2 rounded-md   text-lg font-medium">
+              {classData.className}
+            </p>
           </div>
           <label
             htmlFor="Instructions"
@@ -98,16 +104,19 @@ const AnnounceBox = ({ classData }) => {
       ) : (
         <div
           onClick={() => setPostData((pre) => !pre)}
-          className="cursor-pointer shadow-lg flex items-center gap-2 bg-slate-100 px-2 py-2  rounded-lg "
+          className="cursor-pointer  shadow-lg flex items-center justify-between gap-2 bg-slate-100 p-4   rounded-lg "
         >
-          <img
-            className="w-12 h-12 bg-slate-200 hover:bg-gray-300 py-1 px-1 rounded-full"
-            src={user?.photoURL || <CgProfile />}
-            alt=""
-          />
-          <p className="text-gray-500 font-semibold hover:text-blue-500">
-            Announce something to your class
-          </p>
+          <div className="flex items-center gap-2">
+            <img
+              className="w-14 h-14 bg-slate-200 hover:bg-gray-300 py-1 px-1 rounded-full"
+              src={user?.photoURL || <CgProfile />}
+              alt=""
+            />
+            <p className="text-gray-500 font-semibold text-md hover:text-blue-500">
+              Announce something to your class
+            </p>
+          </div>
+          <PiDotsThree style={{ fontSize: "40px" }} />
         </div>
       )}
     </div>

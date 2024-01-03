@@ -14,44 +14,56 @@ const People = () => {
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
-  console.log("people", classData);
 
   return (
     <div>
       <ClassNavBar id={id} />
-      <div className="text-center font-semibold text-2xl uppercase py-2 border-b w-36 mx-auto">{classData?.className}</div>
+      <div className="text-center font-bold uppercase text-3xl  py-2 border-b border-black w-36 mx-auto">
+        {classData?.className}
+      </div>
 
+      {/* Teacher list start */}
       <div className=" lg:w-[800px] md:w-[600px] w-full mx-auto mt-6">
-        <div className="flex items-center  mt-4 mb-6 text-blue-600  w-64 px-2 py-2  ">
-          <button className="text-5xl font-normal -mt-1">Teachers</button>
+        <div className="flex items-center mb-2 text-black  w-64 px-2 py-2  ">
+          <button className="text-4xl font-normal">Teachers</button>
         </div>
-        <div className="border-b-2 border-blue-500"></div>
-        <br />
+        <div className="border-b border-black mb-3" />
         <div className="flex items-center gap-4 ">
           <img
             className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
             src={classData?.teacherImage || <CgProfile />}
             alt=""
           />
-          <p className="font-semibold text-gray-500">{classData?.email}</p>
+          <p className="font-semibold text-gray-700">{classData?.email}</p>
         </div>
       </div>
 
+      {/* student list start */}
       {classData?.email === user?.email && (
         <div className=" lg:w-[800px] md:w-[600px] w-full mx-auto mt-6">
-          <div className="flex items-center  mt-4 mb-6 text-blue-600  w-64 px-2 py-2  ">
-            <button className="text-5xl font-normal -mt-1">students</button>
+          <div className="flex items-center  mt-4 mb-2 text-black  w-64 px-2 py-2  ">
+            <button className="text-4xl font-normal ">Students</button>
           </div>
-          <div className="border-b-2 border-blue-500"></div>
-          <div>
+          <div className="border-b border-black"></div>
+
+          {classData?.studentList.length ? (
+            <div className="flex  justify-end text-md text-gray-600 font-bold mt-2 ">
+              {classData?.studentList?.length} Student
+            </div>
+          ) : null}
+
+          <div className="mt-4">
             {classData?.studentList?.map((data) => (
-              <Link
-                to={`/assignmentItem/${data?._id}`}
-                className="mt-4 card w-96 bg-neutral text-neutral-content"
-              >
-                <div className="card-body items-center text-center">
-                  <h2 className="card-title">{data?.email}</h2>
-                  <p>We are using cookies for no reason.</p>
+              <Link key={data?._id} to={`/assignmentItem/${data?._id}`}>
+                <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
+                  <div className="flex items-center gap-2">
+                    <img
+                      className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
+                      src={data?.studentImage}
+                      alt=""
+                    />
+                    <div className="text-sm font-medium">{data?.email}</div>
+                  </div>
                 </div>
               </Link>
             ))}
