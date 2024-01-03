@@ -19,10 +19,10 @@ const Card = ({ classData }) => {
 
   const handleCopy = () => {
     navigator.clipboard
-      .writeText(classCode)
+      .writeText(classData?.classCode)
       .then(() => {
         setCopied(true);
-        setTimeout(() => setCopied(false), 2000); // Clear "Copied!" message after 2 seconds
+        setTimeout(() => setCopied(false), 2000);
       })
       .catch((error) => console.error("Error copying text:", error));
   };

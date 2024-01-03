@@ -31,7 +31,9 @@ const ClassWork = () => {
               <GoPlus />
             </div>
             <Link to={`/createAssignment/${id}`}>
-              <button className="text-xl -mt-1 uppercase">Create Assignment</button>
+              <button className="text-xl -mt-1 uppercase">
+                Create Assignment
+              </button>
             </Link>
           </div>
         )}
@@ -41,7 +43,7 @@ const ClassWork = () => {
           {classData?.classWork?.map((data) => (
             <Link key={data?._id} to={`/assignmentItem/${data?._id}`}>
               <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
-                <div className="flex  items-center gap-2">
+                <div className="flex items-center gap-2">
                   <div className="flex items-center  text-2xl bg-slate-600 text-white  pl-3 h-12 w-12 rounded-full">
                     <GrNotes />
                   </div>

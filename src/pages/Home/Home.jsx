@@ -3,7 +3,7 @@ import Model from "../../shared/Model";
 import CreateClassModal from "../../shared/CreateClassModal";
 import HomeCard from "../../component/HomeCard/HomeCard";
 import { AuthContext } from "../../shared/AuthPovider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const { user } = useContext(AuthContext);
@@ -11,6 +11,7 @@ const Home = () => {
   const CrateClassModule = useRef(null);
   const [classData, setClassData] = useState([]);
   const [checkBox, setCheckBox] = useState(false);
+  const navigate = useNavigate();
 
   const handleSecurityModal = () => {
     securityModule.current.showModal();
@@ -37,12 +38,31 @@ const Home = () => {
     (data) => data?.email === user?.email
   );
 
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/api/v1/classList/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.status === "success") {
+          alert("Class is Delete");
+          navigate("/home");
+          window.location.reload();
+        }
+      });
+  };
+
   return (
     <>
       {filterUserClassData?.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-2">
           {filterUserClassData?.map((data) => (
-            <HomeCard key={data?._id} classInfo={data} />
+            <HomeCard
+              handleDelete={handleDelete}
+              key={data?._id}
+              classInfo={data}
+            />
           ))}
         </div>
       ) : (

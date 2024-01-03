@@ -1,11 +1,22 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import PrimaryButton from "../../shared/PrimaryButton";
 
-const HomeCard = ({ classInfo }) => {
+const HomeCard = ({ handleDelete, classInfo }) => {
   const { _id, className, section, imageURLs, classRole, subject, teacherId } =
     classInfo;
+
+  // const handleDelete = (id) => {
+  //   fetch(`http://localhost:5000/api/v1/classList/${id}`, {
+  //     method: "DELETE",
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log(data);
+  //       window.location.reload();
+  //       navigate("/home");
+  //     });
+  // };
 
   return (
     <div className="w-96">
@@ -34,9 +45,7 @@ const HomeCard = ({ classInfo }) => {
             {classRole}
           </span>
 
-          <h3 className="mt-4  text-lg font-bold text-gray-900">
-            {className}
-          </h3>
+          <h3 className="mt-4  text-lg font-bold text-gray-900">{className}</h3>
 
           <p className="mt-1.5  text-sm font-semibold text-gray-700">
             section: {section}
@@ -48,7 +57,10 @@ const HomeCard = ({ classInfo }) => {
           ) : null}
 
           <form className="mt-4">
-            <button className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:scale-105">
+            <button
+              onClick={() => handleDelete(_id)}
+              className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:scale-105"
+            >
               Delete
             </button>
           </form>
