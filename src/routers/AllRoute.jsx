@@ -11,6 +11,7 @@ import People from "../pages/People/People";
 import JoinClass from "../pages/JoinClass/JoinClass";
 import CreateAssignment from "../pages/createAssignment/createAssignment";
 import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
+import StudentDetails from "../pages/StudentDetails/StudentDetails";
 
 const AllRouter = createBrowserRouter([
   {
@@ -60,6 +61,10 @@ const AllRouter = createBrowserRouter([
       {
         path: "/assignmentItem/:id",
         element: <AssignmentItem />,
+      },
+      {
+        path: "/studentDetails/:id",
+        element: <StudentDetails />,
       },
     ],
   },

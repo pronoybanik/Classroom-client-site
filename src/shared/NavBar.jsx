@@ -9,15 +9,14 @@ import { IoBookSharp } from "react-icons/io5";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [checkBox, setCheckBox] = useState(false);
-
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
 
   const handleSecurityModal = () => {
     securityModule.current.showModal();
   };
+  
   const handleCloseModal = () => {
     securityModule.current.showModal();
   };

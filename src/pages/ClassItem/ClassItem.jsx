@@ -66,7 +66,7 @@ const ClassItem = () => {
                       </div>
                       <div className="text-sm font-medium">
                         {classData?.teacherName} <br />
-                        post a new assignment {classData?.className}
+                        post a new assignment:- {data?.title}
                       </div>
                     </div>
                     <PiDotsThree style={{ fontSize: "40px" }} />

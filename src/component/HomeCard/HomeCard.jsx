@@ -6,18 +6,6 @@ const HomeCard = ({ handleDelete, classInfo }) => {
   const { _id, className, section, imageURLs, classRole, subject, teacherId } =
     classInfo;
 
-  // const handleDelete = (id) => {
-  //   fetch(`http://localhost:5000/api/v1/classList/${id}`, {
-  //     method: "DELETE",
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //       window.location.reload();
-  //       navigate("/home");
-  //     });
-  // };
-
   return (
     <div className="w-96">
       <Link
@@ -56,14 +44,16 @@ const HomeCard = ({ handleDelete, classInfo }) => {
             </p>
           ) : null}
 
-          <form className="mt-4">
-            <button
-              onClick={() => handleDelete(_id)}
-              className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:scale-105"
-            >
-              Delete
-            </button>
-          </form>
+          {classRole === "teacher" ? (
+            <form className="mt-4">
+              <button
+                onClick={() => handleDelete(_id)}
+                className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:scale-105"
+              >
+                Delete
+              </button>
+            </form>
+          ) : null}
         </div>
       </Link>
     </div>

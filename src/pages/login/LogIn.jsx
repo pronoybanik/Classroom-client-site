@@ -211,7 +211,7 @@ const LogIn = () => {
 
         {fireBaseError && (
           <>
-            <p className="text-error font-semibold text-red-600 mt-2">
+            <p className="font-semibold text-red-600 mt-2">
               ⚠ {fireBaseError}
             </p>
           </>
@@ -219,7 +219,7 @@ const LogIn = () => {
         <div className="mt-6">
           <PrimaryButton full>Sign in</PrimaryButton>
         </div>
-        <div className="mt-6 text-center ">
+        <div className="mt-2 text-center ">
           <Link
             to="/register"
             className="text-lg font-serif text-blue-500 hover:underline"
