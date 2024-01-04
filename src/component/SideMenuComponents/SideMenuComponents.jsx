@@ -20,15 +20,15 @@ const SideMenuComponents = () => {
       .then((data) => setClassData(data.data));
   }, []);
 
-  const filerTeacher = classData.filter(
+  const filerTeacher = classData?.filter(
     ({ email, classRole }) => email === user?.email && classRole === "teacher"
   );
-  const filerStudent = classData.filter(
+  const filerStudent = classData?.filter(
     ({ email, classRole }) => email === user?.email && classRole === "student"
   );
 
   return (
-    <div className="flex">
+    <div className="flex sticky top-0 z-50">
       <div className="flex h-screen w-16 flex-col justify-between border-e bg-white">
         <div>
           <div className="border-t border-gray-100">
@@ -152,7 +152,7 @@ const SideMenuComponents = () => {
               </Link>
             </li>
 
-            {filerTeacher.length ? <p className="border-b pt-2"></p> : null}
+            {filerTeacher?.length ? <p className="border-b pt-2"></p> : null}
             {filerTeacher?.length ? (
               <li className="mb-2">
                 <div className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
@@ -161,8 +161,8 @@ const SideMenuComponents = () => {
               </li>
             ) : null}
 
-            {filerTeacher.map((data) => (
-              <div className="pt-1" key={data?._id}>
+            {filerTeacher?.map((data) => (
+              <div key={data?._id} className="pt-1">
                 <li>
                   <Link
                     to={`/classId/${data?._id}`}
@@ -174,7 +174,7 @@ const SideMenuComponents = () => {
               </div>
             ))}
 
-            {filerTeacher.length ? (
+            {filerTeacher?.length ? (
               <p className="border-b pt-2 "></p>
             ) : (
               <p className="pt-2"></p>
@@ -188,7 +188,7 @@ const SideMenuComponents = () => {
               </li>
             ) : null}
 
-            {filerStudent.map((data) => (
+            {filerStudent?.map((data) => (
               <div className="pt-1" key={data?._id}>
                 <li>
                   <Link

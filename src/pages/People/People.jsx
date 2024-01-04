@@ -17,7 +17,7 @@ const People = () => {
 
   return (
     <div>
-      <ClassNavBar id={id} />
+      <ClassNavBar  id={id} />
       <div className="text-center font-bold uppercase text-3xl  py-2 border-b border-black w-36 mx-auto">
         {classData?.className}
       </div>
@@ -54,7 +54,7 @@ const People = () => {
 
           <div className="mt-4">
             {classData?.studentList?.map((data) => (
-              <Link key={data?._id} to={`/assignmentItem/${data?._id}`}>
+              <Link key={data?._id} >
                 <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
                   <div className="flex items-center gap-2">
                     <img
