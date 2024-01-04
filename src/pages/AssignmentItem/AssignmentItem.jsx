@@ -5,12 +5,15 @@ import { IoManOutline } from "react-icons/io5";
 import { AuthContext } from "../../shared/AuthPovider";
 import { VscSend } from "react-icons/vsc";
 import ClassNavBar from "../../shared/ClassNavBar";
+import toast from "react-hot-toast";
+import StudentTaskBox from "../../component/studentTaskBox/StudentTaskBox";
 
 const AssignmentItem = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [assignment, setAssignmentData] = useState({});
   const [classList, setClassList] = useState({});
+  const [imageValue, setImageValue] = useState("");
 
   useEffect(() => {
     fetch(`http://localhost:5000/api/v1/assignment/${id}`)
@@ -24,6 +27,38 @@ const AssignmentItem = () => {
       .then((data) => setClassList(data?.data));
   }, [assignment?.classListId]);
   console.log(classList);
+
+  const handleImageFile = (event) => {
+    const formData = new FormData();
+    if (!event.target.files[0]) return;
+    formData.append("image", event.target.files[0]);
+
+    const toastId = toast.loading("Image uploading...");
+
+    fetch(
+      `https://api.imgbb.com/1/upload?key=99f58a547dc4b1d269148eb1b605ef29`,
+      {
+        method: "POST",
+        body: formData,
+      }
+    )
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to upload image");
+        }
+        return res.json();
+      })
+      .then((image) => {
+        setImageValue(image.data.url);
+        toast.dismiss(toastId);
+        toast.success("Image uploaded successfully");
+      })
+      .catch((error) => {
+        console.error(error);
+        toast.dismiss(toastId);
+        toast.error(error.message || "Failed to upload image");
+      });
+  };
 
   return (
     <section>
@@ -96,102 +131,10 @@ const AssignmentItem = () => {
               </div>
             </div>
           </div>
+
           {/* only student can see that past  */}
           {classList?.email !== user.email ? (
-            <div className="h-32 rounded-lg w-96">
-              {/* Assignment submit  box start */}
-              <div className="bg-white shadow-lg rounded  h-48 py-4 px-6">
-                <h1 className="text-2xl ml-1 font-semibold">Your Work</h1>
-                <br />
-                <form action="">
-                  <div>
-                    <div className="dropdown">
-                      <div
-                        tabIndex={0}
-                        role="button"
-                        className="btn btn-outline w-80 ml-1"
-                      >
-                        Click
-                      </div>
-                      <ul
-                        tabIndex={0}
-                        className="dropdown-content z-[1] menu p-4 shadow bg-base-100 rounded-box w-96"
-                      >
-                        <li>
-                          <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                            <label
-                              htmlFor="file-upload"
-                              className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                            >
-                              <span>upload file</span>
-                              <input
-                                id="file-upload"
-                                name="fileUpload"
-                                type="file"
-                                required
-                                className="sr-only"
-                              />
-                            </label>
-                            <p className="pl-1">or drag and drop</p>
-                          </div>
-                        </li>
-                        <li>
-                          <div className="mt-4 flex text-sm leading-6 text-gray-600">
-                            <label
-                              htmlFor="file-upload"
-                              className="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500"
-                            >
-                              <span>upload file</span>
-                              <input
-                                id="file-upload"
-                                name="fileUpload"
-                                type="file"
-                                required
-                                className="sr-only"
-                              />
-                            </label>
-                            <p className="pl-1">or drag and drop</p>
-                          </div>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <br />
-                  <button className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:bg-slate-800">
-                    submit
-                  </button>
-                </form>
-              </div>
-              <br />
-              <div className="bg-white shadow-lg rounded  h-full px-4 py-4">
-                {/* comment input box start */}
-                <div className="flex items-center gap-2">
-                  <div className="text-2xl">
-                    <IoManOutline />
-                  </div>
-                  <div className="text-lg font-semibold">Private comments</div>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 mt-4">
-                    <div className="relative border-2 rounded ">
-                      <label htmlFor="Search" className="sr-only">
-                        Search
-                      </label>
-
-                      <input
-                        type="text"
-                        id="Search"
-                        placeholder="Search for..."
-                        className="w-80 ps-2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
-                      />
-                    </div>
-                    <div className="text-3xl">
-                      <VscSend />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <StudentTaskBox imageValue={imageValue}  id={id} handleImageFile={handleImageFile} />
           ) : null}
         </div>
       </div>

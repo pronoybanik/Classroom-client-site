@@ -54,6 +54,12 @@ const ClassItem = () => {
           </div>
           <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
             <AnnounceBox classData={classData} />
+            {classData?.groupChat?.map((data) => (
+              <div key={data?._id} className="flex flex-col mb-4">
+                <p className="text-lg">{data?.name}</p>
+                <p className="text-sm">{data?.chatValue}</p>
+              </div>
+            ))}
 
             {/* assignment Data List start */}
             <div className="mt-4">

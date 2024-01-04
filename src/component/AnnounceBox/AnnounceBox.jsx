@@ -5,31 +5,52 @@ import PrimaryButton from "../../shared/PrimaryButton";
 import { PiDotsThree } from "react-icons/pi";
 
 const AnnounceBox = ({ classData }) => {
+  console.log(classData);
   const { user } = useContext(AuthContext);
   const [postData, setPostData] = useState(false);
-  const [imageData, setImageData] = useState(0);
-  const [pdfData, setPdfData] = useState(0);
+  const [value, setValue] = useState("");
 
-  const handleImageFile = (event) => {
-    const files = event.target.files;
-    if (files) {
-      const count = files.length;
-      setImageData(count);
-    }
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const classId = classData?._id;
+    const chatValue = value;
+    const name = user.displayName;
+    const image = user.photoURL;
 
-  const handlePdfFile = (event) => {
-    const files = event.target.files;
-    if (files) {
-      const count = files.length;
-      setPdfData(count);
-    }
+    const chatInfo = {
+      classId,
+      chatValue,
+      name,
+      image,
+    };
+
+    fetch(`http://localhost:5000/api/v1/chatInfo`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(chatInfo),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("chatdata", data);
+        if (data?.status === "success") {
+          setValue("");
+          window.location.reload();
+        }
+      })
+      .catch((error) => {
+        console.log("Error:", error);
+      });
   };
 
   return (
     <div className="mt-8">
       {postData ? (
-        <section className="w-[650px] mx-auto bg-white px-10 py-6 border rounded-md border-gray-300">
+        <form
+          onSubmit={handleSubmit}
+          className="w-[650px] mx-auto bg-white px-10 py-6 border rounded-md border-gray-300"
+        >
           <div>
             <p className="font-semibold ml-1 mb-2">For</p>
             <p className="bg-gray-200 mt-2 px-2 py-2  w-32 ps-2 rounded-md   text-lg font-medium">
@@ -42,6 +63,7 @@ const AnnounceBox = ({ classData }) => {
           >
             <input
               type="text"
+              onChange={(e) => setValue(e.target.value)}
               id="Instructions"
               name="instructions"
               placeholder="Instructions"
@@ -58,49 +80,7 @@ const AnnounceBox = ({ classData }) => {
             </div>
             <PrimaryButton>Submit</PrimaryButton>
           </div>
-
-          <div className="flex items-center gap-2">
-            <div className="mt-3 flex items-center space-x-4 border px-2 py-2 bg-slate-100 rounded-lg">
-              <label className="bg-[#19200f] hover:bg-[#37491b] text-white rounded-lg px-4 py-2 cursor-pointer">
-                upload Image
-                <input
-                  type="file"
-                  required
-                  className="hidden"
-                  id="profileImage"
-                  name="profileImage"
-                  onChange={handleImageFile}
-                  multiple
-                />
-              </label>
-              <span className="text-black font-semibold">
-                {imageData === 1
-                  ? "1 file selected"
-                  : `${imageData} files selected`}
-              </span>
-            </div>
-
-            <div className="mt-3 flex items-center space-x-4 border px-2 py-2 bg-slate-100 rounded-lg">
-              <label className="bg-[#19200f] hover:bg-[#37491b] text-white rounded-lg px-4 py-2 cursor-pointer">
-                upload pdf
-                <input
-                  type="file"
-                  required
-                  className="hidden"
-                  id="profileImage"
-                  name="profileImage"
-                  onChange={handlePdfFile}
-                  multiple
-                />
-              </label>
-              <span className="text-black font-semibold">
-                {pdfData === 1
-                  ? "1 file selected"
-                  : `${pdfData} files selected`}
-              </span>
-            </div>
-          </div>
-        </section>
+        </form>
       ) : (
         <div
           onClick={() => setPostData((pre) => !pre)}

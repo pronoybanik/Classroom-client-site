@@ -37,7 +37,7 @@ const StudentDetails = () => {
 
             <tbody className="divide-y divide-gray-200">
               {classData?.studentList?.map((data) => (
-                <tr>
+                <tr key={data?._id}>
                   <td className="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
                     {data?.email}
                   </td>
@@ -53,6 +53,7 @@ const StudentDetails = () => {
                 </tr>
               ))}
             </tbody>
+            
           </table>
         </div>
       </div>

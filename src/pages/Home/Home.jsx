@@ -62,7 +62,7 @@ const Home = () => {
   };
 
   return (
-    <>
+    <section className="container mx-auto">
       {filterUserClassData?.length > 0 ? (
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 mt-4 gap-2">
           {isLoading ? (
@@ -117,7 +117,7 @@ const Home = () => {
           </div>
         </div>
       )}
-    </>
+    </section>
   );
 };
 
