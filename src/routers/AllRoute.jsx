@@ -12,6 +12,7 @@ import JoinClass from "../pages/JoinClass/JoinClass";
 import CreateAssignment from "../pages/createAssignment/createAssignment";
 import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
 import StudentDetails from "../pages/StudentDetails/StudentDetails";
+import VerifyAccount from "../pages/VerifyAccount/VerifyAccount";
 
 const AllRouter = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const AllRouter = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/verifyAccount",
+    element: <VerifyAccount />,
   },
   {
     path: "/",
@@ -66,6 +71,7 @@ const AllRouter = createBrowserRouter([
         path: "/studentDetails/:id",
         element: <StudentDetails />,
       },
+     
     ],
   },
 ]);
