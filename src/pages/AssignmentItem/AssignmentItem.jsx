@@ -79,18 +79,23 @@ const AssignmentItem = () => {
                     </p>
 
                     {/* only teacher can see that button */}
-                    {classList?.email === user?.email ? (
+                    {/* {classList?.email === user?.email ? (
                       <button className="btn btn-sm btn-error text-white">
                         Delete
                       </button>
-                    ) : null}
+                    ) : null} */}
                   </div>
 
                   <p className="text-sm  mt-1 font-bold">
                     {assignment?.name}
                     <br /> Date: {assignment?.currentDate}
                   </p>
-                  <p className="text-sm  mt-1 font-medium">100 Point</p>
+                  <p className="text-sm mt-1 font-medium">
+                    100 Point{" "}
+                    {assignment?.assignmentMark
+                      ? `Assignment Mark: ${assignment?.assignmentMark}`
+                      : ""}
+                  </p>
                   <p className="border-b mt-2 w-[700px] border-black "></p>
                 </div>
 
@@ -134,7 +139,12 @@ const AssignmentItem = () => {
 
           {/* only student can see that past  */}
           {classList?.email !== user.email ? (
-            <StudentTaskBox imageValue={imageValue}  id={id} handleImageFile={handleImageFile} />
+            <StudentTaskBox
+              setImageValue={setImageValue}
+              imageValue={imageValue}
+              id={id}
+              handleImageFile={handleImageFile}
+            />
           ) : null}
         </div>
       </div>

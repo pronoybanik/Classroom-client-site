@@ -14,8 +14,8 @@ const AnnounceBox = ({ classData }) => {
     e.preventDefault();
     const classId = classData?._id;
     const chatValue = value;
-    const name = user.displayName;
-    const image = user.photoURL;
+    const name = user?.displayName;
+    const image = user?.photoURL;
 
     const chatInfo = {
       classId,
@@ -23,6 +23,7 @@ const AnnounceBox = ({ classData }) => {
       name,
       image,
     };
+    console.log(chatInfo);
 
     fetch(`http://localhost:5000/api/v1/chatInfo`, {
       method: "POST",

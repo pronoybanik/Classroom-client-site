@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 const HomeCard = ({ handleDelete, classInfo }) => {
   const { _id, className, section, imageURLs, classRole, subject, teacherId } =
     classInfo;
+    console.log(classInfo);
 
   return (
     <div className="w-96">
@@ -12,7 +13,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
         to={`${
           classRole === "teacher" ? `/classId/${_id}` : `/classId/${teacherId}`
         }`}
-        className="group relative block overflow-hidden"
+        className="group relative block overflow-hidden h-96"
       >
         {/* <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
           <BsThreeDotsVertical />
@@ -44,7 +45,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
             </p>
           ) : null}
 
-          {classRole === "teacher" ? (
+          {/* {classRole === "teacher" ? (
             <form className="mt-4">
               <button
                 onClick={() => handleDelete(_id)}
@@ -53,7 +54,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
                 Delete
               </button>
             </form>
-          ) : null}
+          ) : null} */}
         </div>
       </Link>
     </div>

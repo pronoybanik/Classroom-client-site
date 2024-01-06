@@ -61,6 +61,7 @@ const LogIn = () => {
         setFireBaseError(error.message);
       });
   };
+  // Google login system
 
   const provider = new GoogleAuthProvider();
   const handleGoogleLogin = () => {
@@ -80,13 +81,23 @@ const LogIn = () => {
           })
             .then((response) => response.json())
             .then((data) => {
-              console.log(data);
+              if (data.status === "success") {
+                fetch(
+                  `http://localhost:5000/api/v1/userInfo/email/${user?.email}`
+                )
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.status === "success") {
+                      localStorage.setItem("userId", data?.data?._id);
+                      setFireBaseError("");
+                      toast.dismiss(toastId);
+                      toast.success("User signed in successfully");
+                      navigate("/home");
+                    }
+                  });
+              }
             });
         }
-        setFireBaseError("");
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate("/home");
       })
       .catch((error) => {
         console.error(error);

@@ -3,14 +3,14 @@ import { IoManOutline } from "react-icons/io5";
 import { VscSend } from "react-icons/vsc";
 import { AuthContext } from "../../shared/AuthPovider";
 
-const StudentTaskBox = ({ handleImageFile, imageValue, id }) => {
+const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
   const { user } = useContext(AuthContext);
   const [value, setValue] = useState("");
   const [assignmentData, setAssignmentData] = useState({});
 
   const handleSubmitTask = () => {
     const updateData = {
-      homeWorkData: imageValue,
+      homeWorkImage: imageValue,
     };
 
     if (id) {
@@ -23,7 +23,8 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id }) => {
       })
         .then((response) => response.json())
         .then((data) => {
-          console.log("update", data);
+          setImageValue("");
+          alert("Assignment Submit");
         })
         .catch((error) => {
           console.log("Error:", error);
@@ -56,8 +57,8 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id }) => {
       .then((data) => {
         console.log("chatdata", data);
         if (data?.status === "success") {
-            setValue("")
-            window.location.reload()
+          setValue("");
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -160,9 +161,11 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id }) => {
             <div className="text-2xl">
               <IoManOutline />
             </div>
-            <div className="text-lg font-semibold">Private comments</div>
+            <div className="text-lg font-semibold">
+              {assignmentData?.privateChatInfo?.length}-Private comments
+            </div>
           </div>
-          {assignmentData?.privateChatInfo?.slice(-4)?.map((data) => (
+          {assignmentData?.privateChatInfo?.slice(-6)?.map((data) => (
             <div key={data?._id} className="flex items-center gap-2 mt-4">
               <img
                 className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"

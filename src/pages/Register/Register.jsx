@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogIn from "../login/LogIn";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PrimaryButton from "../../shared/PrimaryButton";
@@ -16,10 +16,10 @@ const Register = () => {
     handleSubmit,
     reset,
   } = useForm();
-  
+
   const [imageValue, setImageValue] = useState("");
   const [selectedFileCount, setSelectedFileCount] = useState(0);
-  const navigate = useNavigate();
+
   const [state, setState] = useState("login");
   const [show, setShow] = useState({
     // as password one and password to toggle to password show hidden seperately

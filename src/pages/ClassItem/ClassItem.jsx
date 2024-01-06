@@ -27,9 +27,7 @@ const ClassItem = () => {
         {/* Banner section start */}
         <div className="bg-white ">
           <section className="relative h-[200px] bg-[url(https://gstatic.com/classroom/themes/img_code.jpg)] bg-cover bg-center bg-no-repeat">
-            <div className="absolute inset-0 bg-black/50  sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l">
-              {" "}
-            </div>
+            <div className="absolute inset-0 bg-black/50  sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
             <div className="flex  items-center  lg:ml-80 md:ml-6 ml-6  h-full">
               <div className="relative mb-2 ml-24 text-center">
@@ -54,10 +52,22 @@ const ClassItem = () => {
           </div>
           <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
             <AnnounceBox classData={classData} />
-            {classData?.groupChat?.map((data) => (
-              <div key={data?._id} className="flex flex-col mb-4">
-                <p className="text-lg">{data?.name}</p>
-                <p className="text-sm">{data?.chatValue}</p>
+            {classData?.groupChat?.slice(-5).map((data) => (
+              <div
+                key={data?._id}
+                className="flex items-center  gap-2 mt-4 bg-slate-200 p-1 rounded-sm"
+              >
+                <div className="mt-2 ">
+                  <img
+                    className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
+                    src={data?.image || <CgProfile />}
+                    alt=""
+                  />
+                </div>
+                <div>
+                  <p className="text-lg font-semibold ">{data?.name}</p>
+                  <p className="text-sm font-medium">{data?.chatValue}</p>
+                </div>
               </div>
             ))}
 

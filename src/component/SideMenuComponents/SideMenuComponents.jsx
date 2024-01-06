@@ -12,6 +12,7 @@ const SideMenuComponents = () => {
 
   const handleLogout = () => {
     logout();
+    localStorage.clear();
   };
 
   useEffect(() => {
@@ -78,7 +79,7 @@ const SideMenuComponents = () => {
             {filerStudent?.length ? (
               <div className="px-2 mt-4">
                 <div>
-                  <div className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700">
+                  <div className="group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700">
                     <PiStudentBold />
                     <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                       student
@@ -109,7 +110,7 @@ const SideMenuComponents = () => {
           {/* logout button */}
           <div
             onClick={handleLogout}
-            className="sticky inset-x-0 bottom-0  mt-8  border-gray-50  bg-white p-2"
+            className="sticky inset-x-0 bottom-0  mt-10  border-gray-50  bg-white p-2"
           >
             <form action="/logout">
               <button

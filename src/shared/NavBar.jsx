@@ -40,8 +40,7 @@ const NavBar = ({ setNavToggle }) => {
         .then((data) => setUserData(data.data));
     }
   }, [userId]);
-  console.log(userData);
-  
+
   return (
     <section>
       <header className="bg-white rounded">
