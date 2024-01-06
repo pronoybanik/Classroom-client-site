@@ -69,7 +69,6 @@ const CreateAssignment = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("data", data.data);
         if (data.status === "success") {
           toast.success("pdf if add");
           setPdfValue(data.data);
@@ -109,7 +108,6 @@ const CreateAssignment = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.status === "success") {
           toast.success(`class is create successfully`);
           navigate(`/classWork/${data?.data?.classListId}`);

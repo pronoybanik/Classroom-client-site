@@ -39,11 +39,20 @@ const LogIn = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        setFireBaseError("");
-        reset();
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate(form, { replace: true });
+        if (user?.email) {
+          fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.status === "success") {
+                localStorage.setItem("userId", data?.data?._id);
+                setFireBaseError("");
+                reset();
+                toast.dismiss(toastId);
+                toast.success("User signed in successfully");
+                navigate(form, { replace: true });
+              }
+            });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -52,6 +61,7 @@ const LogIn = () => {
         setFireBaseError(error.message);
       });
   };
+  // Google login system
 
   const provider = new GoogleAuthProvider();
   const handleGoogleLogin = () => {
@@ -59,11 +69,35 @@ const LogIn = () => {
     googleLogin(provider)
       .then((result) => {
         const user = result.user;
-        console.log("googleUser", user);
-        setFireBaseError("");
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate("/home");
+        const name = user.displayName;
+        const email = user.email;
+        if (user) {
+          fetch(`http://localhost:5000/api/v1/userInfo`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.status === "success") {
+                fetch(
+                  `http://localhost:5000/api/v1/userInfo/email/${user?.email}`
+                )
+                  .then((res) => res.json())
+                  .then((data) => {
+                    if (data.status === "success") {
+                      localStorage.setItem("userId", data?.data?._id);
+                      setFireBaseError("");
+                      toast.dismiss(toastId);
+                      toast.success("User signed in successfully");
+                      navigate("/home");
+                    }
+                  });
+              }
+            });
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -195,7 +229,6 @@ const LogIn = () => {
               className="absolute right-2 text-gray-600"
               onClick={() => {
                 setShow({ ...show, p1: !show.p1 });
-                console.log(show);
               }}
             />
           ) : (
@@ -203,7 +236,6 @@ const LogIn = () => {
               className="absolute right-2 text-gray-600"
               onClick={() => {
                 setShow({ ...show, p1: !show.p1 });
-                console.log(show);
               }}
             />
           )}
@@ -211,9 +243,7 @@ const LogIn = () => {
 
         {fireBaseError && (
           <>
-            <p className="font-semibold text-red-600 mt-2">
-              ⚠ {fireBaseError}
-            </p>
+            <p className="font-semibold text-red-600 mt-2">⚠ {fireBaseError}</p>
           </>
         )}
         <div className="mt-6">

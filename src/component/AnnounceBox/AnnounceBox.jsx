@@ -5,7 +5,6 @@ import PrimaryButton from "../../shared/PrimaryButton";
 import { PiDotsThree } from "react-icons/pi";
 
 const AnnounceBox = ({ classData }) => {
-  console.log(classData);
   const { user } = useContext(AuthContext);
   const [postData, setPostData] = useState(false);
   const [value, setValue] = useState("");
@@ -14,8 +13,8 @@ const AnnounceBox = ({ classData }) => {
     e.preventDefault();
     const classId = classData?._id;
     const chatValue = value;
-    const name = user.displayName;
-    const image = user.photoURL;
+    const name = user?.displayName;
+    const image = user?.photoURL;
 
     const chatInfo = {
       classId,
@@ -33,14 +32,13 @@ const AnnounceBox = ({ classData }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("chatdata", data);
         if (data?.status === "success") {
           setValue("");
           window.location.reload();
         }
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Error", error);
       });
   };
 

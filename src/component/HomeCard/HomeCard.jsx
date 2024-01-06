@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BsThreeDotsVertical } from "react-icons/bs";
+// import { BsThreeDotsVertical } from "react-icons/bs";
 
 const HomeCard = ({ handleDelete, classInfo }) => {
   const { _id, className, section, imageURLs, classRole, subject, teacherId } =
@@ -12,11 +12,11 @@ const HomeCard = ({ handleDelete, classInfo }) => {
         to={`${
           classRole === "teacher" ? `/classId/${_id}` : `/classId/${teacherId}`
         }`}
-        className="group relative block overflow-hidden"
+        className="group relative block overflow-hidden h-96"
       >
-        <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
+        {/* <button className="absolute end-4 top-4 z-10 rounded-full bg-white p-1.5 text-gray-900 transition hover:text-gray-900/75">
           <BsThreeDotsVertical />
-        </button>
+        </button> */}
 
         <div className="h-40 w-full">
           <img
@@ -44,7 +44,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
             </p>
           ) : null}
 
-          {classRole === "teacher" ? (
+          {/* {classRole === "teacher" ? (
             <form className="mt-4">
               <button
                 onClick={() => handleDelete(_id)}
@@ -53,7 +53,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
                 Delete
               </button>
             </form>
-          ) : null}
+          ) : null} */}
         </div>
       </Link>
     </div>

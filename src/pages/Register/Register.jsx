@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogIn from "../login/LogIn";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PrimaryButton from "../../shared/PrimaryButton";
@@ -8,17 +8,18 @@ import { AuthContext } from "../../shared/AuthPovider";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, logout, profileUpdate } = useContext(AuthContext);
+  const { createUser, logout, profileUpdate, verification } =
+    useContext(AuthContext);
   const {
     register,
     formState: { errors },
     handleSubmit,
     reset,
-    setValue,
   } = useForm();
+
   const [imageValue, setImageValue] = useState("");
   const [selectedFileCount, setSelectedFileCount] = useState(0);
-  const navigate = useNavigate();
+
   const [state, setState] = useState("login");
   const [show, setShow] = useState({
     // as password one and password to toggle to password show hidden seperately
@@ -62,7 +63,6 @@ const Register = () => {
       })
       .then((image) => {
         setImageValue(image.data.url);
-
         toast.dismiss(toastId);
         toast.success("Image uploaded successfully");
       })
@@ -76,21 +76,41 @@ const Register = () => {
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
     const { name, email, password } = data;
-    console.log(data);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        const userInfo = {
-          displayName: name,
-          photoURL: imageValue,
-        };
-        profileUpdate(userInfo);
-        setFireBaseError("");
-        reset();
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate("/login");
-        logout();
+        if (user) {
+          // post user info in data base..
+          fetch(`http://localhost:5000/api/v1/userInfo`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }).then((response) => response.json());
+          // send email varifycation code..
+          verification(user?.email, {
+            url: "http://localhost:5173/verifyAccount",
+            handleCodeInApp: true,
+          })
+            .then(() => {
+              window.localStorage.setItem("emailForSignIn", email);
+              alert("Please Check Your Email");
+              const userInfo = {
+                displayName: name,
+                photoURL: imageValue,
+              };
+              profileUpdate(userInfo);
+              setFireBaseError("");
+              reset();
+              toast.dismiss(toastId);
+              toast.success("User signed in successfully");
+              logout();
+            })
+            .catch((error) => {
+              console.error(error.code, error.message);
+            });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -249,7 +269,6 @@ const Register = () => {
                     className="absolute right-2 text-gray-600"
                     onClick={() => {
                       setShow({ ...show, p1: !show.p1 });
-                      console.log(show);
                     }}
                   />
                 ) : (
@@ -257,7 +276,6 @@ const Register = () => {
                     className="absolute right-2 text-gray-600"
                     onClick={() => {
                       setShow({ ...show, p1: !show.p1 });
-                      console.log(show);
                     }}
                   />
                 )}

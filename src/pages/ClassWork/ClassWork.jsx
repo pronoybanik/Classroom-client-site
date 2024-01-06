@@ -40,14 +40,14 @@ const ClassWork = () => {
           </div>
         )}
 
-        {classData?.length === 0 ? (
+        {classData?.classWork?.length === 0 ? (
           <div>
             <div className="border-b border-black"></div>
             <div className="flex items-center justify-center -mt-10">
               <img src={homeImage} alt="" />
             </div>
           </div>
-        ) : null}
+         ) : null}
 
         <div className="mt-10">
           {classData?.classWork?.map((data) => (
