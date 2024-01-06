@@ -17,8 +17,6 @@ const AdminPrivateRouter = ({ children }) => {
     }
   }, [userId]);
 
-  console.log("Admin", userData);
-
   if (loading) {
     return <Loading />;
   }

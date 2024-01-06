@@ -5,7 +5,6 @@ import PrimaryButton from "../../shared/PrimaryButton";
 import { PiDotsThree } from "react-icons/pi";
 
 const AnnounceBox = ({ classData }) => {
-  console.log(classData);
   const { user } = useContext(AuthContext);
   const [postData, setPostData] = useState(false);
   const [value, setValue] = useState("");
@@ -23,7 +22,6 @@ const AnnounceBox = ({ classData }) => {
       name,
       image,
     };
-    console.log(chatInfo);
 
     fetch(`http://localhost:5000/api/v1/chatInfo`, {
       method: "POST",
@@ -34,14 +32,13 @@ const AnnounceBox = ({ classData }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("chatdata", data);
         if (data?.status === "success") {
           setValue("");
           window.location.reload();
         }
       })
       .catch((error) => {
-        console.log("Error:", error);
+        console.log("Error", error);
       });
   };
 

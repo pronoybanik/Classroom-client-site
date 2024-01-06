@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const HomeCard = ({ handleDelete, classInfo }) => {
   const { _id, className, section, imageURLs, classRole, subject, teacherId } =
     classInfo;
-    console.log(classInfo);
 
   return (
     <div className="w-96">

@@ -26,7 +26,6 @@ const AssignmentItem = () => {
       .then((res) => res.json())
       .then((data) => setClassList(data?.data));
   }, [assignment?.classListId]);
-  console.log(classList);
 
   const handleImageFile = (event) => {
     const formData = new FormData();

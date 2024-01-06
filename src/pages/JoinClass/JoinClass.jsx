@@ -20,7 +20,6 @@ const JoinClass = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const filterCoder = classData.filter((data) => data?.classCode === code);
-    console.log(filterCoder);
 
     const mapCode = filterCoder.map((data) => {
       if (data?.classCode === code) {

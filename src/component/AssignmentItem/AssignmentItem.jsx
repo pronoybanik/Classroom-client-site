@@ -44,7 +44,6 @@ const AssignmentItem = ({ data }) => {
       chatValue,
       assignmentId,
     };
-    console.log(chatData);
 
     fetch(`http://localhost:5000/api/v1/chatInfo`, {
       method: "POST",

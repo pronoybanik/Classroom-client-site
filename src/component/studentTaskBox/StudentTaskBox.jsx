@@ -55,7 +55,6 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("chatdata", data);
         if (data?.status === "success") {
           setValue("");
           window.location.reload();

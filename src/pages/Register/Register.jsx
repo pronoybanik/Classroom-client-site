@@ -269,7 +269,6 @@ const Register = () => {
                     className="absolute right-2 text-gray-600"
                     onClick={() => {
                       setShow({ ...show, p1: !show.p1 });
-                      console.log(show);
                     }}
                   />
                 ) : (
@@ -277,7 +276,6 @@ const Register = () => {
                     className="absolute right-2 text-gray-600"
                     onClick={() => {
                       setShow({ ...show, p1: !show.p1 });
-                      console.log(show);
                     }}
                   />
                 )}
