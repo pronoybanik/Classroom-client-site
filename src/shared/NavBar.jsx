@@ -1,11 +1,11 @@
-import React, { useContext, useRef, useState } from "react";
-import { AuthContext } from "./AuthPovider";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import AddClassIcon from "../component/AddCalssIcon/AddCalssIcon";
 import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
-import Model from "./Model";
 import CreateClassModal from "./CreateClassModal";
+import { IoBookSharp } from "react-icons/io5";
+import { AuthContext } from "./AuthPovider";
 import { Link } from "react-router-dom";
-import { IoBookSharp,  } from "react-icons/io5";
+import Model from "./Model";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
@@ -13,6 +13,9 @@ const NavBar = ({ setNavToggle }) => {
   const [checkBox, setCheckBox] = useState(false);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
+
+  const userId = localStorage.getItem("userId");
+  const [userData, setUserData] = useState({});
 
   const handleSecurityModal = () => {
     securityModule.current.showModal();
@@ -30,6 +33,15 @@ const NavBar = ({ setNavToggle }) => {
     CrateClassModule.current.close();
   };
 
+  useEffect(() => {
+    if (userId) {
+      fetch(`http://localhost:5000/api/v1/userInfo/${userId}`)
+        .then((res) => res.json())
+        .then((data) => setUserData(data.data));
+    }
+  }, [userId]);
+  console.log(userData);
+  
   return (
     <section>
       <header className="bg-white rounded">
@@ -67,6 +79,11 @@ const NavBar = ({ setNavToggle }) => {
           </div>
 
           <div className=" flex items-center gap-4 mr-4">
+            {userData?.userRole === "admin" && (
+              <Link to="/admin/allUser">
+                <button className="btn btn-active btn-sm">Admin Route</button>
+              </Link>
+            )}
             <AddClassIcon handleSecurityModal={handleSecurityModal} />
             <ProfileIcon />
           </div>

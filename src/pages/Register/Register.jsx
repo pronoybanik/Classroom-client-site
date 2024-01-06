@@ -15,8 +15,8 @@ const Register = () => {
     formState: { errors },
     handleSubmit,
     reset,
-    setValue,
   } = useForm();
+  
   const [imageValue, setImageValue] = useState("");
   const [selectedFileCount, setSelectedFileCount] = useState(0);
   const navigate = useNavigate();
@@ -80,7 +80,16 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         if (user) {
-          verification(user.email, {
+          // post user info in data base..
+          fetch(`http://localhost:5000/api/v1/userInfo`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          }).then((response) => response.json());
+          // send email varifycation code..
+          verification(user?.email, {
             url: "http://localhost:5173/verifyAccount",
             handleCodeInApp: true,
           })

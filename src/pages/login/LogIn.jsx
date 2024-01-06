@@ -39,11 +39,20 @@ const LogIn = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        setFireBaseError("");
-        reset();
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate(form, { replace: true });
+        if (user?.email) {
+          fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
+            .then((res) => res.json())
+            .then((data) => {
+              if (data.status === "success") {
+                localStorage.setItem("userId", data?.data?._id);
+                setFireBaseError("");
+                reset();
+                toast.dismiss(toastId);
+                toast.success("User signed in successfully");
+                navigate(form, { replace: true });
+              }
+            });
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -59,7 +68,21 @@ const LogIn = () => {
     googleLogin(provider)
       .then((result) => {
         const user = result.user;
-        console.log("googleUser", user);
+        const name = user.displayName;
+        const email = user.email;
+        if (user) {
+          fetch(`http://localhost:5000/api/v1/userInfo`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email }),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+            });
+        }
         setFireBaseError("");
         toast.dismiss(toastId);
         toast.success("User signed in successfully");
@@ -211,9 +234,7 @@ const LogIn = () => {
 
         {fireBaseError && (
           <>
-            <p className="font-semibold text-red-600 mt-2">
-              ⚠ {fireBaseError}
-            </p>
+            <p className="font-semibold text-red-600 mt-2">⚠ {fireBaseError}</p>
           </>
         )}
         <div className="mt-6">

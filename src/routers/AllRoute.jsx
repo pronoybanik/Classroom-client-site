@@ -13,6 +13,9 @@ import CreateAssignment from "../pages/createAssignment/createAssignment";
 import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
 import StudentDetails from "../pages/StudentDetails/StudentDetails";
 import VerifyAccount from "../pages/VerifyAccount/VerifyAccount";
+import AdminDashBoard from "../layouts/AdminDashBoard";
+import AdminPrivateRouter from "./AdminPrivateRoute";
+import AllUserInfo from "../pages/AllUserInfo/AllUserInfo";
 
 const AllRouter = createBrowserRouter([
   {
@@ -71,7 +74,20 @@ const AllRouter = createBrowserRouter([
         path: "/studentDetails/:id",
         element: <StudentDetails />,
       },
-     
+    ],
+  },
+  {
+    path: "/admin",
+    element: <AdminDashBoard></AdminDashBoard>,
+    children: [
+      {
+        path: "/admin/allUser",
+        element: (
+          <PrivateRouter>
+            <AllUserInfo></AllUserInfo>
+          </PrivateRouter>
+        ),
+      },
     ],
   },
 ]);
