@@ -9,18 +9,16 @@ const ProfileIcon = () => {
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
-    setTimeout(() => {
-      setIsDropdownOpen(false);
-    }, 4000);
   };
 
   const handleLogOut = () => {
     logout();
+    localStorage.clear();
   };
 
   return (
-    <div>
-      <div className="relative">
+    <div className="dropdown dropdown-end">
+      <div tabIndex={0} role="button" className="btn p-0 m-1">
         <div>
           <img
             className="w-12 h-12 hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
@@ -29,9 +27,10 @@ const ProfileIcon = () => {
             onClick={toggleDropdown}
           />
         </div>
-
-        {isDropdownOpen && (
-          <div className=" w-96 absolute right-0 mt-2  rounded-lg shadow-lg bg-gray-100 ring-1 ring-black ring-opacity-5">
+      </div>
+      <ul tabIndex={0} className="dropdown-content z-[1] ">
+        <>
+          <div className="w-96 absolute right-0 mt-2 rounded-lg shadow-lg bg-gray-100 ring-1 ring-black ring-opacity-5">
             <div
               className=" flex items-center justify-center py-1"
               role="menu"
@@ -57,8 +56,8 @@ const ProfileIcon = () => {
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      </ul>
     </div>
   );
 };

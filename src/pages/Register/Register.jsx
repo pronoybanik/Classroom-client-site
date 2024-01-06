@@ -8,7 +8,8 @@ import { AuthContext } from "../../shared/AuthPovider";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { createUser, logout, profileUpdate } = useContext(AuthContext);
+  const { createUser, logout, profileUpdate, verification } =
+    useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -62,7 +63,6 @@ const Register = () => {
       })
       .then((image) => {
         setImageValue(image.data.url);
-
         toast.dismiss(toastId);
         toast.success("Image uploaded successfully");
       })
@@ -76,21 +76,32 @@ const Register = () => {
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
     const { name, email, password } = data;
-    console.log(data);
     createUser(email, password)
       .then((result) => {
         const user = result.user;
-        const userInfo = {
-          displayName: name,
-          photoURL: imageValue,
-        };
-        profileUpdate(userInfo);
-        setFireBaseError("");
-        reset();
-        toast.dismiss(toastId);
-        toast.success("User signed in successfully");
-        navigate("/login");
-        logout();
+        if (user) {
+          verification(user.email, {
+            url: "http://localhost:5173/verifyAccount",
+            handleCodeInApp: true,
+          })
+            .then(() => {
+              window.localStorage.setItem("emailForSignIn", email);
+              alert("Please Check Your Email");
+              const userInfo = {
+                displayName: name,
+                photoURL: imageValue,
+              };
+              profileUpdate(userInfo);
+              setFireBaseError("");
+              reset();
+              toast.dismiss(toastId);
+              toast.success("User signed in successfully");
+              logout();
+            })
+            .catch((error) => {
+              console.error(error.code, error.message);
+            });
+        }
       })
       .catch((error) => {
         console.log(error);

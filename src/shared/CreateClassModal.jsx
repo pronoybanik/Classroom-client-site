@@ -1,10 +1,12 @@
 import React, { forwardRef, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./AuthPovider";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
   const { user } = useContext(AuthContext);
   const [classCode, setClassCode] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const randomNumber = Math.floor(Math.random() * 9000) + 1000;
@@ -58,8 +60,11 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success(`class is create successfully`);
-        window.location.reload();
+        if (data?.status === "success") {
+          alert(`class is create successfully`);
+          navigate("/home");
+          window.location.reload();
+        }
       });
   };
 

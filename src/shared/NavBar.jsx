@@ -5,10 +5,11 @@ import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
 import Model from "./Model";
 import CreateClassModal from "./CreateClassModal";
 import { Link } from "react-router-dom";
-import { IoBookSharp } from "react-icons/io5";
+import { IoBookSharp,  } from "react-icons/io5";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
+  console.log(user);
   const [checkBox, setCheckBox] = useState(false);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);

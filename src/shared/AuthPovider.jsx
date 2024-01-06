@@ -2,6 +2,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendSignInLinkToEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -28,7 +29,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const profileUpdate = (userInfo) => {
-    console.log("auth",userInfo);
+    console.log("auth", userInfo);
     setLoading(true);
     updateProfile(auth.currentUser, userInfo);
     setUser((preUser) => ({ ...preUser, ...userInfo }));
@@ -42,6 +43,11 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setLoading(true);
     return signOut(auth);
+  };
+
+  const verification = (email, actionCodeSettings) => {
+    setLoading(true);
+    return sendSignInLinkToEmail(auth, email, actionCodeSettings);
   };
 
   useEffect(() => {
@@ -63,6 +69,7 @@ const AuthProvider = ({ children }) => {
     profileUpdate,
     googleLogin,
     logout,
+    verification,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
