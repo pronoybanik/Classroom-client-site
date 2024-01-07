@@ -29,34 +29,32 @@ const ProfileIcon = () => {
         </div>
       </div>
       <ul tabIndex={0} className="dropdown-content z-[1] ">
-        <>
-          <div className="w-96 absolute right-0 mt-2 rounded-lg shadow-lg bg-gray-100 ring-1 ring-black ring-opacity-5">
-            <div
-              className=" flex items-center justify-center py-1"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="options-menu"
-            >
-              <div className="py-8">
-                <p className=" pb-4 text-sm font-semibold text-center">
-                  {user?.email}
-                </p>
+        <div className="w-96 absolute right-0 mt-2 rounded-lg shadow-lg bg-gray-100 ring-1 ring-black ring-opacity-5">
+          <div
+            className=" flex items-center justify-center py-1"
+            role="menu"
+            aria-orientation="vertical"
+            aria-labelledby="options-menu"
+          >
+            <div className="py-8 text-center">
+              <p className="pb-4 text-sm font-semibold ">{user?.email}</p>
+              <div className="flex items-center justify-center">
                 <img
-                  className="w-20 h-20 rounded-full ml-10"
+                  className=" w-24 h-24 rounded-full"
                   src={user?.photoURL}
                   alt=""
                 />
-                <p className="text-2xl text-black">Hi,{user?.displayName}!</p>
-                <div
-                  onClick={handleLogOut}
-                  className="bg-white font-semibold cursor-pointer mt-4 rounded-full flex items-center justify-center h-full gap-2  py-2"
-                >
-                  <IoLogOutOutline style={{ fontSize: "30px" }} /> Log Out
-                </div>
+              </div>
+              <p className="text-2xl text-black">Hi,{user?.displayName}!</p>
+              <div
+                onClick={handleLogOut}
+                className="bg-white font-semibold cursor-pointer mt-4 rounded-full flex items-center justify-center h-full gap-2  py-2"
+              >
+                <IoLogOutOutline style={{ fontSize: "30px" }} /> Log Out
               </div>
             </div>
           </div>
-        </>
+        </div>
       </ul>
     </div>
   );

@@ -76,19 +76,25 @@ const Register = () => {
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
     const { name, email, password } = data;
+    const userData = {
+      name,
+      email,
+      password
+    };
+  
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         if (user) {
-          // post user info in data base..
+          // post user info in data base...
           fetch(`http://localhost:5000/api/v1/userInfo`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(userData),
           }).then((response) => response.json());
-          // send email varifycation code..
+          // send email varifycation code...
           verification(user?.email, {
             url: "http://localhost:5173/verifyAccount",
             handleCodeInApp: true,

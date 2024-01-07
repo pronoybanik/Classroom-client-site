@@ -110,7 +110,7 @@ const SideMenuComponents = () => {
           {/* logout button */}
           <div
             onClick={handleLogout}
-            className="sticky inset-x-0 bottom-0  mt-10  border-gray-50  bg-white p-2"
+            className="sticky inset-x-0 bottom-0  mt-8  border-gray-50  bg-white p-2"
           >
             <form action="/logout">
               <button
