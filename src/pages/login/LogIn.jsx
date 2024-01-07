@@ -69,32 +69,18 @@ const LogIn = () => {
     googleLogin(provider)
       .then((result) => {
         const user = result.user;
-        const name = user.displayName;
-        const email = user.email;
-        if (user) {
-          fetch(`http://localhost:5000/api/v1/userInfo`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email }),
-          })
-            .then((response) => response.json())
+
+        if (user?.email) {
+          fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
+            .then((res) => res.json())
             .then((data) => {
+              console.log(data);
               if (data.status === "success") {
-                fetch(
-                  `http://localhost:5000/api/v1/userInfo/email/${user?.email}`
-                )
-                  .then((res) => res.json())
-                  .then((data) => {
-                    if (data.status === "success") {
-                      localStorage.setItem("userId", data?.data?._id);
-                      setFireBaseError("");
-                      toast.dismiss(toastId);
-                      toast.success("User signed in successfully");
-                      navigate("/home");
-                    }
-                  });
+                localStorage.setItem("userId", data?.data?._id);
+                setFireBaseError("");
+                toast.dismiss(toastId);
+                toast.success("User signed in successfully");
+                navigate("/home");
               }
             });
         }
