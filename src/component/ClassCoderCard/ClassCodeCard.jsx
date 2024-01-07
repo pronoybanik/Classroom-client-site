@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { FiMoreHorizontal } from "react-icons/fi";
 import { IoCopyOutline } from "react-icons/io5";
 import { AuthContext } from "../../shared/AuthPovider";
+import { Link } from "react-router-dom";
 
 const Card = ({ classData }) => {
   const { user } = useContext(AuthContext);
@@ -89,9 +90,9 @@ const Card = ({ classData }) => {
             Joint class link
           </h2>
         </div>
-        <div className="flex gap-2 items-center  justify-between">
+        <Link to='/classRoom/room234' className="flex gap-2 items-center  justify-between">
           <p className=" font-semibold text-2xl mt-2 text-blue-500">Link</p>
-        </div>
+        </Link>
       </div>
     </section>
   );

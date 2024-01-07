@@ -74,6 +74,7 @@ const LogIn = () => {
           fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
+              console.log(data);
               if (data.status === "success") {
                 localStorage.setItem("userId", data?.data?._id);
                 setFireBaseError("");

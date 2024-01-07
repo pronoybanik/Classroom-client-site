@@ -16,6 +16,7 @@ import VerifyAccount from "../pages/VerifyAccount/VerifyAccount";
 import AdminDashBoard from "../layouts/AdminDashBoard";
 import AdminPrivateRouter from "./AdminPrivateRoute";
 import AllUserInfo from "../pages/AllUserInfo/AllUserInfo";
+import RoomSection from "../component/RoomSection/RoomSection";
 
 const AllRouter = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const AllRouter = createBrowserRouter([
       {
         path: "/studentDetails/:id",
         element: <StudentDetails />,
+      },
+      {
+        path: "/classRoom/:id",
+        element: <RoomSection />,
       },
     ],
   },
