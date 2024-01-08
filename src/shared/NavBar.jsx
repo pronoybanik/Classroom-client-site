@@ -9,7 +9,6 @@ import Model from "./Model";
 
 const NavBar = ({ setNavToggle }) => {
   const { user } = useContext(AuthContext);
-  console.log(user);
   const [checkBox, setCheckBox] = useState(false);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
@@ -37,7 +36,7 @@ const NavBar = ({ setNavToggle }) => {
     if (userId) {
       fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo/${userId}`)
         .then((res) => res.json())
-        .then((data) => setUserData(data.data));
+        .then((data) => setUserData(data?.data));
     }
   }, [userId]);
 
