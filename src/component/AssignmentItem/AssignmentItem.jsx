@@ -13,7 +13,7 @@ const AssignmentItem = ({ data }) => {
   const handleSubmitTask = (e) => {
     e.preventDefault();
     if (data?._id) {
-      fetch(`http://localhost:5000/api/v1/assignment/${data?._id}`, {
+      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${data?._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const AssignmentItem = ({ data }) => {
       assignmentId,
     };
 
-    fetch(`http://localhost:5000/api/v1/chatInfo`, {
+    fetch(`https://classroom-server-one.onrender.com/api/v1/chatInfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

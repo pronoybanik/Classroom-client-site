@@ -35,7 +35,7 @@ const NavBar = ({ setNavToggle }) => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`http://localhost:5000/api/v1/userInfo/${userId}`)
+      fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo/${userId}`)
         .then((res) => res.json())
         .then((data) => setUserData(data.data));
     }

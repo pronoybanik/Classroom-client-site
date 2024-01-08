@@ -5,13 +5,13 @@ const AllUserInfo = () => {
   const [user, setUserData] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/userInfo")
+    fetch("https://classroom-server-one.onrender.com/api/v1/userInfo")
       .then((res) => res.json())
       .then((data) => setUserData(data.data));
   }, []);
 
   const handleUserDelate = (id) => {
-    fetch(`http://localhost:5000/api/v1/userInfo/${id}`, {
+    fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
