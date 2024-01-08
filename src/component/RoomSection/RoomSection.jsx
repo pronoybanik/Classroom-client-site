@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 const RoomSection = () => {
   const { id } = useParams();
 
+  // create a reandom 6 degit number
   const generateRandomCode = () => {
     const value = Math.floor(100000 + Math.random() * 900000);
     return value;
@@ -19,7 +20,7 @@ const RoomSection = () => {
       serverSecret,
       id,
       generateRandomCode().toString(),
-      "pronoy"
+      "set Your Name"
     );
 
     const zc = ZegoUIKitPrebuilt.create(kitToken);
@@ -28,7 +29,7 @@ const RoomSection = () => {
       sharedLinks: [
         {
           name: "Copy Link",
-          url: "http://localhost:5173/classRoom/room234",
+          url: `https://class-room-project.web.app/classRoom/${id}`,
         },
       ],
       scenario: {
@@ -39,7 +40,7 @@ const RoomSection = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center h-full">
       <div ref={myMeeting} />{" "}
     </div>
   );

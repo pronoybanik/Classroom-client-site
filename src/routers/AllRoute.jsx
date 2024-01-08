@@ -14,9 +14,9 @@ import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
 import StudentDetails from "../pages/StudentDetails/StudentDetails";
 import VerifyAccount from "../pages/VerifyAccount/VerifyAccount";
 import AdminDashBoard from "../layouts/AdminDashBoard";
-import AdminPrivateRouter from "./AdminPrivateRoute";
 import AllUserInfo from "../pages/AllUserInfo/AllUserInfo";
 import RoomSection from "../component/RoomSection/RoomSection";
+import Payment from "../component/Payment/Payment";
 
 const AllRouter = createBrowserRouter([
   {
@@ -78,6 +78,10 @@ const AllRouter = createBrowserRouter([
       {
         path: "/classRoom/:id",
         element: <RoomSection />,
+      },
+      {
+        path: "/payment",
+        element: <Payment />,
       },
     ],
   },

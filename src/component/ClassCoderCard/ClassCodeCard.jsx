@@ -84,16 +84,18 @@ const Card = ({ classData }) => {
       {/* class code end */}
 
       {/* joint class link */}
-      <div className="max-w-md w-full rounded-lg shadow-lg p-6 border mt-10 border-gray-300">
-        <div className="flex justify-between items-center">
-          <h2 className="text-2xl font-medium uppercase text-black ">
-            Joint class link
-          </h2>
+      <Link to="/classRoom/room234">
+        <div className="max-w-md w-full  rounded-lg shadow-lg p-6 border mt-10 border-gray-300">
+          <div className="flex justify-center items-center">
+            <h2 className="text-2xl  font-medium uppercase text-black ">
+              Joint class link
+            </h2>
+          </div>
+          <div className="flex gap-2 items-center  justify-center">
+            <p className=" font-semibold text-lg mt-2 text-blue-500">Click Hear to joint</p>
+          </div>
         </div>
-        <Link to='/classRoom/room234' className="flex gap-2 items-center  justify-between">
-          <p className=" font-semibold text-2xl mt-2 text-blue-500">Link</p>
-        </Link>
-      </div>
+      </Link>
     </section>
   );
 };
