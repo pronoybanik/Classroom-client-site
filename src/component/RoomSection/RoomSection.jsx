@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 const RoomSection = () => {
   const { id } = useParams();
 
+  // create a reandom 6 degit number
   const generateRandomCode = () => {
     const value = Math.floor(100000 + Math.random() * 900000);
     return value;
@@ -19,7 +20,7 @@ const RoomSection = () => {
       serverSecret,
       id,
       generateRandomCode().toString(),
-      "pronoy"
+      "set Your Name"
     );
 
     const zc = ZegoUIKitPrebuilt.create(kitToken);
@@ -39,7 +40,7 @@ const RoomSection = () => {
   };
 
   return (
-    <div>
+    <div className="flex items-center justify-center mt-24">
       <div ref={myMeeting} />{" "}
     </div>
   );

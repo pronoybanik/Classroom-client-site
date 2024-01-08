@@ -3,6 +3,7 @@ import { AuthContext } from "../../shared/AuthPovider";
 import { CgProfile } from "react-icons/cg";
 import ClassNavBar from "../../shared/ClassNavBar";
 import { Link, useParams } from "react-router-dom";
+import PrimaryButton from "../../shared/PrimaryButton";
 
 const People = () => {
   const { id } = useParams();
@@ -17,7 +18,7 @@ const People = () => {
 
   return (
     <div>
-      <ClassNavBar  id={id} />
+      <ClassNavBar id={id} />
       <div className="text-center font-bold uppercase text-3xl  py-2 border-b border-black w-36 mx-auto">
         {classData?.className}
       </div>
@@ -36,6 +37,12 @@ const People = () => {
           />
           <p className="font-semibold text-gray-700">{classData?.email}</p>
         </div>
+
+        {classData?.email !== user?.email && (
+          <Link className="mt-4" to="/payment">
+            <PrimaryButton full>Payment</PrimaryButton>
+          </Link>
+        )}
       </div>
 
       {/* student list start */}
@@ -54,7 +61,7 @@ const People = () => {
 
           <div className="mt-4">
             {classData?.studentList?.map((data) => (
-              <Link key={data?._id} >
+              <Link key={data?._id}>
                 <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
                   <div className="flex items-center gap-2">
                     <img
