@@ -82,6 +82,19 @@ const AssignmentItem = ({ data }) => {
               />
             </a>
           )}
+          {data?.homeWorkPDF && (
+            <a
+              className="w-full p-2 flex  border  rounded"
+              href={`https://classroom-server-one.onrender.com/pdfFiles/${data?.homeWorkPDF}`}
+              target="_blank"
+            >
+              <img
+                className="w-full h-40 object-contain"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
+                alt=""
+              />
+            </a>
+          )}
         </div>
 
         <div>

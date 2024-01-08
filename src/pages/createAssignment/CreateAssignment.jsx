@@ -75,6 +75,7 @@ const CreateAssignment = () => {
         }
       });
   };
+
   const getDate = () => {
     const today = new Date();
     const month = today.getMonth() + 1;
@@ -82,6 +83,7 @@ const CreateAssignment = () => {
     const date = today.getDate();
     return `${month}.${date}.${year}`;
   };
+
   const handleAssignment = (e) => {
     e.preventDefault();
     const from = e.target;

@@ -1,9 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { GrNotes } from "react-icons/gr";
-import { IoManOutline } from "react-icons/io5";
 import { AuthContext } from "../../shared/AuthPovider";
-import { VscSend } from "react-icons/vsc";
 import ClassNavBar from "../../shared/ClassNavBar";
 import toast from "react-hot-toast";
 import StudentTaskBox from "../../component/studentTaskBox/StudentTaskBox";
