@@ -30,7 +30,7 @@ const StudentDetails = () => {
               className="rounded border-s-4 border-red-500 w-1/2 bg-red-50 p-4"
             >
               <strong className="block text-2xl font-medium text-red-800">
-                NO Task submit
+                No Task Submit
               </strong>
 
               <p className="mt-2 text-lg text-red-700">

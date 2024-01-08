@@ -9,7 +9,6 @@ import PrivateRouter from "./PrivateRoute";
 import ClassWork from "../pages/ClassWork/ClassWork";
 import People from "../pages/People/People";
 import JoinClass from "../pages/JoinClass/JoinClass";
-import CreateAssignment from "../pages/createAssignment/createAssignment";
 import AssignmentItem from "../pages/AssignmentItem/AssignmentItem";
 import StudentDetails from "../pages/StudentDetails/StudentDetails";
 import VerifyAccount from "../pages/VerifyAccount/VerifyAccount";
@@ -17,6 +16,7 @@ import AdminDashBoard from "../layouts/AdminDashBoard";
 import AllUserInfo from "../pages/AllUserInfo/AllUserInfo";
 import RoomSection from "../component/RoomSection/RoomSection";
 import Payment from "../component/Payment/Payment";
+import CreateAssignment from "../pages/createAssignment/CreateAssignment";
 
 const AllRouter = createBrowserRouter([
   {

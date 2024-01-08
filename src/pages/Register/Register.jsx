@@ -96,7 +96,7 @@ const Register = () => {
           }).then((response) => response.json());
           // send email varifycation code...
           verification(user?.email, {
-            url: "http://localhost:5173/verifyAccount",
+            url: "https://class-room-project.web.app/verifyAccount",
             handleCodeInApp: true,
           })
             .then(() => {
