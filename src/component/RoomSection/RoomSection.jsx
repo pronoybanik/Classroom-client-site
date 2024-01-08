@@ -29,7 +29,7 @@ const RoomSection = () => {
       sharedLinks: [
         {
           name: "Copy Link",
-          url: "http://localhost:5173/classRoom/room234",
+          url: `https://class-room-project.web.app/classRoom/${id}`,
         },
       ],
       scenario: {
@@ -40,7 +40,7 @@ const RoomSection = () => {
   };
 
   return (
-    <div className="flex items-center justify-center mt-24">
+    <div className="flex items-center justify-center h-full">
       <div ref={myMeeting} />{" "}
     </div>
   );
