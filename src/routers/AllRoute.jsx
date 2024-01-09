@@ -17,6 +17,7 @@ import AllUserInfo from "../pages/AllUserInfo/AllUserInfo";
 import RoomSection from "../component/RoomSection/RoomSection";
 import Payment from "../component/Payment/Payment";
 import CreateAssignment from "../pages/createAssignment/CreateAssignment";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const AllRouter = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const AllRouter = createBrowserRouter([
         <Main />
       </PrivateRouter>
     ),
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -88,6 +90,7 @@ const AllRouter = createBrowserRouter([
   {
     path: "/admin",
     element: <AdminDashBoard></AdminDashBoard>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/admin/allUser",

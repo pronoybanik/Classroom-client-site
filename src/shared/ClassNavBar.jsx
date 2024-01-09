@@ -13,7 +13,7 @@ const ClassNavBar = ({ email, id }) => {
 
   return (
     <div className="mx-auto w-2/4">
-      <ul className="flex items-center border-b-2 w-full  gap-4 ">
+      <ul className="flex items-center border-b border-black w-full  gap-4 ">
         <li className="text-lg font-medium ml-2 hover:bg-gray-200 px-4 py-2">
           <Link to={`/classWork/${id}`}>Class Work</Link>
         </li>
