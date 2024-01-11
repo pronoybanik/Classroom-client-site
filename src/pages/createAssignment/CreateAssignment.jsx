@@ -148,6 +148,7 @@ const CreateAssignment = () => {
             id="Instructions"
             name="instructions"
             placeholder="Instructions"
+            required
             className="peer px-2 mt-2  h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
 

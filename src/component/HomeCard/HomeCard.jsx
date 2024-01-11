@@ -7,7 +7,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
     classInfo;
 
   return (
-    <div className="w-96">
+    <div>
       <Link
         to={`${
           classRole === "teacher" ? `/classId/${_id}` : `/classId/${teacherId}`

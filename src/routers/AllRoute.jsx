@@ -78,7 +78,7 @@ const AllRouter = createBrowserRouter([
         element: <StudentDetails />,
       },
       {
-        path: "/classRoom/:id",
+        path: "/classRoom/:id", 
         element: <RoomSection />,
       },
       {

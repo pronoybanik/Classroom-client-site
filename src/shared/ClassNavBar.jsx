@@ -22,7 +22,7 @@ const ClassNavBar = ({ email, id }) => {
         </li>
         {classData?.email === user?.email ? (
           <li className="text-lg font-medium ml-2 hover:bg-gray-200 px-4 py-2">
-            <Link to={`/studentDetails/${id}`}>Student Details</Link>
+            <Link to={`/studentDetails/${id}`}>Communication</Link>
           </li>
         ) : null}
       </ul>
