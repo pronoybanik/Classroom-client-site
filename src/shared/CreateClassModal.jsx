@@ -51,7 +51,7 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
       currentDate: getDate(),
     };
 
-    fetch("https://classroom-server-one.onrender.com/api/v1/classList", {
+    fetch("http://localhost:5000/api/v1/classList", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -117,6 +117,7 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
             id="subject"
             name="subject"
             placeholder="subject"
+            required
             className="peer  h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
           />
 

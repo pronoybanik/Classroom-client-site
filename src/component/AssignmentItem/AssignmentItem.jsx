@@ -13,7 +13,7 @@ const AssignmentItem = ({ data }) => {
   const handleSubmitTask = (e) => {
     e.preventDefault();
     if (data?._id) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${data?._id}`, {
+      fetch(`http://localhost:5000/api/v1/assignment/${data?._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const AssignmentItem = ({ data }) => {
       assignmentId,
     };
 
-    fetch(`https://classroom-server-one.onrender.com/api/v1/chatInfo`, {
+    fetch(`http://localhost:5000/api/v1/chatInfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -85,7 +85,7 @@ const AssignmentItem = ({ data }) => {
           {data?.homeWorkPDF && (
             <a
               className="w-full p-2 flex  border  rounded"
-              href={`https://classroom-server-one.onrender.com/pdfFiles/${data?.homeWorkPDF}`}
+              href={`http://localhost:5000/pdfFiles/${data?.homeWorkPDF}`}
               target="_blank"
             >
               <img

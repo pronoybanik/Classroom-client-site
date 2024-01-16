@@ -40,7 +40,7 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         if (user?.email) {
-          fetch(`https://classroom-server-site.vercel.app/api/v1/userInfo/email/${user?.email}`)
+          fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
               if (data.status === "success") {
@@ -71,7 +71,7 @@ const LogIn = () => {
         const user = result.user;
 
         if (user?.email) {
-          fetch(`https://classroom-server-site.vercel.app/api/v1/userInfo/email/${user?.email}`)
+          fetch(`http://localhost:5000/api/v1/userInfo/email/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

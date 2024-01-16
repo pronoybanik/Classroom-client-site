@@ -87,7 +87,7 @@ const Register = () => {
         const user = result.user;
         if (user) {
           // post user info in data base...
-          fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo`, {
+          fetch(`http://localhost:5000/api/v1/userInfo`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",

@@ -34,7 +34,7 @@ const Home = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://classroom-server-one.onrender.com/api/v1/classList")
+    fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
       .then((data) => {
         setClassData(data.data);
@@ -47,7 +47,7 @@ const Home = () => {
   );
 
   const handleDelete = (id) => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`, {
+    fetch(`http://localhost:5000/api/v1/classList/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

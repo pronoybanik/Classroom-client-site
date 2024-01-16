@@ -11,7 +11,7 @@ const AdminPrivateRouter = ({ children }) => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo/${userId}`)
+      fetch(`http://localhost:5000/api/v1/userInfo/${userId}`)
         .then((res) => res.json())
         .then((data) => setUserData(data.data));
     }

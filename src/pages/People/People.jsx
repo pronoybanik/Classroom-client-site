@@ -11,7 +11,7 @@ const People = () => {
   const [classData, setClassData] = useState({});
 
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`)
+    fetch(`http://localhost:5000/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
@@ -38,11 +38,11 @@ const People = () => {
           <p className="font-semibold text-gray-700">{classData?.email}</p>
         </div>
 
-        {classData?.email !== user?.email && (
+        {/* {classData?.email !== user?.email && (
           <Link className="mt-4" to="/payment">
             <PrimaryButton full>Payment</PrimaryButton>
           </Link>
-        )}
+        )} */}
       </div>
 
       {/* student list start */}

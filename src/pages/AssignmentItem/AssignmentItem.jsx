@@ -14,13 +14,13 @@ const AssignmentItem = () => {
   const [imageValue, setImageValue] = useState("");
 
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${id}`)
+    fetch(`http://localhost:5000/api/v1/assignment/${id}`)
       .then((res) => res.json())
       .then((data) => setAssignmentData(data?.data));
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${assignment?.classListId}`)
+    fetch(`http://localhost:5000/api/v1/classList/${assignment?.classListId}`)
       .then((res) => res.json())
       .then((data) => setClassList(data?.data));
   }, [assignment?.classListId]);
@@ -118,7 +118,7 @@ const AssignmentItem = () => {
                     {assignment?.pdfValue && (
                       <a
                         className="w-full p-2 flex  border  rounded"
-                        href={`https://classroom-server-one.onrender.com/pdfFiles/${assignment?.pdfValue}`}
+                        href={`http://localhost:5000/pdfFiles/${assignment?.pdfValue}`}
                         target="_blank"
                       >
                         <img

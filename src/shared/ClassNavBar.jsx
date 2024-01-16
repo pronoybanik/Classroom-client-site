@@ -6,7 +6,7 @@ const ClassNavBar = ({ email, id }) => {
   const { user } = useContext(AuthContext);
   const [classData, setClassData] = useState({});
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`)
+    fetch(`http://localhost:5000/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);

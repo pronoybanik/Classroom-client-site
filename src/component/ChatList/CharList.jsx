@@ -4,7 +4,7 @@ const CharList = ({ id }) => {
   const [chatData, setChatData] = useState({});
 
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/chatInfo/${id}`)
+    fetch(`http://localhost:5000/api/v1/chatInfo/${id}`)
       .then((res) => res.json())
       .then((data) => setChatData(data?.data));
   }, [id]);

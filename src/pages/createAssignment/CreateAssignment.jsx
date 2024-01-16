@@ -63,7 +63,7 @@ const CreateAssignment = () => {
     const formData = new FormData();
     formData.append("file", file);
 
-    fetch("https://classroom-server-one.onrender.com/upload-file", {
+    fetch("http://localhost:5000/upload-file", {
       method: "POST",
       body: formData,
     })
@@ -101,7 +101,7 @@ const CreateAssignment = () => {
       pdfValue,
     };
 
-    fetch("https://classroom-server-one.onrender.com/api/v1/assignment", {
+    fetch("http://localhost:5000/api/v1/assignment", {
       method: "POST",
       headers: {
         "content-type": "application/json",

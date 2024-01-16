@@ -16,7 +16,7 @@ const SideMenuComponents = () => {
   };
 
   useEffect(() => {
-    fetch("https://classroom-server-one.onrender.com/api/v1/classList")
+    fetch("http://localhost:5000/api/v1/classList")
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, []);
