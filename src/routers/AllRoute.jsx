@@ -18,6 +18,7 @@ import RoomSection from "../component/RoomSection/RoomSection";
 import Payment from "../component/Payment/Payment";
 import CreateAssignment from "../pages/createAssignment/CreateAssignment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Calendar from "../pages/Calendar/Calendar";
 
 const AllRouter = createBrowserRouter([
   {
@@ -78,12 +79,16 @@ const AllRouter = createBrowserRouter([
         element: <StudentDetails />,
       },
       {
-        path: "/classRoom/:id", 
+        path: "/classRoom/:id",
         element: <RoomSection />,
       },
       {
         path: "/payment",
         element: <Payment />,
+      },
+      {
+        path: "/calendar",
+        element: <Calendar />,
       },
     ],
   },

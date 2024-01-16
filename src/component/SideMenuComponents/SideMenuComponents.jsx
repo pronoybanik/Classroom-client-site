@@ -5,6 +5,7 @@ import { AuthContext } from "../../shared/AuthPovider";
 import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { SiGoogleclassroom } from "react-icons/si";
 import { PiStudentBold } from "react-icons/pi";
+import { SlCalender } from "react-icons/sl";
 
 const SideMenuComponents = () => {
   const { user, logout } = useContext(AuthContext);
@@ -41,6 +42,17 @@ const SideMenuComponents = () => {
                   className="t group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
                 >
                   <IoHomeOutline />
+
+                  <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                    home
+                  </span>
+                </Link>
+
+                <Link
+                  to="/home"
+                  className="mt-4 group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
+                >
+                  <SlCalender/>
 
                   <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                     home
@@ -150,6 +162,15 @@ const SideMenuComponents = () => {
                 className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
               >
                 Home
+              </Link>
+            </li>
+
+            <li>
+              <Link
+                to="/calendar"
+                className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
+              >
+                calendar
               </Link>
             </li>
 
