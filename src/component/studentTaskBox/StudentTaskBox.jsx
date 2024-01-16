@@ -236,7 +236,8 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
                   type="text"
                   id="Search"
                   onChange={(e) => setValue(e.target.value)}
-                  placeholder="Search for..."
+                  placeholder="Sent Message.."
+                  required
                   className="w-80 ps-2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
                 />
               </div>

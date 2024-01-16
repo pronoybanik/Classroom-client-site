@@ -53,7 +53,7 @@ const Home = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.status === "success") {
-          toast.success("Class is Delete successfully");
+          alert("Class is Delete successfully");
           navigate("/home");
           window.location.reload();
         }

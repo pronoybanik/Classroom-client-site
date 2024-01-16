@@ -9,7 +9,6 @@ const HomeCard = ({ handleDelete, classInfo }) => {
     _id,
     className,
     section,
-    imageURLs,
     classRole,
     subject,
     teacherId,
@@ -46,7 +45,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
         </div>
         {/* profile name & role */}
         <div className="text-center space-y-1 ">
-          <h1 className="text-2xl pt-2">
+          <h1 className="text-2xl pt-2 font-semibold">
             {teacherName ? teacherName : teacherData?.teacherName}
           </h1>
           <p className="text-gray-500 text-sm font-bold uppercase pt-5">

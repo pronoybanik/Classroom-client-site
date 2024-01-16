@@ -3,7 +3,6 @@ import { GoPlus } from "react-icons/go";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../shared/AuthPovider";
 import ClassNavBar from "../../shared/ClassNavBar";
-import { PiDotsThree } from "react-icons/pi";
 import { GrNotes } from "react-icons/gr";
 import homeImage from "../../utils/photo/Blue Minimalist University Logo.png";
 
@@ -18,6 +17,18 @@ const ClassWork = () => {
       .then((data) => setClassData(data.data));
   }, [id]);
 
+  const handleDelete = (id) => {
+    fetch(`http://localhost:5000/api/v1/assignment/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === "success") {
+          alert("Assignment Delete successfully");
+          window.location.reload();
+        }
+      });
+  };
 
   return (
     <div>
@@ -47,13 +58,16 @@ const ClassWork = () => {
               <img src={homeImage} alt="" />
             </div>
           </div>
-         ) : null}
+        ) : null}
 
         <div className="mt-10">
           {classData?.classWork?.map((data) => (
-            <Link key={data?._id} to={`/assignmentItem/${data?._id}`}>
+            <div key={data?._id}>
               <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
-                <div className="flex items-center gap-2">
+                <Link
+                  to={`/assignmentItem/${data?._id}`}
+                  className="flex items-center gap-2"
+                >
                   <div className="flex items-center  text-2xl bg-slate-600 text-white  pl-3 h-12 w-12 rounded-full">
                     <GrNotes />
                   </div>
@@ -61,10 +75,20 @@ const ClassWork = () => {
                     {classData?.teacherName} <br />
                     post a new assignment:- {data?.title}
                   </div>
+                </Link>
+                {/* delete button */}
+                <div>
+                  {classData?.email === user?.email && (
+                    <button
+                      onClick={() => handleDelete(data?._id)}
+                      className="block w-full rounded bg-black text-white p-2 text-sm font-medium transition hover:scale-105"
+                    >
+                      Delete
+                    </button>
+                  )}
                 </div>
-                <PiDotsThree style={{ fontSize: "40px" }} />
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

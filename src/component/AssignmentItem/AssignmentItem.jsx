@@ -108,7 +108,7 @@ const AssignmentItem = ({ data }) => {
               className="relative block rounded-md border border-gray-200 shadow-sm focus-within:border-blue-600 focus-within:ring-1 focus-within:ring-blue-600"
             >
               <input
-                type="number"
+                type="text"
                 id="Mark"
                 onChange={(e) => setAssignmentMark(e.target.value)}
                 className="peer w-80 py-2 border-4 bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
@@ -156,7 +156,8 @@ const AssignmentItem = ({ data }) => {
                     type="text"
                     id="Search"
                     onChange={(e) => setValue(e.target.value)}
-                    placeholder="Search for..."
+                    placeholder="Sent Message..."
+                    required
                     className="w-80 ps-2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
                   />
                 </div>

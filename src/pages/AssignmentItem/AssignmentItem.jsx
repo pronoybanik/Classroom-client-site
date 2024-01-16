@@ -74,13 +74,6 @@ const AssignmentItem = () => {
                     <p className="text-3xl  font-medium uppercase">
                       {assignment?.title}
                     </p>
-
-                    {/* only teacher can see that button */}
-                    {/* {classList?.email === user?.email ? (
-                      <button className="btn btn-sm btn-error text-white">
-                        Delete
-                      </button>
-                    ) : null} */}
                   </div>
 
                   <p className="text-sm  mt-1 font-bold">
@@ -88,7 +81,6 @@ const AssignmentItem = () => {
                     <br /> Date: {assignment?.currentDate}
                   </p>
                   <p className="text-sm mt-1 font-medium">
-                    100 Point{" "}
                     {assignment?.assignmentMark
                       ? `Assignment Mark: ${assignment?.assignmentMark}`
                       : ""}
