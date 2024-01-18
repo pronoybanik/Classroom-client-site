@@ -6,6 +6,10 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import PrimaryButton from "../../shared/PrimaryButton";
 import { AuthContext } from "../../shared/AuthPovider";
 import toast from "react-hot-toast";
+import { IoIosMan } from "react-icons/io";
+import { MdWoman } from "react-icons/md";
+import { CiMobile4 } from "react-icons/ci";
+import { CgCalendarDates } from "react-icons/cg";
 
 const Register = () => {
   const { createUser, logout, profileUpdate, verification } =
@@ -75,13 +79,26 @@ const Register = () => {
 
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
-    const { name, email, password } = data;
+    const {
+      name,
+      email,
+      password,
+      fatherName,
+      motherName,
+      mobileNumber,
+      dateOfBirth,
+    } = data;
+
     const userData = {
       name,
       email,
-      password
+      password,
+      fatherName,
+      motherName,
+      mobileNumber,
+      dateOfBirth,
     };
-  
+
     createUser(email, password)
       .then((result) => {
         const user = result.user;
@@ -94,7 +111,7 @@ const Register = () => {
             },
             body: JSON.stringify(userData),
           }).then((response) => response.json());
-          // send email varifycation code...
+          // send email verification code...
           verification(user?.email, {
             url: "https://class-room-project.web.app/verifyAccount",
             handleCodeInApp: true,
@@ -150,7 +167,75 @@ const Register = () => {
           {state === "login" && <LogIn />}
           {state === "register" && (
             <form onSubmit={handleSubmit(handleRegisterAction)}>
-              <div className="relative flex items-center mt-8">
+              <div className="flex gap-2 mt-8">
+                <div className="relative flex items-center">
+                  <div className="absolute text-2xl ml-2 text-slate-500">
+                    <IoIosMan />
+                  </div>
+
+                  <input
+                    type="text"
+                    className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
+                            ${errors.fatherName && "border border-red-800"}
+                            `}
+                    placeholder="Father Name"
+                    name="fatherName"
+                    required
+                    {...register("fatherName", {
+                      required: "fatherName is required",
+                    })}
+                  />
+                </div>
+                {errors.fatherName && (
+                  <p className="text-error font-medium">{errors.fatherName}</p>
+                )}
+
+                <div className="relative flex items-center">
+                  <div className="absolute text-2xl ml-2 text-slate-500">
+                    <MdWoman />
+                  </div>
+
+                  <input
+                    type="text"
+                    className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
+                          ${errors.motherName && "border border-red-800"}
+                          `}
+                    placeholder="Mather Name"
+                    name="motherName"
+                    required
+                    {...register("motherName", {
+                      required: "motherName is required",
+                    })}
+                  />
+                </div>
+                {errors.motherName && (
+                  <p className="text-error font-medium">{errors.motherName}</p>
+                )}
+              </div>
+              {/* Mobile Number */}
+              <div className="relative flex items-center mt-4">
+                <div className="absolute text-2xl ml-2 text-gray-500">
+                  <CiMobile4 />
+                </div>
+
+                <input
+                  type="number"
+                  className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
+                            ${errors.mobileNumber && "border border-red-800"}
+                            `}
+                  placeholder="Mobile Number"
+                  name="mobileNumber"
+                  required
+                  {...register("mobileNumber", {
+                    required: "name is required",
+                  })}
+                />
+              </div>
+              {errors.mobileNumber && (
+                <p className="text-error font-medium">{errors.mobileNumber}</p>
+              )}
+              {/* Name */}
+              <div className="relative flex items-center mt-4">
                 <span className="absolute">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -183,6 +268,28 @@ const Register = () => {
               </div>
               {errors.name && (
                 <p className="text-error font-medium">{errors.name}</p>
+              )}
+              {/* Date of Birth */}
+              <div className="relative flex items-center mt-4">
+                <div className="absolute ml-2 text-2xl text-gray-500">
+                  <CgCalendarDates />
+                </div>
+
+                <input
+                  type="text"
+                  className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
+                            ${errors.dateOfBirth && "border border-red-800"}
+                            `}
+                  placeholder="Date of birth"
+                  name="dateOfBirth"
+                  required
+                  {...register("dateOfBirth", {
+                    required: "date of birth is required",
+                  })}
+                />
+              </div>
+              {errors.dateOfBirth && (
+                <p className="text-error font-medium">{errors.dateOfBirth}</p>
               )}
 
               <div className="mt-3 flex items-center space-x-4 border px-2 py-2 bg-slate-100 rounded-lg">
