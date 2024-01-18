@@ -19,6 +19,7 @@ import Payment from "../component/Payment/Payment";
 import CreateAssignment from "../pages/createAssignment/CreateAssignment";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Calendar from "../pages/Calendar/Calendar";
+import Whiteboard from "../pages/Whiteboard/Whiteboard";
 
 const AllRouter = createBrowserRouter([
   {
@@ -89,6 +90,10 @@ const AllRouter = createBrowserRouter([
       {
         path: "/calendar",
         element: <Calendar />,
+      },
+      {
+        path: "/whiteboard",
+        element: <Whiteboard />,
       },
     ],
   },

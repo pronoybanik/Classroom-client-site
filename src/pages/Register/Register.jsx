@@ -104,7 +104,7 @@ const Register = () => {
         const user = result.user;
         if (user) {
           // post user info in data base...
-          fetch(`http://localhost:5000/api/v1/userInfo`, {
+          fetch(`https://classroom-server-site.vercel.app/api/v1/userInfo`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -212,6 +212,7 @@ const Register = () => {
                   <p className="text-error font-medium">{errors.motherName}</p>
                 )}
               </div>
+
               {/* Mobile Number */}
               <div className="relative flex items-center mt-4">
                 <div className="absolute text-2xl ml-2 text-gray-500">

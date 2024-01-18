@@ -23,7 +23,7 @@ const CheckoutFrom = () => {
     event.preventDefault();
 
     if (price) {
-      fetch("http://localhost:5000/create-payment-intent", {
+      fetch("https://classroom-server-one.onrender.com/create-payment-intent", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ price }),

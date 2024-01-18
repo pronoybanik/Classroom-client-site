@@ -12,13 +12,13 @@ const ClassWork = () => {
   const [classData, setClassData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/classList/${id}`)
+    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
 
   const handleDelete = (id) => {
-    fetch(`http://localhost:5000/api/v1/assignment/${id}`, {
+    fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

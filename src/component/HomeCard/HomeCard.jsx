@@ -18,7 +18,7 @@ const HomeCard = ({ handleDelete, classInfo }) => {
 
   useEffect(() => {
     if (teacherId) {
-      fetch(`http://localhost:5000/api/v1/classList/${teacherId}`)
+      fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${teacherId}`)
         .then((res) => res.json())
         .then((data) => setTeacherData(data.data));
     }

@@ -17,7 +17,7 @@ const SideMenuComponents = () => {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/classList")
+    fetch("https://classroom-server-one.onrender.com/api/v1/classList")
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, []);
@@ -229,6 +229,13 @@ const SideMenuComponents = () => {
               Log out
             </p>
           </div>
+          <Link  to="/whiteboard" >
+            <div className="mt-2">
+              <p className="block rounded-lg pt-2 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
+                white board
+              </p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>

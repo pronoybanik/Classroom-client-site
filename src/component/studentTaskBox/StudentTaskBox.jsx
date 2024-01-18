@@ -23,7 +23,7 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
     const formData = new FormData();
     formData.append("file", file);
 
-    fetch("http://localhost:5000/upload-file", {
+    fetch("https://classroom-server-one.onrender.com/upload-file", {
       method: "POST",
       body: formData,
     })
@@ -43,7 +43,7 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
     };
 
     if (id) {
-      fetch(`http://localhost:5000/api/v1/assignment/${id}`, {
+      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -75,7 +75,7 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
       assignmentId,
     };
 
-    fetch(`http://localhost:5000/api/v1/chatInfo`, {
+    fetch(`https://classroom-server-one.onrender.com/api/v1/chatInfo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +96,7 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
 
   useEffect(() => {
     if (id) {
-      fetch(`http://localhost:5000/api/v1/assignment/${id}`)
+      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${id}`)
         .then((res) => res.json())
         .then((data) => setAssignmentData(data?.data));
     }

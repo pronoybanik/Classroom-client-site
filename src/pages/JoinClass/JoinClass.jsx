@@ -12,7 +12,7 @@ const JoinClass = () => {
   // const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/classList")
+    fetch("https://classroom-server-one.onrender.com/api/v1/classList")
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, []);
@@ -34,7 +34,7 @@ const JoinClass = () => {
         subject: data.subject,
         section: data.section,
       };
-      fetch("http://localhost:5000/api/v1/classList", {
+      fetch("https://classroom-server-one.onrender.com/api/v1/classList", {
         method: "POST",
         headers: {
           "content-type": "application/json",

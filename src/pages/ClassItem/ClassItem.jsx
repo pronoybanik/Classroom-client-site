@@ -11,7 +11,7 @@ const ClassItem = () => {
   const [classData, setClassData] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5000/api/v1/classList/${id}`)
+    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
