@@ -1,145 +1,137 @@
-import React, { useRef, useState, useEffect } from "react";
-import "./Whiteboard.css";
+import React, { useEffect, useRef, useState } from "react";
+import { fabric } from "fabric";
+import PrimaryButton from "../../shared/PrimaryButton";
 
-export default function Canvas() {
-  const [isDrawing, setIsDrawing] = useState(false);
-  const [color, setColor] = useState("#3B3B3B");
-  const [size, setSize] = useState("3");
-  const canvasRef = useRef(null);
-  const ctx = useRef(null);
-  const timeout = useRef(null);
-  const [cursor, setCursor] = useState("default");
+const Whiteboard = () => {
+  const canvasEl = useRef(null);
+  const [penWidth, setPenWidth] = useState(3);
+  const [fabricCanvas, setFabricCanvas] = useState();
+  const [penColor, setPenColor] = useState("red");
+  const [toggleEraser, setToggleEraser] = useState(false);
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    ctx.current = canvas.getContext("2d");
+    const options = {
+      isDrawingMode: true, // Set to true if you want to enable drawing mode
+      selection: false, // Disable object selection
+      // Add more options as needed
+    };
 
-    //Resizing
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
+    const canvas = new fabric.Canvas(canvasEl.current, options);
 
-    //Load from locastorage
-    const canvasimg = localStorage.getItem("canvasimg");
-    if (canvasimg) {
-      var image = new Image();
-      ctx.current = canvas.getContext("2d");
-      image.onload = function () {
-        ctx.current.drawImage(image, 0, 0);
-        setIsDrawing(false);
-      };
-      image.src = canvasimg;
+    const updateCanvasContext = (canvasInstance) => {
+      if (canvasInstance) {
+        // Example: Set a background color
+        canvasInstance.setBackgroundColor("", () => {
+          canvasInstance.renderAll();
+        });
+      }
+    };
+
+    updateCanvasContext(canvas);
+    setFabricCanvas(canvas);
+    setToggleEraser(canvas);
+    return () => {
+      updateCanvasContext(null);
+      canvas.dispose();
+    };
+  }, [canvasEl]);
+
+  const changePenWidth = (width) => {
+    if (fabricCanvas) {
+      fabricCanvas.freeDrawingBrush.width = width;
+      setPenWidth(width);
+      fabricCanvas.renderAll.bind(fabricCanvas);
     }
-  }, [ctx]);
-
-  const startPosition = ({ nativeEvent }) => {
-    setIsDrawing(true);
-    draw(nativeEvent);
   };
 
-  const finishedPosition = () => {
-    setIsDrawing(false);
-    ctx.current.beginPath();
+  const changePenColor = (color) => {
+    if (fabricCanvas) {
+      fabricCanvas.freeDrawingBrush.color = color;
+      setPenColor(color);
+      fabricCanvas.renderAll.bind(fabricCanvas);
+    }
   };
 
-  const draw = ({ nativeEvent }) => {
-    if (!isDrawing) {
-      return;
-    }
-    const canvas = canvasRef.current;
-    ctx.current = canvas.getContext("2d");
-    ctx.current.lineWidth = size;
-    ctx.current.lineCap = "round";
-    ctx.current.strokeStyle = color;
+  const downloadBoard = () => {
+    const pngData = fabricCanvas.toDataURL("pag");
+    const downloadLink = document.createElement("a");
+    const fileName = `whiteBoard-session-${Math.random()
+      .toString()
+      .replace(".", "")}.png`;
 
-    ctx.current.lineTo(nativeEvent.clientX, nativeEvent.clientY);
-    ctx.current.stroke();
-    ctx.current.beginPath();
-    ctx.current.moveTo(nativeEvent.clientX, nativeEvent.clientY);
-
-    if (timeout.current !== undefined) clearTimeout(timeout.current);
-    timeout.current = setTimeout(function () {
-      var base64ImageData = canvas.toDataURL("image/png");
-      localStorage.setItem("canvasimg", base64ImageData);
-    }, 400);
+    downloadLink.href = pngData;
+    downloadLink.download = fileName;
+    downloadLink.click();
   };
 
   const clearCanvas = () => {
-    localStorage.removeItem("canvasimg");
-    const canvas = canvasRef.current;
-    const context = canvas.getContext("2d");
-    context.fillStyle = "white";
-    context.fillRect(0, 0, canvas.width, canvas.height);
-
-    //Passing clear screen
-    if (timeout.current !== undefined) clearTimeout(timeout.current);
-    timeout.current = setTimeout(function () {
-      var base64ImageData = canvas.toDataURL("image/png");
-      localStorage.setItem("canvasimg", base64ImageData);
-    }, 400);
+    if (fabricCanvas) {
+      fabricCanvas.clear();
+    }
   };
 
-  const getPen = () => {
-    setCursor("default");
-    setSize("3");
-    setColor("#3B3B3B");
-  };
-
-  const eraseCanvas = () => {
-    setCursor("grab");
-    setSize("20");
-    setColor("#FFFFFF");
-
-    if (!isDrawing) {
-      return;
+  const toggleErase = () => {
+    if (fabricCanvas) {
+      if (toggleErase) {
+        changePenColor("#FFFFFF");
+        setToggleEraser(false);
+      } else {
+        changePenColor("#FFFFFF");
+        setToggleEraser(true);
+      }
     }
   };
 
   return (
-    <>
-      <div className="my-4 font-sans uppercase text-center text-3xl font-semibold border-b border-black mx-auto w-72 pb-2">white board</div>
-      <div className="canvas-btn">
-        <button onClick={getPen} className="btn-width">
-          Pencil
-        </button>
-        <div className="btn-width">
-          <input
-            type="color"
-            value={color}
-            onChange={(e) => setColor(e.target.value)}
-          />
-        </div>
+    <div className="container mx-auto">
+      <div className="my-6 text-center ">
+        <p className="border-b border-black pb-2 mx-auto w-72 text-3xl font-bold uppercase">
+          Whiteboard
+        </p>
+      </div>
+      <div className="bg-white my-4">
+        <canvas width="1400" height="650" ref={canvasEl} />
+      </div>
+      <div className="flex items-center  justify-evenly">
         <div>
-          <select
-            className="btn-width"
-            value={size}
-            onChange={(e) => setSize(e.target.value)}
-          >
-            <option> 1 </option>
-            <option> 3 </option>
-            <option> 5 </option>
-            <option> 10 </option>
-            <option> 15 </option>
-            <option> 20 </option>
-            <option> 25 </option>
-            <option> 30 </option>
-          </select>
+          <div className="flex items-center gap-4">
+            <label className="text-sm font-bold">Pen Width: -{penWidth}</label>
+            <input
+              type="range"
+              onChange={(e) => changePenWidth(e.target.value)}
+              value={penWidth}
+              min={1}
+              max={30}
+            />
+          </div>
+
+          <div className="flex items-center gap-2">
+            <label className="text-sm font-bold">Pen Color -{penColor}</label>
+            <input
+              type="color"
+              onChange={(e) => changePenColor(e.target.value)}
+              value={penColor}
+            />
+          </div>
         </div>
-        <button onClick={clearCanvas} className="btn-width">
-          Clear
-        </button>
-        <div>
-          <button onClick={eraseCanvas} className="btn-width">
-            Eras
-          </button>
+
+        <div className="flex items-center gap-4">
+          <div onClick={() => downloadBoard()}>
+            <PrimaryButton secondary>Download white Board</PrimaryButton>
+          </div>
+          <div onClick={() => clearCanvas()}>
+            <PrimaryButton secondary>Clear White Board</PrimaryButton>
+          </div>
+
+          <div onClick={() => toggleErase()}>
+            <PrimaryButton secondary>
+              {toggleEraser ? "Remove" : "Use"} Erase
+            </PrimaryButton>
+          </div>
         </div>
       </div>
-      <canvas
-        style={{ cursor: cursor }}
-        onMouseDown={startPosition}
-        onMouseUp={finishedPosition}
-        onMouseMove={draw}
-        ref={canvasRef}
-      />
-    </>
+    </div>
   );
-}
+};
+
+export default Whiteboard;

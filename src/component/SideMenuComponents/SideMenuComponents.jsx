@@ -6,6 +6,7 @@ import { LiaChalkboardTeacherSolid } from "react-icons/lia";
 import { SiGoogleclassroom } from "react-icons/si";
 import { PiStudentBold } from "react-icons/pi";
 import { SlCalender } from "react-icons/sl";
+import { GiHedjetWhiteCrown } from "react-icons/gi";
 
 const SideMenuComponents = () => {
   const { user, logout } = useContext(AuthContext);
@@ -122,7 +123,7 @@ const SideMenuComponents = () => {
           {/* logout button */}
           <div
             onClick={handleLogout}
-            className="sticky inset-x-0 bottom-0  mt-8  border-gray-50  bg-white p-2"
+            className="sticky inset-x-0 bottom-0  mt-10  border-gray-50  bg-white p-2"
           >
             <form action="/logout">
               <button
@@ -146,6 +147,21 @@ const SideMenuComponents = () => {
 
                 <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
                   Logout
+                </span>
+              </button>
+            </form>
+          </div>
+          {/* white board icon */}
+          <div className="sticky inset-x-0 bottom-0    border-gray-50  bg-white p-2">
+            <form action="/whiteBoard">
+              <button
+                type="submit"
+                className="text-blue-600 group relative flex w-full justify-center rounded-lg px-2 py-1.5 text-lg  hover:bg-gray-50 hover:text-gray-700"
+              >
+                <GiHedjetWhiteCrown />
+
+                <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
+                  white Board
                 </span>
               </button>
             </form>
@@ -229,7 +245,7 @@ const SideMenuComponents = () => {
               Log out
             </p>
           </div>
-          <Link  to="/whiteboard" >
+          <Link to="/whiteboard">
             <div className="mt-2">
               <p className="block rounded-lg pt-2 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
                 white board
