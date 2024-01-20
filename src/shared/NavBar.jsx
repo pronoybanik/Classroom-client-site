@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import Model from "./Model";
 
 const NavBar = ({ setNavToggle }) => {
-  const { user } = useContext(AuthContext);
   const [checkBox, setCheckBox] = useState(false);
   const securityModule = useRef(null);
   const CrateClassModule = useRef(null);
@@ -34,11 +33,14 @@ const NavBar = ({ setNavToggle }) => {
 
   useEffect(() => {
     if (userId) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/userInfo/${userId}`)
+      fetch(
+        `https://classroom-server-one.onrender.com/api/v1/userInfo/${userId}`
+      )
         .then((res) => res.json())
         .then((data) => setUserData(data?.data));
     }
   }, [userId]);
+  console.log(userData);
 
   return (
     <section>
@@ -83,7 +85,7 @@ const NavBar = ({ setNavToggle }) => {
               </Link>
             )}
             <AddClassIcon handleSecurityModal={handleSecurityModal} />
-            <ProfileIcon />
+            <ProfileIcon userData={userData}/>
           </div>
         </div>
         <Model

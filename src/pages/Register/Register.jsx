@@ -167,7 +167,42 @@ const Register = () => {
           {state === "login" && <LogIn />}
           {state === "register" && (
             <form onSubmit={handleSubmit(handleRegisterAction)}>
-              <div className="flex gap-2 mt-8">
+               {/* Name */}
+               <div className="relative flex items-center mt-8">
+                <span className="absolute">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-3 text-gray-500 "
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                </span>
+
+                <input
+                  type="text"
+                  className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
+                            ${errors.name && "border border-red-800"}
+                            `}
+                  placeholder="name"
+                  name="name"
+                  required
+                  {...register("name", {
+                    required: "name is required",
+                  })}
+                />
+              </div>
+              {errors.name && (
+                <p className="text-error font-medium">{errors.name}</p>
+              )}
+              <div className="flex gap-2 mt-4">
                 <div className="relative flex items-center">
                   <div className="absolute text-2xl ml-2 text-slate-500">
                     <IoIosMan />
@@ -235,41 +270,7 @@ const Register = () => {
               {errors.mobileNumber && (
                 <p className="text-error font-medium">{errors.mobileNumber}</p>
               )}
-              {/* Name */}
-              <div className="relative flex items-center mt-4">
-                <span className="absolute">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="w-6 h-6 mx-3 text-gray-300 "
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
-                </span>
-
-                <input
-                  type="text"
-                  className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
-                            ${errors.name && "border border-red-800"}
-                            `}
-                  placeholder="name"
-                  name="name"
-                  required
-                  {...register("name", {
-                    required: "name is required",
-                  })}
-                />
-              </div>
-              {errors.name && (
-                <p className="text-error font-medium">{errors.name}</p>
-              )}
+             
               {/* Date of Birth */}
               <div className="relative flex items-center mt-4">
                 <div className="absolute ml-2 text-2xl text-gray-500">

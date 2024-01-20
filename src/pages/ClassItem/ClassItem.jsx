@@ -5,6 +5,7 @@ import AnnounceBox from "../../component/AnnounceBox/AnnounceBox";
 import ClassNavBar from "../../shared/ClassNavBar";
 import { GrNotes } from "react-icons/gr";
 import { PiDotsThree } from "react-icons/pi";
+import image from "../../utils/photo/Digital Marketing SEEK Cover Image.png";
 
 const ClassItem = () => {
   const { id } = useParams();
@@ -26,7 +27,7 @@ const ClassItem = () => {
       <div className="mt-4 container mx-auto lg:w-[1000px] md:w-[600px] w-96 rounded">
         {/* Banner section start */}
         <div className="bg-white ">
-          <section className="relative h-[200px] bg-[url(https://gstatic.com/classroom/themes/img_code.jpg)] bg-cover bg-center bg-no-repeat">
+          <section className="relative h-[200px] bg-[url(https://images.pexels.com/photos/6120216/pexels-photo-6120216.jpeg?auto=compress&cs=tinysrgb&w=600)] bg-cover bg-center bg-no-repeat">
             <div className="absolute inset-0 bg-black/50  sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
             <div className="flex  items-center  lg:ml-80 md:ml-6 ml-6  h-full">

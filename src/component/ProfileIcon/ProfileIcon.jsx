@@ -3,7 +3,7 @@ import { CgProfile } from "react-icons/cg";
 import { IoLogOutOutline } from "react-icons/io5";
 import { AuthContext } from "../../shared/AuthPovider";
 
-const ProfileIcon = () => {
+const ProfileIcon = ({ userData }) => {
   const { user, logout } = useContext(AuthContext);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -37,7 +37,22 @@ const ProfileIcon = () => {
             aria-labelledby="options-menu"
           >
             <div className="py-8 text-center">
-              <p className="pb-4 text-sm font-semibold ">{user?.email}</p>
+              <div className="">
+                <p className="pb-2 text-sm font-bold ">
+                  Father Name: {userData?.fatherName}
+                </p>
+                <p className="pb-2 text-sm font-bold ">
+                  Mother Name: {userData?.motherName}
+                </p>
+                <p className="pb-2 text-sm font-bold ">Email: {user?.email}</p>
+                <p className="pb-2 text-sm font-bold ">
+                  Mobile Number: {userData?.mobileNumber}
+                </p>
+                <p className="pb-4 text-sm font-bold ">
+                  Date Of Birth: {userData?.dateOfBirth}
+                </p>
+              </div>
+
               <div className="flex items-center justify-center">
                 <img
                   className=" w-24 h-24 rounded-full"
@@ -45,7 +60,7 @@ const ProfileIcon = () => {
                   alt=""
                 />
               </div>
-              <p className="text-2xl text-black">Hi,{user?.displayName}!</p>
+              <p className="text-2xl text-black">{user?.displayName}!</p>
               <div
                 onClick={handleLogOut}
                 className="bg-white font-semibold cursor-pointer mt-4 rounded-full flex items-center justify-center h-full gap-2  py-2"
