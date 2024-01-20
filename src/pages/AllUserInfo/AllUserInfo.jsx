@@ -59,12 +59,21 @@ const AllUserInfo = () => {
                   <td>{data?.dateOfBirth}</td>
                   <td className="font-bold">{data?.userRole}</td>
                   <td>
-                    <button
-                      onClick={() => handleUserDelate(data?._id)}
-                      className="btn btn-outline btn-sm btn-error"
-                    >
-                      Delete
-                    </button>
+                    {data?.userRole === "admin" ? (
+                      <button
+                        disabled
+                        className="btn btn-active btn-ghost btn-sm"
+                      >
+                        Delete
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => handleUserDelate(data?._id)}
+                        className="btn btn-outline btn-sm btn-error"
+                      >
+                        Delete
+                      </button>
+                    )}
                   </td>
                 </tr>
               ))}

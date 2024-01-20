@@ -86,7 +86,7 @@ const Whiteboard = () => {
     <div className="container mx-auto">
       <div className="my-6 text-center ">
         <p className="border-b border-black pb-2 mx-auto w-72 text-3xl font-bold uppercase">
-          Whiteboard
+          White board
         </p>
       </div>
       <div className="bg-white my-4">
