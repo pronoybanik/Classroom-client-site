@@ -37,21 +37,29 @@ const ProfileIcon = ({ userData }) => {
             aria-labelledby="options-menu"
           >
             <div className="py-8 text-center">
-              <div className="">
-                <p className="pb-2 text-sm font-bold ">
-                  Father Name: {userData?.fatherName}
-                </p>
-                <p className="pb-2 text-sm font-bold ">
-                  Mother Name: {userData?.motherName}
-                </p>
-                <p className="pb-2 text-sm font-bold ">Email: {user?.email}</p>
-                <p className="pb-2 text-sm font-bold ">
-                  Mobile Number: {userData?.mobileNumber}
-                </p>
-                <p className="pb-4 text-sm font-bold ">
-                  Date Of Birth: {userData?.dateOfBirth}
-                </p>
-              </div>
+              {userData?.userRole !== "admin" ? (
+                <div>
+                  <p className="pb-2 text-sm font-bold ">
+                    Father Name: {userData?.fatherName}
+                  </p>
+                  <p className="pb-2 text-sm font-bold ">
+                    Mother Name: {userData?.motherName}
+                  </p>
+                  <p className="pb-2 text-sm font-bold ">
+                    Email: {user?.email}
+                  </p>
+                  <p className="pb-2 text-sm font-bold ">
+                    Mobile Number: {userData?.mobileNumber}
+                  </p>
+                  <p className="pb-4 text-sm font-bold ">
+                    Date Of Birth: {userData?.dateOfBirth}
+                  </p>
+                </div>
+              ) : null}
+
+              {userData?.userRole === "admin" ? (
+                <p className="pb-4 text-sm font-bold  ">{user?.email}</p>
+              ) : null}
 
               <div className="flex items-center justify-center">
                 <img
