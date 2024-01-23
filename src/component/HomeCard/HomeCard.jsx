@@ -18,7 +18,9 @@ const HomeCard = ({ handleDelete, classInfo }) => {
 
   useEffect(() => {
     if (teacherId) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${teacherId}`)
+      fetch(
+        `https://classroom-server-one.onrender.com/api/v1/classList/${teacherId}`
+      )
         .then((res) => res.json())
         .then((data) => setTeacherData(data.data));
     }
@@ -40,21 +42,24 @@ const HomeCard = ({ handleDelete, classInfo }) => {
               src={imgUrl}
               alt=""
             />
-            <img
-              className="w-[100px] h-[100px] absolute -bottom-10 left-1/2 -translate-x-1/2 rounded-full bg-gray-400 border border-white"
-              src={teacherImage ? teacherImage : teacherData?.teacherImage}
-              alt=""
-            />
+            <div className="flex items-center gap-6">
+              <img
+                className="w-[100px] h-[100px]  mt-4 rounded-sm bg-gray-400 border border-white"
+                src={teacherImage ? teacherImage : teacherData?.teacherImage}
+                alt=""
+              />
+              {/* profile name & role */}
+              <div className="text-center space-y-1">
+                <h1 className="text-2xl pt-2 font-semibold">
+                  {teacherName ? teacherName : teacherData?.teacherName}
+                </h1>
+                <p className="text-gray-500 text-sm font-bold uppercase pt-2">
+                  Role: {classRole}
+                </p>
+              </div>
+            </div>
           </div>
-          {/* profile name & role */}
-          <div className="text-center space-y-1 pt-8">
-            <h1 className="text-2xl pt-2 font-semibold">
-              {teacherName ? teacherName : teacherData?.teacherName}
-            </h1>
-            <p className="text-gray-500 text-sm font-bold uppercase pt-5">
-              Role: {classRole}
-            </p>
-          </div>
+
           <div>
             <h3 className="mt-4  text-lg font-bold text-gray-900">
               {className}

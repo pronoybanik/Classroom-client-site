@@ -9,6 +9,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 
 const LogIn = () => {
   const { signIn, googleLogin } = useContext(AuthContext);
+  const vercelServerUrl = import.meta.env.VITE_BACKEND_VERCEL_LINK;
+
   const {
     register,
     formState: { errors },
@@ -40,9 +42,7 @@ const LogIn = () => {
       .then((result) => {
         const user = result.user;
         if (user?.email) {
-          fetch(
-            `https://classroom-server-site.vercel.app/api/v1/userInfo/email/${user?.email}`
-          )
+          fetch(`${vercelServerUrl}/api/v1/userInfo/email/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
               if (data.status === "success") {
@@ -63,9 +63,10 @@ const LogIn = () => {
         setFireBaseError(error.message);
       });
   };
-  // Google login system
 
+  // Google login system
   const provider = new GoogleAuthProvider();
+
   const handleGoogleLogin = () => {
     const toastId = toast.loading("Loading...");
     googleLogin(provider)
@@ -73,9 +74,7 @@ const LogIn = () => {
         const user = result.user;
 
         if (user?.email) {
-          fetch(
-            `https://classroom-server-site.vercel.app/api/v1/userInfo/email/${user?.email}`
-          )
+          fetch(`${vercelServerUrl}/api/v1/userInfo/email/${user?.email}`)
             .then((res) => res.json())
             .then((data) => {
               console.log(data);

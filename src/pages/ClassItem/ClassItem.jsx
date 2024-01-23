@@ -27,10 +27,10 @@ const ClassItem = () => {
       <div className="mt-4 container mx-auto lg:w-[1000px] md:w-[600px] w-96 rounded">
         {/* Banner section start */}
         <div className="bg-white ">
-          <section className="relative h-[200px] bg-[url(https://images.pexels.com/photos/6120216/pexels-photo-6120216.jpeg?auto=compress&cs=tinysrgb&w=600)] bg-cover bg-center bg-no-repeat">
+          <section className="relative h-[200px] bg-[url(https://i.ibb.co/qrdLQnc/Blue-White-Modern-Business-SEEK-Cover-Image.png)] bg-cover bg-center bg-no-repeat">
             <div className="absolute inset-0 bg-black/50  sm:from-white/95 sm:to-white/25 ltr:sm:bg-gradient-to-r rtl:sm:bg-gradient-to-l"></div>
 
-            <div className="flex  items-center  lg:ml-80 md:ml-6 ml-6  h-full">
+            <div className="flex  items-center ml-10   h-full">
               <div className="relative mb-2 ml-24 text-center">
                 <p className="text-white mb-2 uppercase lg:text-4xl md:text-3xl text-2xl font-semibold mt-4 max-w-sm sm:text-xl/relaxed">
                   {classData?.className}

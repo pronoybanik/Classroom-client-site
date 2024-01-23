@@ -4,7 +4,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 
 const stripePromise = loadStripe(import.meta.env.VITE_Pyment_Gateway_PK);
-console.log("stripePromise", stripePromise);
+
 
 const Payment = () => {
   return (

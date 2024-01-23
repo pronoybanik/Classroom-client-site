@@ -75,7 +75,7 @@ const AnnounceBox = ({ classData }) => {
           </label>
           <div className="flex items-center justify-end mt-2 gap-2">
             <div onClick={() => setPostData(false)}>
-              <PrimaryButton>cencle</PrimaryButton>
+              <PrimaryButton>cancel</PrimaryButton>
             </div>
             <PrimaryButton>Submit</PrimaryButton>
           </div>

@@ -14,6 +14,8 @@ import { CgCalendarDates } from "react-icons/cg";
 const Register = () => {
   const { createUser, logout, profileUpdate, verification } =
     useContext(AuthContext);
+  const vercelServerUrl = import.meta.env.VITE_BACKEND_VERCEL_LINK;
+
   const {
     register,
     formState: { errors },
@@ -104,7 +106,7 @@ const Register = () => {
         const user = result.user;
         if (user) {
           // post user info in data base...
-          fetch(`https://classroom-server-site.vercel.app/api/v1/userInfo`, {
+          fetch(`${vercelServerUrl}/api/v1/userInfo`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -167,8 +169,8 @@ const Register = () => {
           {state === "login" && <LogIn />}
           {state === "register" && (
             <form onSubmit={handleSubmit(handleRegisterAction)}>
-               {/* Name */}
-               <div className="relative flex items-center mt-8">
+              {/* Name */}
+              <div className="relative flex items-center mt-8">
                 <span className="absolute">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -270,7 +272,7 @@ const Register = () => {
               {errors.mobileNumber && (
                 <p className="text-error font-medium">{errors.mobileNumber}</p>
               )}
-             
+
               {/* Date of Birth */}
               <div className="relative flex items-center mt-4">
                 <div className="absolute ml-2 text-2xl text-gray-500">

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fabric } from "fabric";
-import PrimaryButton from "../../shared/PrimaryButton";
 
 const Whiteboard = () => {
   const canvasEl = useRef(null);
@@ -89,45 +88,53 @@ const Whiteboard = () => {
           White board
         </p>
       </div>
-      <div className="bg-white my-4">
-        <canvas width="1400" height="650" ref={canvasEl} />
-      </div>
-      <div className="flex items-center  justify-evenly">
-        <div>
-          <div className="flex items-center gap-4">
-            <label className="text-sm font-bold">Pen Width: -{penWidth}</label>
-            <input
-              type="range"
-              onChange={(e) => changePenWidth(e.target.value)}
-              value={penWidth}
-              min={1}
-              max={30}
-            />
+      <div className="flex gap-4">
+        <div className="mt-6">
+          <div>
+            <div className="flex  w-64 items-center gap-4 mb-4">
+              <label className="text-sm font-bold">
+                Pen Width: -{penWidth}
+              </label>
+              <input
+                type="range"
+                onChange={(e) => changePenWidth(e.target.value)}
+                value={penWidth}
+                min={1}
+                max={30}
+              />
+            </div>
+
+            <div className="flex items-center gap-2">
+              <label className="text-sm font-bold">Pen Color -{penColor}</label>
+              <input
+                type="color"
+                onChange={(e) => changePenColor(e.target.value)}
+                value={penColor}
+              />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <label className="text-sm font-bold">Pen Color -{penColor}</label>
-            <input
-              type="color"
-              onChange={(e) => changePenColor(e.target.value)}
-              value={penColor}
-            />
+          <div className="mt-4">
+            <div onClick={() => downloadBoard()}>
+              <button className="btn btn-info btn-sm mt-4 text-white">
+                Download white Board
+              </button>
+            </div>
+            <div onClick={() => clearCanvas()}>
+              <button className="btn btn-info btn-sm mt-4 text-white">
+                Clear White Board
+              </button>
+            </div>
+
+            <div onClick={() => toggleErase()}>
+              <button className="btn btn-error  btn-sm mt-4 text-white">
+                {toggleEraser ? "Remove" : "Use"} Erase
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="flex items-center gap-4">
-          <div onClick={() => downloadBoard()}>
-            <PrimaryButton secondary>Download white Board</PrimaryButton>
-          </div>
-          <div onClick={() => clearCanvas()}>
-            <PrimaryButton secondary>Clear White Board</PrimaryButton>
-          </div>
-
-          <div onClick={() => toggleErase()}>
-            <PrimaryButton secondary>
-              {toggleEraser ? "Remove" : "Use"} Erase
-            </PrimaryButton>
-          </div>
+        <div className="bg-white my-4">
+          <canvas width="1400" height="650" ref={canvasEl} />
         </div>
       </div>
     </div>
