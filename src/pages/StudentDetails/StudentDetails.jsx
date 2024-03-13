@@ -18,7 +18,7 @@ const StudentDetails = () => {
       <ClassNavBar id={id} />
       <div className="w-full p-4 mt-2 container mx-auto">
         {classData?.classWork?.length > 0 ? (
-          <div className=" p-4 rounded  grid grid-cols-2 gap-2">
+          <div className=" p-4 rounded  grid lg:grid-cols-2 gap-2">
             {classData?.classWork?.map((data) => (
               <AssignmentItem data={data}></AssignmentItem>
             ))}

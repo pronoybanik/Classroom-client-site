@@ -20,7 +20,9 @@ const AssignmentItem = () => {
   }, [id]);
 
   useEffect(() => {
-    fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${assignment?.classListId}`)
+    fetch(
+      `https://classroom-server-one.onrender.com/api/v1/classList/${assignment?.classListId}`
+    )
       .then((res) => res.json())
       .then((data) => setClassList(data?.data));
   }, [assignment?.classListId]);
@@ -60,7 +62,7 @@ const AssignmentItem = () => {
   return (
     <section>
       <ClassNavBar id={assignment?.classListId} />
-      <div className="w-[1200px] mx-auto mt-6">
+      <div className="lg:w-[1200px] mx-auto mt-6">
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-4 ">
           <div className="h-32 rounded-lg  lg:col-span-2  p-2">
             {/* Assignment details data */}
@@ -85,7 +87,7 @@ const AssignmentItem = () => {
                       ? `Assignment Mark: ${assignment?.assignmentMark}`
                       : ""}
                   </p>
-                  <p className="border-b mt-2 w-[700px] border-black "></p>
+                  <p className="border-b mt-2 lg:w-[700px] border-black "></p>
                 </div>
 
                 <div className="mt-1 text-md mb-2 font-medium">
@@ -100,7 +102,7 @@ const AssignmentItem = () => {
                         target="_blank"
                       >
                         <img
-                          className="w-full h-40 object-cover"
+                          className="w-full lg:h-40 h-28 object-cover"
                           src={assignment?.imageValue}
                           alt=""
                         />
@@ -114,7 +116,7 @@ const AssignmentItem = () => {
                         target="_blank"
                       >
                         <img
-                          className="w-full h-40 object-contain"
+                          className="w-full lg:h-40 h-28 object-contain"
                           src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/PDF_file_icon.svg/1200px-PDF_file_icon.svg.png"
                           alt=""
                         />
@@ -126,15 +128,17 @@ const AssignmentItem = () => {
             </div>
           </div>
 
-          {/* only student can see that past  */}
-          {classList?.email !== user.email ? (
-            <StudentTaskBox
-              setImageValue={setImageValue}
-              imageValue={imageValue}
-              id={id}
-              handleImageFile={handleImageFile}
-            />
-          ) : null}
+          {/*only student can see that past*/}
+          <div className="lg:mt-0 mt-40 -ml-4">
+            {classList?.email !== user.email ? (
+              <StudentTaskBox
+                setImageValue={setImageValue}
+                imageValue={imageValue}
+                id={id}
+                handleImageFile={handleImageFile}
+              />
+            ) : null}
+          </div>
         </div>
       </div>
     </section>

@@ -13,13 +13,16 @@ const AssignmentItem = ({ data }) => {
   const handleSubmitTask = (e) => {
     e.preventDefault();
     if (data?._id) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${data?._id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ assignmentMark }),
-      })
+      fetch(
+        `https://classroom-server-one.onrender.com/api/v1/assignment/${data?._id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ assignmentMark }),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           toast.success("Mark is send");
@@ -65,7 +68,7 @@ const AssignmentItem = ({ data }) => {
   };
 
   return (
-    <div className="bg-slate-200 p-6 rounded-md">
+    <div className="bg-slate-200 p-6 rounded-md -ml-8">
       <div>
         <p className="py-2 font-semibold">Student Email: {data?.email}</p>
         <div className="flex items-center gap-2 ">
@@ -111,7 +114,7 @@ const AssignmentItem = ({ data }) => {
                 type="text"
                 id="Mark"
                 onChange={(e) => setAssignmentMark(e.target.value)}
-                className="peer w-80 py-2 border-4 bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
+                className="peer lg:w-80 py-2 border-4 bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
                 placeholder="Mark"
               />
 
@@ -122,7 +125,6 @@ const AssignmentItem = ({ data }) => {
             <button className="btn">send</button>
           </form>
           <p className="text-center my-4 font-bold">
-            {" "}
             Mark: {data?.assignmentMark}
           </p>
         </div>
@@ -158,7 +160,7 @@ const AssignmentItem = ({ data }) => {
                     onChange={(e) => setValue(e.target.value)}
                     placeholder="Sent Message..."
                     required
-                    className="w-80 ps-2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
+                    className="lg:w-80 ps-2 rounded-md border-gray-200 py-2.5 pe-10 shadow-sm sm:text-sm"
                   />
                 </div>
                 <button className="cursor-pointer text-3xl">

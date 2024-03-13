@@ -3,7 +3,6 @@ import AddClassIcon from "../component/AddCalssIcon/AddCalssIcon";
 import ProfileIcon from "../component/ProfileIcon/ProfileIcon";
 import CreateClassModal from "./CreateClassModal";
 import { IoBookSharp } from "react-icons/io5";
-import { AuthContext } from "./AuthPovider";
 import { Link } from "react-router-dom";
 import Model from "./Model";
 
@@ -40,12 +39,11 @@ const NavBar = ({ setNavToggle }) => {
         .then((data) => setUserData(data?.data));
     }
   }, [userId]);
-  console.log(userData);
 
   return (
     <section>
       <header className="bg-white rounded">
-        <div className="flex justify-between ">
+        <div className="flex justify-between">
           <div className="flex justify-center gap-4">
             <button
               onClick={() => setNavToggle((pre) => !pre)}
@@ -78,14 +76,14 @@ const NavBar = ({ setNavToggle }) => {
             </div>
           </div>
 
-          <div className=" flex items-center gap-4 mr-4">
+          <div className=" flex items-center gap-4">
             {userData?.userRole === "admin" && (
               <Link to="/admin/allUser">
                 <button className="btn btn-active btn-sm">Admin Route</button>
               </Link>
             )}
             <AddClassIcon handleSecurityModal={handleSecurityModal} />
-            <ProfileIcon userData={userData}/>
+            <ProfileIcon userData={userData} />
           </div>
         </div>
         <Model

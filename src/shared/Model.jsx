@@ -6,7 +6,7 @@ const Model = (
 ) => {
   
   return (
-    <dialog className="w-2/6 bg-white rounded-lg py-2 px-4" ref={ref}>
+    <dialog className="lg:w-2/6  bg-white rounded-lg py-2 px-4" ref={ref}>
       <div>
         <p className="text-lg font-semibold mb-4">
           Using Classroom at a school with students?

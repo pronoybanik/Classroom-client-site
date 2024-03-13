@@ -18,8 +18,8 @@ const ClassItem = () => {
   }, [id]);
 
   return (
-    <section>
-      <ClassNavBar id={id} />
+    <section className="-ml-6">
+      <ClassNavBar id={id}/>
       <div className="text-center font-bold uppercase text-3xl  py-2 border-b border-black w-36 mx-auto">
         {classData?.className}
       </div>
@@ -48,10 +48,10 @@ const ClassItem = () => {
         {/* Banner section End */}
 
         <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 lg:gap-8  mt-4">
-          <div className="h-32 rounded-lg  ">
+          <div className="h-32 rounded-lg">
             <Card classData={classData} />
           </div>
-          <div className="h-32 rounded-lg  lg:col-span-2 lg:mt-2">
+          <div className="h-32 rounded-lg lg:col-span-2 lg:mt-2">
             <AnnounceBox classData={classData} />
             {classData?.groupChat?.slice(-5).map((data) => (
               <div

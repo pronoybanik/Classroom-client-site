@@ -60,7 +60,7 @@ const ClassWork = () => {
           </div>
         ) : null}
 
-        <div className="mt-10">
+        <div className="mt-10 lg:w-full w-10/12 ">
           {classData?.classWork?.map((data) => (
             <div key={data?._id}>
               <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">

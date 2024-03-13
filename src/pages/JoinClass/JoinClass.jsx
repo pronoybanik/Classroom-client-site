@@ -50,7 +50,7 @@ const JoinClass = () => {
   };
 
   return (
-    <section className="w-[500px] mx-auto mt-4">
+    <section className="lg:w-[500px] mx-auto mt-4">
       <div className="border-2 p-6  rounded">
         <p className="text-sm font-semibold text-gray-600 ml-2">
           You're currently signed in as

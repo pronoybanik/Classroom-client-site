@@ -69,7 +69,7 @@ const CreateClassModal = ({ handleCreateClassCloseModule }, ref) => {
   };
 
   return (
-    <dialog className="w-2/6 bg-white rounded-lg py-2 px-4" ref={ref}>
+    <dialog className="lg:w-2/6  w-96 bg-white rounded-lg py-2 px-4" ref={ref}>
       <p className="text-xl font-semibold mb-4">Create classroom</p>
       <form onSubmit={handleSubmit} method="dialog">
         <label

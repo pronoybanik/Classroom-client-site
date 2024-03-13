@@ -119,7 +119,7 @@ const CreateAssignment = () => {
   };
 
   return (
-    <section className="w-[800px] mx-auto bg-white px-20 py-8 mt-4 border-2 rounded-md">
+    <section className="lg:w-[800px] mx-auto bg-white px-20 py-8 mt-4 border-2 rounded-md">
       <form onSubmit={handleAssignment} action="">
         <label
           htmlFor="Title"

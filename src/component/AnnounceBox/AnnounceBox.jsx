@@ -43,11 +43,11 @@ const AnnounceBox = ({ classData }) => {
   };
 
   return (
-    <div className="mt-8">
+    <div className="lg:mt-8 mt-48">
       {postData ? (
         <form
           onSubmit={handleSubmit}
-          className="w-[650px] mx-auto bg-white px-10 py-6 border rounded-md border-gray-300"
+          className="lg:w-[650px] mx-auto bg-white px-10 py-6 border rounded-md border-gray-300"
         >
           <div>
             <p className="font-semibold ml-1 mb-2">For</p>
