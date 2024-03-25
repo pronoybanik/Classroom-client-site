@@ -151,17 +151,15 @@ const Register = () => {
         <div className="w-full max-w-md">
           <div className="flex items-center justify-center mt-6 duration-300">
             <button
-              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-500 capitalize ${
-                state === "login" && "border-b-2 border-blue-500"
-              }  `}
+              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-500 capitalize ${state === "login" && "border-b-2 border-blue-500"
+                }  `}
             >
               sign in
             </button>
 
             <button
-              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-800 capitalize ${
-                state === "register" && "border-b-2 border-blue-500"
-              } `}
+              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-800 capitalize ${state === "register" && "border-b-2 border-blue-500"
+                } `}
             >
               sign up
             </button>
@@ -193,62 +191,18 @@ const Register = () => {
                   className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
                             ${errors.name && "border border-red-800"}
                             `}
-                  placeholder="name"
+                  placeholder="Name"
                   name="name"
                   required
                   {...register("name", {
-                    required: "name is required",
+                    // required: "name is required",
                   })}
                 />
               </div>
               {errors.name && (
                 <p className="text-error font-medium">{errors.name}</p>
               )}
-              <div className="flex gap-2 mt-4">
-                <div className="relative flex items-center">
-                  <div className="absolute text-2xl ml-2 text-slate-500">
-                    <IoIosMan />
-                  </div>
 
-                  <input
-                    type="text"
-                    className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
-                            ${errors.fatherName && "border border-red-800"}
-                            `}
-                    placeholder="Father Name"
-                    name="fatherName"
-                    required
-                    {...register("fatherName", {
-                      required: "fatherName is required",
-                    })}
-                  />
-                </div>
-                {errors.fatherName && (
-                  <p className="text-error font-medium">{errors.fatherName}</p>
-                )}
-
-                <div className="relative flex items-center">
-                  <div className="absolute text-2xl ml-2 text-slate-500">
-                    <MdWoman />
-                  </div>
-
-                  <input
-                    type="text"
-                    className={`block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400  focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40
-                          ${errors.motherName && "border border-red-800"}
-                          `}
-                    placeholder="Mather Name"
-                    name="motherName"
-                    required
-                    {...register("motherName", {
-                      required: "motherName is required",
-                    })}
-                  />
-                </div>
-                {errors.motherName && (
-                  <p className="text-error font-medium">{errors.motherName}</p>
-                )}
-              </div>
 
               {/* Mobile Number */}
               <div className="relative flex items-center mt-4">
@@ -298,7 +252,7 @@ const Register = () => {
 
               <div className="mt-3 flex items-center space-x-4 border px-2 py-2 bg-slate-100 rounded-lg">
                 <label className="bg-[#19200f] hover:bg-[#37491b] text-white rounded-lg px-4 py-2 cursor-pointer">
-                  Browse
+                  Image Browse
                   <input
                     type="file"
                     required

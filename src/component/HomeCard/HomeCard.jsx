@@ -30,11 +30,10 @@ const HomeCard = ({ handleDelete, classInfo }) => {
     <div className="max-w-md mt-4 p-4 shadow-md rounded-2xl space-y-8 hover:bg-slate-100">
       <div>
         <Link
-          to={`${
-            classRole === "teacher"
-              ? `/classId/${_id}`
-              : `/classId/${teacherId}`
-          }`}
+          to={`${classRole === "teacher"
+            ? `/classId/${_id}`
+            : `/classId/${teacherId}`
+            }`}
         >
           <div className="relative">
             <img

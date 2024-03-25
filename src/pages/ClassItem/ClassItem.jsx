@@ -19,7 +19,7 @@ const ClassItem = () => {
 
   return (
     <section className="-ml-6">
-      <ClassNavBar id={id}/>
+      <ClassNavBar id={id} />
       <div className="text-center font-bold uppercase text-3xl  py-2 border-b border-black w-36 mx-auto">
         {classData?.className}
       </div>
@@ -39,7 +39,7 @@ const ClassItem = () => {
                   Section: {classData?.section}
                 </p>
                 <p className="text-white font-sans lg:text-2xl md:text-2xl text-xl ">
-                  SubJect: {classData?.subject}
+                  Subject: {classData?.subject}
                 </p>
               </div>
             </div>

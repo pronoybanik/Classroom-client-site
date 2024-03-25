@@ -85,7 +85,7 @@ const Whiteboard = () => {
     <div className="container mx-auto">
       <div className="my-6 text-center ">
         <p className="border-b border-black pb-2 mx-auto w-72 text-3xl font-bold uppercase">
-          White board
+          White Board
         </p>
       </div>
       <div className="flex gap-4">
@@ -117,7 +117,7 @@ const Whiteboard = () => {
           <div className="mt-4">
             <div onClick={() => downloadBoard()}>
               <button className="btn btn-info btn-sm mt-4 text-white">
-                Download white Board
+                Download White Board
               </button>
             </div>
             <div onClick={() => clearCanvas()}>

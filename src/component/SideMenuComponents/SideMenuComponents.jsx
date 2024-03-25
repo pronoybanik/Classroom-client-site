@@ -50,13 +50,13 @@ const SideMenuComponents = () => {
                 </Link>
 
                 <Link
-                  to="/calendar"
+                  to="/Calendar"
                   className="mt-4 group relative flex justify-center rounded bg-blue-50 px-2 py-1.5 text-blue-700"
                 >
                   <SlCalender />
 
                   <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                    calendar
+                    Calendar
                   </span>
                 </Link>
               </div>
@@ -151,7 +151,7 @@ const SideMenuComponents = () => {
               </button>
             </form>
           </div>
-          {/* white board icon */}
+          {/* White Board icon */}
           <div className="sticky inset-x-0 bottom-0    border-gray-50  bg-white p-2">
             <form action="/whiteBoard">
               <button
@@ -161,7 +161,7 @@ const SideMenuComponents = () => {
                 <GiHedjetWhiteCrown />
 
                 <span className="absolute start-full top-1/2 ms-4 -translate-y-1/2 rounded bg-gray-900 px-2 py-1.5 text-xs font-medium text-white opacity-0 group-hover:opacity-100">
-                  white Board
+                  White Board
                 </span>
               </button>
             </form>
@@ -186,7 +186,7 @@ const SideMenuComponents = () => {
                 to="/calendar"
                 className="block rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700"
               >
-                calendar
+                Calendar
               </Link>
             </li>
 
@@ -248,7 +248,7 @@ const SideMenuComponents = () => {
           <Link to="/whiteboard">
             <div className="mt-2">
               <p className="block rounded-lg pt-2 bg-gray-100 px-4 py-2 text-sm font-medium text-gray-700">
-                white board
+                White Board
               </p>
             </div>
           </Link>

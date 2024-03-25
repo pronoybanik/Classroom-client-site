@@ -72,9 +72,8 @@ const Card = ({ classData }) => {
               </p>
 
               <button
-                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mt-3 ${
-                  copied ? "bg-green-500 hover:bg-green-700" : ""
-                }`}
+                className={`bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-2 rounded mt-3 ${copied ? "bg-green-500 hover:bg-green-700" : ""
+                  }`}
                 onClick={handleCopy}
               >
                 {copied ? "Copied!" : "Copy Text"}
@@ -90,12 +89,12 @@ const Card = ({ classData }) => {
         <div className="max-w-md w-full  rounded-lg shadow-lg p-6 border mt-10 border-gray-300">
           <div className="flex justify-center items-center">
             <h2 className="text-2xl  font-medium uppercase text-black ">
-              Joint class link
+              Join class link
             </h2>
           </div>
           <div className="flex gap-2 items-center  justify-center">
             <p className=" font-semibold text-lg mt-2 text-blue-500">
-              Click Hear to joint
+              Click Here To Join
             </p>
           </div>
         </div>
