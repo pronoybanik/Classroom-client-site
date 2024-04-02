@@ -88,7 +88,7 @@ const Whiteboard = () => {
           White Board
         </p>
       </div>
-      <div className="flex gap-4">
+      <div className="lg:flex gap-4">
         <div className="mt-6">
           <div>
             <div className="flex  w-64 items-center gap-4 mb-4">
