@@ -20,7 +20,7 @@ const StudentDetails = () => {
         {classData?.classWork?.length > 0 ? (
           <div className=" p-4 rounded  grid lg:grid-cols-2 gap-2">
             {classData?.classWork?.map((data) => (
-              <AssignmentItem data={data}></AssignmentItem>
+              <AssignmentItem key={data?._id} data={data}></AssignmentItem>
             ))}
           </div>
         ) : (

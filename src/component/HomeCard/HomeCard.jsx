@@ -65,11 +65,11 @@ const HomeCard = ({ handleDelete, classInfo }) => {
             </h3>
 
             <p className="mt-1.5  text-sm font-semibold text-gray-700">
-              section: {section}
+              Section: {section}
             </p>
 
             <p className="mt-1.5  text-sm font-semibold text-gray-700">
-              subject: {subject}
+              Subject: {subject}
             </p>
           </div>
         </Link>
