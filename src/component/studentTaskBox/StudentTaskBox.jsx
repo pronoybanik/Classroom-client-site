@@ -36,24 +36,29 @@ const StudentTaskBox = ({ handleImageFile, imageValue, id, setImageValue }) => {
       });
   };
 
-  const handleSubmitTask = () => {
+  const handleSubmitTask = (e) => {
+    e.preventDefault();
     const updateData = {
       homeWorkImage: imageValue,
       homeWorkPDF: pdfValue,
     };
 
     if (id) {
-      fetch(`https://classroom-server-one.onrender.com/api/v1/assignment/${id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updateData),
-      })
+      fetch(
+        `https://classroom-server-site.vercel.app/api/v1/assignment/${id}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updateData),
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           setImageValue("");
           alert("Assignment Submit");
+          window.location.reload();
         })
         .catch((error) => {
           console.log("Error:", error);
