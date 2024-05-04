@@ -39,12 +39,7 @@ const ProfileIcon = ({ userData }) => {
             <div className="py-8 text-center">
               {userData?.userRole !== "admin" ? (
                 <div>
-                  <p className="pb-2 text-sm font-bold ">
-                    Father Name: {userData?.fatherName}
-                  </p>
-                  <p className="pb-2 text-sm font-bold ">
-                    Mother Name: {userData?.motherName}
-                  </p>
+              
                   <p className="pb-2 text-sm font-bold ">
                     Email: {user?.email}
                   </p>

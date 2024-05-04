@@ -85,8 +85,6 @@ const Register = () => {
       name,
       email,
       password,
-      fatherName,
-      motherName,
       mobileNumber,
       dateOfBirth,
     } = data;
@@ -95,8 +93,6 @@ const Register = () => {
       name,
       email,
       password,
-      fatherName,
-      motherName,
       mobileNumber,
       dateOfBirth,
     };
