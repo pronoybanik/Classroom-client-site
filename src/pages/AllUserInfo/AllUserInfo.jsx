@@ -39,8 +39,8 @@ const AllUserInfo = () => {
                 <th></th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Father Name</th>
-                <th>Mother Name</th>
+                {/* <th>Father Name</th> */}
+                {/* <th>Mother Name</th> */}
                 <th>Mobile Number</th>
                 <th>Date Of Birth</th>
                 <th>Role</th>
@@ -53,8 +53,8 @@ const AllUserInfo = () => {
                   <th>{index + 1}</th>
                   <td>{data?.name}</td>
                   <td>{data?.email}</td>
-                  <td>{data?.fatherName}</td>
-                  <td>{data?.motherName}</td>
+                  {/* <td>{data?.fatherName}</td> */}
+                  {/* <td>{data?.motherName}</td> */}
                   <td>{data?.mobileNumber}</td>
                   <td>{data?.dateOfBirth}</td>
                   <td className="font-bold">{data?.userRole}</td>

@@ -25,7 +25,6 @@ const People = () => {
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
-  console.log("classDate", classData);
 
  
 
