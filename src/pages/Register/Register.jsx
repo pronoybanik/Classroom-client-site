@@ -81,13 +81,7 @@ const Register = () => {
 
   const handleRegisterAction = (data) => {
     const toastId = toast.loading("Loading...");
-    const {
-      name,
-      email,
-      password,
-      mobileNumber,
-      dateOfBirth,
-    } = data;
+    const { name, email, password, mobileNumber, dateOfBirth } = data;
 
     const userData = {
       name,
@@ -147,15 +141,17 @@ const Register = () => {
         <div className="w-full max-w-md">
           <div className="flex items-center justify-center mt-6 duration-300">
             <button
-              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-500 capitalize ${state === "login" && "border-b-2 border-blue-500"
-                }  `}
+              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-500 capitalize ${
+                state === "login" && "border-b-2 border-blue-500"
+              }  `}
             >
               sign in
             </button>
 
             <button
-              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-800 capitalize ${state === "register" && "border-b-2 border-blue-500"
-                } `}
+              className={`w-1/3 pb-4 duration-200 ease-linear  transition-all font-medium text-center text-gray-800 capitalize ${
+                state === "register" && "border-b-2 border-blue-500"
+              } `}
             >
               sign up
             </button>
@@ -198,7 +194,6 @@ const Register = () => {
               {errors.name && (
                 <p className="text-error font-medium">{errors.name}</p>
               )}
-
 
               {/* Mobile Number */}
               <div className="relative flex items-center mt-4">

@@ -4,17 +4,29 @@ import { CgProfile } from "react-icons/cg";
 import ClassNavBar from "../../shared/ClassNavBar";
 import { Link, useParams } from "react-router-dom";
 import PrimaryButton from "../../shared/PrimaryButton";
+import toast from "react-hot-toast";
+import StudentLists from "../../component/studentLists/StudentLists";
 
 const People = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const [classData, setClassData] = useState({});
+  const [currentDate, setCurrentDate] = useState("");
+
+
+  useEffect(() => {
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString(); // Format the date
+    setCurrentDate(formattedDate);
+  }, []);
 
   useEffect(() => {
     fetch(`https://classroom-server-one.onrender.com/api/v1/classList/${id}`)
       .then((res) => res.json())
       .then((data) => setClassData(data.data));
   }, [id]);
+
+ 
 
   return (
     <div>
@@ -38,11 +50,11 @@ const People = () => {
           <p className="font-semibold text-gray-700">{classData?.email}</p>
         </div>
 
-        {/* {classData?.email !== user?.email && (
+        {classData?.email !== user?.email && (
           <Link className="mt-4" to="/payment">
             <PrimaryButton full>Payment</PrimaryButton>
           </Link>
-        )} */}
+        )}
       </div>
 
       {/* student list start */}
@@ -53,26 +65,17 @@ const People = () => {
           </div>
           <div className="border-b border-black"></div>
 
-          {classData?.studentList.length ? (
-            <div className="flex  justify-end text-md text-gray-600 font-bold mt-2 ">
-              {classData?.studentList?.length} Student
-            </div>
-          ) : null}
+          <div>
+            {classData?.studentList.length ? (
+              <div className="flex  justify-end text-md text-gray-600 font-bold mt-2 ">
+                Date: {currentDate} - {classData?.studentList?.length} Student
+              </div>
+            ) : null}
+          </div>
 
           <div className="mt-4">
             {classData?.studentList?.map((data) => (
-              <Link key={data?._id}>
-                <div className="flex items-center p-2 rounded justify-between mb-2 border br bg-gray-100 hover:bg-gray-200 ">
-                  <div className="flex items-center gap-2">
-                    <img
-                      className="w-12 h-12 border hover:bg-gray-200 py-1 px-1 rounded-full cursor-pointer"
-                      src={data?.studentImage}
-                      alt=""
-                    />
-                    <div className="text-sm font-medium">{data?.email}</div>
-                  </div>
-                </div>
-              </Link>
+              <StudentLists data={data} />
             ))}
           </div>
         </div>
